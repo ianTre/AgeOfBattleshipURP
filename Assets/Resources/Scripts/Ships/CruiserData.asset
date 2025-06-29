@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a06411f011078a94db921b0e651b03ef, type: 3}
+  m_Name: CruiserData
+  m_EditorClassIdentifier: 
+  shipName: Cruiser
+  image: {fileID: 21300000, guid: 61c163780df40bf43873c20595c36f82, type: 3}
+  quantity: 2
+  panelname: Ship2Panel
+  PrefabToInstantiate: {fileID: 1042197431107668, guid: ec5d6bc6e2d4942448a8b3d9eddf3865,
+    type: 3}
