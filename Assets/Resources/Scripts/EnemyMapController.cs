@@ -162,8 +162,8 @@ public class EnemyMapController : MonoBehaviour
             }
             tile.XCoord = x;
             tile.ZCoord = z;
-            var textMesh = tile.transform.GetComponentInChildren<TextMesh>();
-            textMesh.text = "(" + z + "," + x + ")"; // (row,column)
+            /*var textMesh = tile.transform.GetComponentInChildren<TextMesh>();
+            textMesh.text = "(" + z + "," + x + ")"; // (row,column)*/
             lastRowPos = tile.Zpos;
         }
     }
