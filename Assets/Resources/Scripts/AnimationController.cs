@@ -13,8 +13,6 @@ public class AnimationController : MonoBehaviour
     GameObject sunkExplosion;
     [SerializeField]
     GameObject HitExplosion;
-    [SerializeField]
-    GameObject HitFire;
     public static AnimationController instance;
     public Vector3 currentPosition;
     public HitResult currentHitResult;
@@ -34,13 +32,13 @@ public class AnimationController : MonoBehaviour
     }
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
 
@@ -65,7 +63,7 @@ public class AnimationController : MonoBehaviour
         }
     }
 
-    public void SetNextExplosion(Vector3 nextPos , HitResult nextHitResult)
+    public void SetNextExplosion(Vector3 nextPos, HitResult nextHitResult)
     {
         currentPosition = nextPos;
         currentHitResult = nextHitResult;
@@ -74,22 +72,22 @@ public class AnimationController : MonoBehaviour
     public void PlayMissExplosion(Vector3 position)
     {
         position.y += 10f;
-        StartCoroutine(ShowMissExplosion(3f,position));
+        StartCoroutine(ShowMissExplosion(3f, position));
     }
 
-        public void PlayHitExplosion(Vector3 position)
+    public void PlayHitExplosion(Vector3 position)
     {
         position.y += 12f;
-        StartCoroutine(ShowHitAnimation(3f, position));
+        StartCoroutine(ShowHitAnimation(6f, position));
     }
 
-        public void PlaySunkExplosion(Vector3 position)
+    public void PlaySunkExplosion(Vector3 position)
     {
         position.y += 12f;
-        StartCoroutine(ShowSunkExplosion(3f, 2f , 5f, position));
+        StartCoroutine(ShowSunkExplosion(3f, 2f, 5f, position));
     }
 
-    private IEnumerator ShowSunkExplosion(float initialDelay, float betweenExplosionsDelay  , float finalDelay ,Vector3 position)
+    private IEnumerator ShowSunkExplosion(float initialDelay, float betweenExplosionsDelay, float finalDelay, Vector3 position)
     {
         float elapsed = 0f;
         while (elapsed < initialDelay)
@@ -99,19 +97,19 @@ public class AnimationController : MonoBehaviour
         }
         Ship ship = PlayerController.instance.GetShipByPosition(position);
         int totalHits = ship.shipTiles.Where(x => x.hitted == true).Count();
-        ship.gameObject.GetComponent<FirePowerController>().TakeDamage(totalHits , ship.shipTiles.Count);
+        ship.gameObject.GetComponent<FirePowerController>().TakeDamage(totalHits, ship.shipTiles.Count);
         elapsed = 0f;
-        while(betweenExplosionsDelay >= 0)
+        while (betweenExplosionsDelay >= 0)
         {
             GameObject explosionsFolder = ship.gameObject.transform.Find("Explosions").gameObject;
-            if(explosionsFolder == null)
+            if (explosionsFolder == null)
             {
                 Debug.Log("Explosions folder not found in ship: " + ship.name);
                 yield break;
             }
             for (int i = 0; i < explosionsFolder.transform.childCount; i++)
             {
-                GameObject explosion = explosionsFolder.transform.GetChild(i).gameObject;   
+                GameObject explosion = explosionsFolder.transform.GetChild(i).gameObject;
                 explosion.GetComponent<ParticleSystem>().Play();
                 explosion.GetComponent<AudioSource>().Play();
                 elapsed = 0f;
@@ -157,29 +155,32 @@ public class AnimationController : MonoBehaviour
     }
 
 
-    public IEnumerator ShowHitAnimation(float delay ,Vector3 position)
+    public IEnumerator ShowHitAnimation(float delay, Vector3 position)
     {
         float elapsed = 0f;
-        int numberOfRepets = 1;
-        while(numberOfRepets > 0)
+        while (elapsed < delay)
         {
-            numberOfRepets--;
-            elapsed = 0f;
-            while (elapsed < delay)
-            {
-                elapsed += Time.deltaTime;
-                yield return null;
-            }
-            GameObject explosion = Instantiate(HitExplosion, position, Quaternion.identity);
-            explosion.transform.localScale = new Vector3(explosion.transform.localScale.x , explosion.transform.localScale.y , explosion.transform.localScale.z );
-            explosion.GetComponent<ParticleSystem>().Play();
-            cameraRotatorFull.GetComponentInChildren<AudioSource>().clip = BombExplosion;    
-            cameraRotatorFull.GetComponentInChildren<AudioSource>().Play();
-            Destroy(explosion, 5f);   
+            elapsed += Time.deltaTime;
+            yield return null;
         }
+        GameObject explosion = Instantiate(HitExplosion, position, Quaternion.identity);
+        explosion.transform.localScale = new Vector3(explosion.transform.localScale.x, explosion.transform.localScale.y, explosion.transform.localScale.z);
+        explosion.transform.position = new Vector3(explosion.transform.position.x, explosion.transform.position.y + 7, explosion.transform.position.z);
+        explosion.GetComponent<ParticleSystem>().Play();
+        cameraRotatorFull.GetComponentInChildren<AudioSource>().clip = BombExplosion;
+        cameraRotatorFull.GetComponentInChildren<AudioSource>().Play();
+        Destroy(explosion, 5f);
+
         Ship ship = PlayerController.instance.GetShipByPosition(position);
         int totalHits = ship.shipTiles.Where(x => x.hitted == true).Count();
-        ship.gameObject.GetComponent<FirePowerController>().TakeDamage(totalHits , ship.shipTiles.Count);
+        elapsed = 0f;
+        float fireDelay = 1.5f;
+        while (elapsed < fireDelay)
+        {
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        ship.gameObject.GetComponent<FirePowerController>().TakeDamage(totalHits, ship.shipTiles.Count);
         elapsed = 0f;
         while (elapsed < delay)
         {

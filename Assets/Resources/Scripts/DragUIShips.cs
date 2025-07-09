@@ -95,7 +95,7 @@ public class DragUIShips : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             Debug.Log("No prefab to instatiate");
             return;
         }
-        Vector3 position = new Vector3(tile.Xpos,tile.Ypos + 6, tile.Zpos);
+        Vector3 position = new Vector3(tile.Xpos,tile.Ypos + ScriptableObject.PrefabToInstantiate.transform.localPosition.y, tile.Zpos);
         if (GetNumberOfTilesToDeploy(ScriptableObject.PrefabToInstantiate) % 2 == 0)
         {
             if (PlayerController.instance.leftCtrlPressed)
