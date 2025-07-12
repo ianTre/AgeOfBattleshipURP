@@ -1,0 +1,5 @@
+Creating Logger
+waiting
+Finish coroutine
+New tiles for battleship Battleship are : (6,0),(6,1),(6,2)
+Enemy tiles are:

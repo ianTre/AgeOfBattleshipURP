@@ -1,0 +1,22 @@
+Creating Logger
+waiting
+Finish coroutine
+New tiles for battleship Destroyer are : (3,1),(4,1),(5,1),(2,1)
+Enemy tiles are:
+waiting
+New tiles for battleship Frigate are : (4,0),(4,1),(4,2)
+Enemy tiles are:(3,1),(4,1),(5,1),(2,1)
+waiting
+New tiles for battleship Frigate are : (3,5),(4,5),(2,5)
+Enemy tiles are:(3,1),(4,1),(5,1),(2,1)
+waiting
+New tiles for battleship Corvette are : (2,4),(2,5)
+Enemy tiles are:(3,1),(4,1),(5,1),(2,1),(3,5),(4,5),(2,5)
+waiting
+New tiles for battleship Corvette are : (6,9),(7,9)
+Enemy tiles are:(3,1),(4,1),(5,1),(2,1),(3,5),(4,5),(2,5)
+Creating Logger
+waiting
+Finish coroutine
+New tiles for battleship Crusier are : (2,11),(2,12),(2,13),(2,14),(2,15)
+Enemy tiles are:

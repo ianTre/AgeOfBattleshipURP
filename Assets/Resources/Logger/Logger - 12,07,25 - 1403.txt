@@ -1,0 +1,5 @@
+Creating Logger
+waiting
+Finish coroutine
+New tiles for battleship Crusier are : (1,4),(1,5),(1,6),(1,7),(1,8)
+Enemy tiles are:

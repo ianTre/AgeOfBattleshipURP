@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Assets.Resources.Scripts
@@ -14,7 +15,7 @@ namespace Assets.Resources.Scripts
         public AOBLogger() 
         {
             string directory = Directory.GetCurrentDirectory(); //D:\UnityProjects\AgeOfBattleships
-            path = directory + @"\Assets\Resources\Logger.txt";
+            path = directory + @"\Assets\Resources\Logger\Logger - " + DateTime.Now.ToString("dd,MM,yy - HHmm") + ".txt";
             
 
             if (!File.Exists(path))

@@ -1,0 +1,5 @@
+Creating Logger
+waiting
+Finish coroutine
+New tiles for battleship Frigate are : (3,2),(4,2),(2,2)
+Enemy tiles are:
