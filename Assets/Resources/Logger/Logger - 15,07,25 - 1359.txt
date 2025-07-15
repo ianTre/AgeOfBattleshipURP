@@ -1,0 +1,11 @@
+Creating Logger
+waiting
+Finish coroutine
+New tiles for battleship Battleship are : (3,10),(3,11),(3,12),(3,13),(3,14)
+Enemy tiles are:
+waiting
+New tiles for battleship Destroyer are : (3,10),(0,10),(2,10),(1,10)
+Enemy tiles are:(3,10),(3,11),(3,12),(3,13),(3,14)
+waiting
+New tiles for battleship Destroyer are : (6,2),(5,2),(4,2),(3,2)
+Enemy tiles are:(3,10),(3,11),(3,12),(3,13),(3,14)

@@ -1,0 +1,8 @@
+Creating Logger
+waiting
+Finish coroutine
+New tiles for battleship Battleship are : (3,12),(4,12),(2,12),(1,12),(0,12)
+Enemy tiles are:
+waiting
+New tiles for battleship Crusier are : (0,8),(0,7),(0,6),(0,5),(0,4)
+Enemy tiles are:(3,12),(4,12),(2,12),(1,12),(0,12)
