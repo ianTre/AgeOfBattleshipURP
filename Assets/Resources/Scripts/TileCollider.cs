@@ -18,4 +18,13 @@ public class TileCollider : MonoBehaviour
             other.gameObject.GetComponent<Ship>().AddOcuppiedTile(tile);
         }
     }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Ship")
+        {
+            Tile tile = GetComponent<Tile>();
+            other.gameObject.GetComponent<Ship>().RemoveOcuppiedTile(tile);
+        }
+    }
 }

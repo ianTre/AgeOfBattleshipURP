@@ -20,8 +20,8 @@ public class Ship : MonoBehaviour
     public ShipType shipType;
     public List<Tile> ocuppiedTiles;
     public List<ShipTile> shipTiles;
-    public bool isSunk=false;
-    private int count=0;
+    public bool isSunk = false;
+    private int count = 0;
     public SelectionController selectionlight;
     public double coord = 0;
     public Tile selectedTile;
@@ -37,7 +37,7 @@ public class Ship : MonoBehaviour
         firePowerController = GetComponent<FirePowerController>();
     }
 
-     // Update is called once per frame
+    // Update is called once per frame
     void Update()
     {
     }
@@ -90,12 +90,9 @@ public class Ship : MonoBehaviour
         }
     }
 
-    public void RemoveOcuppiedTile(Tile tile) 
+    public void RemoveOcuppiedTile(Tile tile)
     {
-        if (!ocuppiedTiles.Contains(tile))
-        {
-            ocuppiedTiles.Remove(tile);
-        }
+        ocuppiedTiles.Remove(tile);
     }
 
 
@@ -112,7 +109,7 @@ public class Ship : MonoBehaviour
     //      selectionlight.SelectionLightOn(coord, selectedTile, this); 
     //    }
     //}
-    
+
 }
 
 public class ShipTile
@@ -120,8 +117,8 @@ public class ShipTile
     public int tileNumber;
     public Tile tile;
     public bool hitted;
-    
-    public ShipTile(Tile tile , int number)
+
+    public ShipTile(Tile tile, int number)
     {
         this.tile = tile;
         this.hitted = false;
