@@ -36,6 +36,15 @@ public class InputController : MonoBehaviour
                 shipToBeDeleted.DestroyShip();
             }
         }
+
+        if(Input.GetKey(KeyCode.Alpha0))
+        {
+            if (PlayerController.instance.ships.Any(x => x.hasfocus))
+            {
+                Ship shipToSunk = PlayerController.instance.ships.Find(x => x.hasfocus);
+                shipToSunk.SunkingCinematick();
+            }
+        }
     }
 
     private void SelectShip(Mouse mouse)

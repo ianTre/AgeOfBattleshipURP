@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
@@ -6,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
+using UnityEngine.Playables;
 using UnityEngine.UIElements;
 
 public class Ship : MonoBehaviour
@@ -93,6 +95,15 @@ public class Ship : MonoBehaviour
     public void RemoveOcuppiedTile(Tile tile)
     {
         ocuppiedTiles.Remove(tile);
+    }
+
+    internal void SunkingCinematick()
+    {
+        PlayableDirector playableDirector = GetComponent<PlayableDirector>();
+        if (playableDirector != null)
+        {
+            playableDirector.Play();
+        }
     }
 
 
