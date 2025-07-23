@@ -44,6 +44,14 @@ public class InputController : MonoBehaviour
                 Ship shipToSunk = PlayerController.instance.ships.Find(x => x.hasfocus);
                 shipToSunk.SunkingCinematick();
             }
+            else
+            {
+                if (EnemyMapController.instance.enemyShips.Any(x => x.hasfocus))
+                {
+                    Ship shipToSunk = EnemyMapController.instance.enemyShips.Find(x => x.hasfocus);
+                    shipToSunk.SunkingCinematick();
+                }
+            }
         }
     }
 
