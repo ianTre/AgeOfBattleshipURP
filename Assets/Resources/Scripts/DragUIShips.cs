@@ -19,6 +19,7 @@ public class DragUIShips : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     private Color availableColor = new Color32(138,255,117,255);
     private Color notAvailableColor = new Color32(255,51,30,255);
     private ShipSoundController shipSounds;
+    public ShipPanelControl shipPanel;
     
     // Start is called before the first frame update
     void Start()
@@ -29,41 +30,42 @@ public class DragUIShips : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     public void OnBeginDrag(PointerEventData eventData)
     {
         Ship ship = ScriptableObject.PrefabToInstantiate.GetComponent<Ship>();
-        if(!PlayerController.instance.CanShipBeDeployed(ship,ScriptableObject.quantity))
+        if (!PlayerController.instance.CanShipBeDeployed(ship, ScriptableObject.quantity))
         {
             eventData.pointerDrag = null;
             return;
         }
 
-        mOriginalPanelLocalPosition = UIDragElement.localPosition; 
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(Canvas,eventData.position,eventData.pressEventCamera,out mOriginalLocalPointerPosition);
+        mOriginalPanelLocalPosition = UIDragElement.localPosition;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(Canvas, eventData.position, eventData.pressEventCamera, out mOriginalLocalPointerPosition);
         MapController.instance.SetDragAndDroping(true);
+
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         Vector2 localPointerPosition;
-        if(RectTransformUtility.ScreenPointToLocalPointInRectangle(
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
             Canvas,
             eventData.position,
             eventData.pressEventCamera,
             out localPointerPosition))
-            {
-                Vector3 offsetToOriginal = localPointerPosition - mOriginalLocalPointerPosition;
-                UIDragElement.localPosition = mOriginalPanelLocalPosition + offsetToOriginal;
-            }
+        {
+            Vector3 offsetToOriginal = localPointerPosition - mOriginalLocalPointerPosition;
+            UIDragElement.localPosition = mOriginalPanelLocalPosition + offsetToOriginal;
+        }
 
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if(Physics.Raycast(ray, out hit, 1000.0f)) 
-        { 
+        if (Physics.Raycast(ray, out hit, 1000.0f))
+        {
             //Vector3 worldPoint = hit.point;
-            if(hit.collider.gameObject.tag == "WaterTile")
+            if (hit.collider.gameObject.tag == "WaterTile")
             {
                 Tile impactedTile = hit.collider.gameObject.GetComponent<Tile>();
                 Ship ship = ScriptableObject.PrefabToInstantiate.GetComponent<Ship>();
-                MapController.instance.CanShipBeDeployed(impactedTile,ship);                
+                MapController.instance.CanShipBeDeployed(impactedTile, ship);
             }
         }
     }
