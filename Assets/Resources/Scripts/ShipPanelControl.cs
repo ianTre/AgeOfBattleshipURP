@@ -26,7 +26,10 @@ public class ShipPanelControl : MonoBehaviour
 
     public void SetData(ShipInformationScriptableObject shipInformationScriptableObject)
     {
-        
+        if(InputController.instance.isMouseDown)
+        {
+            return;
+        }
         RectTransform shipInfoPanel = GetComponent<RectTransform>();
         shipInfoPanel.gameObject.SetActive(true);
         GameObject panel = GameObject.Find(shipInformationScriptableObject.panelname);

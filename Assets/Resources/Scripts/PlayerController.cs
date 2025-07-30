@@ -14,17 +14,20 @@ public class PlayerController : MonoBehaviour
     public static PlayerController instance;
     public bool leftCtrlPressed = false;
     public bool cameraOnMain = true;
-    public Dictionary<ShipType,string> panelForShip;
+    public Dictionary<ShipType, string> panelForShip;
     [SerializeField]
     GameObject explosions;
     [SerializeField]
-    GameObject VirtualCamera; 
-    private int shipCount; 
+    GameObject VirtualCamera;
+    private int shipCount;
+    private Ship selectedShip;
+    [SerializeField]
+    SelectionController selectionlight;
     // private int totalShipAvailable = 5;  // Total number of ships available for deployment
-    
+
     // Start is called before the first frame update
 
-    void Awake ()
+    void Awake()
     {
         instance = this;
     }
@@ -37,19 +40,19 @@ public class PlayerController : MonoBehaviour
 
     private void AddConstantReferences()
     {
-        panelForShip.Add(ShipType.Battleship,"Ship1Panel");
-        panelForShip.Add(ShipType.Crusier,"Ship2Panel");
-        panelForShip.Add(ShipType.Corvette,"Ship4Panel");
-        panelForShip.Add(ShipType.Destroyer,"Ship3Panel");
-        panelForShip.Add(ShipType.Frigate,"Ship5Panel");
+        panelForShip.Add(ShipType.Battleship, "Ship1Panel");
+        panelForShip.Add(ShipType.Crusier, "Ship2Panel");
+        panelForShip.Add(ShipType.Corvette, "Ship4Panel");
+        panelForShip.Add(ShipType.Destroyer, "Ship3Panel");
+        panelForShip.Add(ShipType.Frigate, "Ship5Panel");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            leftCtrlPressed=!leftCtrlPressed;
+            leftCtrlPressed = !leftCtrlPressed;
         }
 
         if (Input.GetKeyDown(KeyCode.M))
@@ -70,23 +73,23 @@ public class PlayerController : MonoBehaviour
     private void UpdateCameraPosition()
     {
         var CameraAnchor = GameObject.Find("CameraAnchor");
-        if(CameraAnchor==null)
+        if (CameraAnchor == null)
         {
             Debug.Log("CameraAnchor GameObject is null , check UpdateCameraPosition on PlayerController");
             return;
         }
         Vector3 newPosition;
-        if(cameraOnMain)
+        if (cameraOnMain)
             newPosition = MapController.instance.AllTiles.First().transform.position;
         else
         {
             var tile = EnemyMapController.instance.allTiles.FirstOrDefault();
-            if(tile==null)
+            if (tile == null)
                 return;
             newPosition = tile.transform.position;
         }
 
-        CameraAnchor.transform.position = new Vector3(newPosition.x,newPosition.y,newPosition.z);
+        CameraAnchor.transform.position = new Vector3(newPosition.x, newPosition.y, newPosition.z);
     }
 
     public void AddShip(Ship ship)
@@ -97,14 +100,14 @@ public class PlayerController : MonoBehaviour
 
     public void RemoveShip(Ship ship)
     {
-        if(!ships.Contains(ship))
+        if (!ships.Contains(ship))
             return;
-        
+
         ships.Remove(ship);
         shipCount--;
         string panelName = panelForShip[ship.shipType];
         GameObject shipPanel = GameObject.Find(panelName);
-        if(shipPanel == null)
+        if (shipPanel == null)
         {
             Debug.Log("Error: panel not found, check RemoveShip on PlayerController. Panel name is :" + panelName);
             return;
@@ -115,7 +118,7 @@ public class PlayerController : MonoBehaviour
 
     public void EndDeployStage()
     {
-        if(shipCount > 0) // (totalShipAvailable == shipCount) << original condition, temporarily changed
+        if (shipCount > 0) // (totalShipAvailable == shipCount) << original condition, temporarily changed
         {
             GameController.instance.UpdateStage(GameStage.PlayerAttackEnemyMap);
         }
@@ -127,20 +130,20 @@ public class PlayerController : MonoBehaviour
 
 
 
-    public bool CanShipBeDeployed(Ship ship,int quantity)
+    public bool CanShipBeDeployed(Ship ship, int quantity)
     {
         return ships.Where(x => x.shipType == ship.shipType).Count() < quantity;
     }
 
-    public HitResult ProcessEnemyHit(int z,int x)
+    public HitResult ProcessEnemyHit(int z, int x)
     {
         HitResult hitResult = GetHitResult(z, x);
-        Tile tile = MapController.instance.FindTileByCoord(z,x);
-        if(tile == null)
+        Tile tile = MapController.instance.FindTileByCoord(z, x);
+        if (tile == null)
         {
             Debug.Log("Error: tile not found, check ShowExplosionAnimation on PlayerController");
         }
-        AnimationController.instance.SetNextExplosion(tile.transform.position,hitResult);
+        AnimationController.instance.SetNextExplosion(tile.transform.position, hitResult);
         return hitResult;
     }
 
@@ -184,6 +187,29 @@ public class PlayerController : MonoBehaviour
         int random = UnityEngine.Random.Range(0, avaibleShips.Count());
         Ship selShip = avaibleShips.ElementAt(random);
         return selShip;
+    }
+    public Ship GetSelectedShip()
+    {
+        return selectedShip;
+    }
+    public void SetSelectedShip(Ship ship)
+    {
+        if (ship == null)
+        {
+            return;
+        }
+        ClearSelectedShip();
+        selectedShip = ship; 
+        selectedShip.hasfocus = true;
+        selectionlight.SelectionLightOnSimplified(selectedShip); 
+    }
+    public void ClearSelectedShip()
+    {
+        if (selectedShip == null)
+            return;
+        selectedShip.hasfocus = false;
+        selectionlight.SelectionLightOff(selectedShip);
+        selectedShip = null;       
     }
 }
     

@@ -1,5 +1,6 @@
 using System.Linq;
 using Assets.Resources.Scripts;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +11,8 @@ public class InputController : MonoBehaviour
     Camera m_Camera;
     private GameObject hittedObject;
     SelectionController selectionlight;
+    public static InputController instance;
+    public bool isMouseDown = false;
 
     void Start()
     {
@@ -19,43 +22,52 @@ public class InputController : MonoBehaviour
         selectionlight = FindAnyObjectByType<SelectionController>();
     }
 
+    void Awake()
+    {
+        instance = this;
+    }
+
     // Update is called once per frame
     void Update()
     {
         Mouse mouse = Mouse.current;
-        if (mouse.leftButton.wasPressedThisFrame && GameController.instance.currentStage == GameStage.Deploy)
+        if (mouse.leftButton.wasPressedThisFrame)
         {
-            SelectShip(mouse);
+            isMouseDown = true;
+            Debug.Log("Mouse down");
+            if (GameController.instance.currentStage == GameStage.Deploy)
+            {
+                MouseRayCastSelectionMode(mouse);
+            }
+        }
+        
+        if (mouse.leftButton.wasReleasedThisFrame)
+        {
+            isMouseDown = false;
         }
 
         if (Input.GetKey(KeyCode.Delete) && GameController.instance.currentStage == GameStage.Deploy)
-        {
-            if (PlayerController.instance.ships.Any(x => x.hasfocus))
             {
-                Ship shipToBeDeleted = PlayerController.instance.ships.Find(x => x.hasfocus);
-                shipToBeDeleted.DestroyShip();
-            }
-        }
-
-        if(Input.GetKey(KeyCode.Alpha0))
-        {
-            if (PlayerController.instance.ships.Any(x => x.hasfocus))
-            {
-                Ship shipToSunk = PlayerController.instance.ships.Find(x => x.hasfocus);
-                shipToSunk.SunkingCinematick();
-            }
-            else
-            {
-                if (EnemyMapController.instance.enemyShips.Any(x => x.hasfocus))
+                Ship selectedShip = PlayerController.instance.GetSelectedShip();
+                if (selectedShip != null)
                 {
-                    Ship shipToSunk = EnemyMapController.instance.enemyShips.Find(x => x.hasfocus);
-                    shipToSunk.SunkingCinematick();
+                    PlayerController.instance.ClearSelectedShip();
+                    selectedShip.DestroyShip();                    
                 }
             }
+
+    if (Input.GetKey(KeyCode.Alpha0)) //REMOVE BEFORE RELEASE
+        {
+        Ship shipToSunk;
+            if ((shipToSunk = PlayerController.instance.GetSelectedShip()) != null)
+            {
+                shipToSunk.SunkingCinematick();
+            }
         }
+ 
     }
 
-    private void SelectShip(Mouse mouse)
+    private void MouseRayCastSelectionMode(Mouse mouse)
     {
         Vector3 mousePosition = mouse.position.ReadValue();
         Ray ray = m_Camera.ScreenPointToRay(mousePosition);
@@ -72,10 +84,15 @@ public class InputController : MonoBehaviour
                 Ship ship = hittedObject.GetComponent<Ship>();
 
                 if (!ship.hasfocus)
-                    selectionlight.SelectionLightOnSimplified(ship);
+                    PlayerController.instance.SetSelectedShip(ship);
                 else
-                    selectionlight.SelectionLightOff(ship);
+                    PlayerController.instance.ClearSelectedShip();
             }
+            else
+            { 
+                PlayerController.instance.ClearSelectedShip();
+            }
+         
         }
     }
 
