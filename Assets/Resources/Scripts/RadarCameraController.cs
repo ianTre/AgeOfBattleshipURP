@@ -18,7 +18,7 @@ public class RadarCameraController : MonoBehaviour
     private GameObject radarObject;
 
     [SerializeField]
-    private Camera cam;
+    public Camera cam;
     private Vector3 deltaMovement;
     [SerializeField]
     private float VerticalMaxMovement;
@@ -38,10 +38,13 @@ public class RadarCameraController : MonoBehaviour
         {
             return;
         }
-        if (!DeveloperMode)
-            cam.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Water", "UI");
-        else
-            cam.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "UI");
+//PREGUNTAR QUE ES EL DEVELOPER MODE - DESACTIVADO FUNCIONA EL GRID
+       /* if (!DeveloperMode)
+            cam.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Water", "UI"); 
+            cam.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "UI");*/
+//PREGUNTAR QUE ES EL DEVELOPER MODE
+
+
 
         //ZOOM
         curZoom += Input.GetAxis("Mouse ScrollWheel") * -zoomSpeed;

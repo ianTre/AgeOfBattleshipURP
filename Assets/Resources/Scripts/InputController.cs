@@ -13,6 +13,8 @@ public class InputController : MonoBehaviour
     SelectionController selectionlight;
     public static InputController instance;
     public bool isMouseDown = false;
+    public RadarCameraController radarCameraController;
+    private bool isGridOn = false;
 
     void Start()
     {
@@ -20,6 +22,7 @@ public class InputController : MonoBehaviour
         logger.Log("Creating Logger");
         m_Camera = Camera.main;
         selectionlight = FindAnyObjectByType<SelectionController>();
+        radarCameraController = FindAnyObjectByType<RadarCameraController>();
     }
 
     void Awake()
@@ -40,31 +43,51 @@ public class InputController : MonoBehaviour
                 MouseRayCastSelectionMode(mouse);
             }
         }
-        
+
         if (mouse.leftButton.wasReleasedThisFrame)
         {
             isMouseDown = false;
         }
 
         if (Input.GetKey(KeyCode.Delete) && GameController.instance.currentStage == GameStage.Deploy)
-            {
-                Ship selectedShip = PlayerController.instance.GetSelectedShip();
-                if (selectedShip != null)
-                {
-                    PlayerController.instance.ClearSelectedShip();
-                    selectedShip.DestroyShip();                    
-                }
-            }
-
-    if (Input.GetKey(KeyCode.Alpha0)) //REMOVE BEFORE RELEASE
         {
-        Ship shipToSunk;
+            Ship selectedShip = PlayerController.instance.GetSelectedShip();
+            if (selectedShip != null)
+            {
+                PlayerController.instance.ClearSelectedShip();
+                selectedShip.DestroyShip();
+            }
+        }
+
+        if (Input.GetKey(KeyCode.Alpha0)) //REMOVE BEFORE RELEASE
+        {
+            Ship shipToSunk;
             if ((shipToSunk = PlayerController.instance.GetSelectedShip()) != null)
             {
                 shipToSunk.SunkingCinematick();
             }
         }
- 
+
+        if (Input.GetKeyDown(KeyCode.G) && GameController.instance.currentStage == GameStage.PlayerAttackEnemyMap) // muestra el grid
+        {
+            ShowGridOnEnemyMap();
+            
+        }
+     
+
+    }
+    public void ShowGridOnEnemyMap()
+    { 
+        if (!isGridOn)
+            {
+                radarCameraController.cam.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Water", "UI");
+                isGridOn = true;
+            }
+            else
+            {
+                radarCameraController.cam.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "UI");
+                isGridOn = false;
+            }  
     }
 
     private void MouseRayCastSelectionMode(Mouse mouse)
@@ -89,11 +112,12 @@ public class InputController : MonoBehaviour
                     PlayerController.instance.ClearSelectedShip();
             }
             else
-            { 
+            {
                 PlayerController.instance.ClearSelectedShip();
             }
-         
+
         }
     }
+    
 
 }
