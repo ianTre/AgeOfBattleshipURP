@@ -23,11 +23,13 @@ public class GameController : MonoBehaviour
     GameObject endGameCanvas;
     [SerializeField]
     AudioClip gameOverSound;
+    public bool FixedIAShot = false; //REMOVE ASAP
 
     List<string> coordinates = new List<string>();
     private Ship shipToAction;
 
-    private void Awake() {
+    private void Awake()
+    {
         instance = this;
     }
     void Start()
@@ -36,7 +38,7 @@ public class GameController : MonoBehaviour
         camera1.gameObject.SetActive(true);
         camera2.gameObject.SetActive(false);
 
-        
+
         coordinates.Add("0,0");
         coordinates.Add("0,1");
         coordinates.Add("0,2");
@@ -49,7 +51,7 @@ public class GameController : MonoBehaviour
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
-    void Update() 
+    void Update()
     {
         //BORRAR ABAJO
         if (Input.GetKeyDown(KeyCode.J))
@@ -58,19 +60,19 @@ public class GameController : MonoBehaviour
         }
         //BORRAR ARRIBA
 
-        if(actionStage == currentStage)
+        if (actionStage == currentStage)
             return;
-        
+
         switch (actionStage)
         {
             case GameStage.PlayerAttackEnemyMap:
-               TransitionToPlayerAttackEnemyMap();
-               break;
-            
+                TransitionToPlayerAttackEnemyMap();
+                break;
+
             case GameStage.PlayerAttackCinematic:
                 TransitionToPlayerAttackCinematic();
                 break;
-            
+
             case GameStage.IAAttackPlayerMap:
                 TransitionToIAAttack();
                 break;
@@ -85,12 +87,12 @@ public class GameController : MonoBehaviour
 
     public void TransitionToPlayerAttackEnemyMap()
     {
-        if(currentStage == GameStage.Deploy)
+        if (currentStage == GameStage.Deploy)
         {
             EndDeployStage();
         }
         currentStage = GameStage.PlayerAttackEnemyMap;
-        SetStateOfCameras(false,true,true,false);
+        SetStateOfCameras(false, true, true, false);
         shipToAction = PlayerController.instance.getShipToBeActioned();
         GameObject.Find("CameraRotator").GetComponent<CameraRotator>().StartRotation(shipToAction.transform.position);
         turn++;
@@ -105,12 +107,12 @@ public class GameController : MonoBehaviour
 
     IEnumerator CWaitForSeconds(float v)
     {
-        while(shipToAction.GetComponent<FirePowerController>().isFiring)
+        while (shipToAction.GetComponent<FirePowerController>().isFiring)
         {
             yield return null;
         }
         yield return new WaitForSeconds(v);
-        if(EnemyMapController.instance.CheckEndOfGame())
+        if (EnemyMapController.instance.CheckEndOfGame())
         {
             actionStage = GameStage.EndOfGame;
             EndOfGame("Player");
@@ -125,13 +127,18 @@ public class GameController : MonoBehaviour
     public void TransitionToIAAttack()
     {
         currentStage = GameStage.IAAttackPlayerMap;
-        //EnemyMapController.instance.IAEnemyShot();
-        Debug.Log("Enter coordinates");
-        var rowNumber = int.Parse(coordinates[0].Split(',')[0]);
-        var columnNumber = int.Parse(coordinates[0].Split(',')[1]);
-        coordinates.RemoveAt(0);
-        PlayerController.instance.ProcessEnemyHit(rowNumber,columnNumber);
-        if(PlayerController.instance.CheckEndOfGame())
+        //when FixedIAShot is removed , delete from here
+        if (FixedIAShot)
+        {
+            var rowNumber = int.Parse(coordinates[0].Split(',')[0]);
+            var columnNumber = int.Parse(coordinates[0].Split(',')[1]);
+            coordinates.RemoveAt(0);
+            PlayerController.instance.ProcessEnemyHit(rowNumber, columnNumber);
+        }
+        else //Until here included
+            EnemyMapController.instance.IAEnemyShot();
+
+        if (PlayerController.instance.CheckEndOfGame())
         {
             actionStage = GameStage.EndOfGame;
             EndOfGame("IA");
@@ -143,7 +150,7 @@ public class GameController : MonoBehaviour
     public void TransitionToIAAttackCinematic()
     {
         currentStage = GameStage.IAAttackCinematic;
-        SetStateOfCameras(false,false,false,true);
+        SetStateOfCameras(false, false, false, true);
         AnimationController.instance.PlayExplosion();
         //Next step needs to be triggered by animation event
         //actionStage = GameStage.PlayerAttackEnemyMap; 
@@ -155,6 +162,7 @@ public class GameController : MonoBehaviour
         List<Tile> playerTiles = MapController.instance.AllTiles;
         EnemyMapController.instance.GenerateEnemyMap(playerTiles);
         List<Ship> ships = PlayerController.instance.ships;
+        PlayerController.instance.ClearSelectedShip();
         GameObject.Find("InitialSetupCanvas").SetActive(false);
         EnemyMapController.instance.GenerateEnemyShips(ships);
     }
@@ -164,10 +172,10 @@ public class GameController : MonoBehaviour
         GameObject endGamePanel;
         AudioSource audio;
 
-        if(winner == "IA") // In case we want different end game for IA
+        if (winner == "IA") // In case we want different end game for IA
         {
             currentStage = GameStage.EndOfGame;
-            SetStateOfCameras(false,false,false,false);
+            SetStateOfCameras(false, false, false, false);
             Debug.Log("End of Game: " + winner + " wins!");
             // Show end game panel
             endGameCanvas.SetActive(true);
@@ -179,7 +187,7 @@ public class GameController : MonoBehaviour
         }
 
         currentStage = GameStage.EndOfGame;
-        SetStateOfCameras(false,false,false,false);
+        SetStateOfCameras(false, false, false, false);
         GameObject.Find("InitialSetupCanvas").SetActive(false);
         Debug.Log("End of Game: " + winner + " wins!");
         // Show end game panel
@@ -190,7 +198,7 @@ public class GameController : MonoBehaviour
         audio = endGamePanel.GetComponent<AudioSource>();
         audio.clip = gameOverSound;
         audio.Play();
- 
+
     }
 
     public IEnumerator DeactivateEndGameCanvas(float time)
@@ -209,7 +217,7 @@ public class GameController : MonoBehaviour
         actionStage = nextStage;
     }
 
-    public void SetStateOfCameras(bool DeployCamera, bool EnemyMapCamera, bool RotateCamera ,bool RotateCameraFull)
+    public void SetStateOfCameras(bool DeployCamera, bool EnemyMapCamera, bool RotateCamera, bool RotateCameraFull)
     {
         camera1.gameObject.SetActive(DeployCamera);
         camera2.gameObject.SetActive(EnemyMapCamera);
@@ -240,9 +248,9 @@ public enum GameStage
     EndOfGame = 99
 }
 
-public enum HitResult 
+public enum HitResult
 {
-    Miss = 0 ,
-    Hit = 1 ,
+    Miss = 0,
+    Hit = 1,
     Sunk = 2
 }

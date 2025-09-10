@@ -12,7 +12,7 @@ using Random = UnityEngine.Random;
 
 public class EnemyMapController : MonoBehaviour
 {
-    private int offsetInMap = 3000; 
+    private int offsetInMap = 3000;
     public static EnemyMapController instance;
     public List<Tile> allTiles;
     GameObject enemyMap;
@@ -29,7 +29,7 @@ public class EnemyMapController : MonoBehaviour
     [SerializeField]
     GameObject sunkSprite;
     public List<Tile> PlayerMapShootedTiles;
-    
+
     public List<Tile> PlayerMapShotTiles;
     public bool shipshotachieved = false;
     [SerializeField]
@@ -50,10 +50,10 @@ public class EnemyMapController : MonoBehaviour
         logger = new AOBLogger();
         EnemyShipsGO = GameObject.Find("EnemyShips");
         enemyMap = GameObject.Find("EnemyMap");
-        if(enemyMap==null || EnemyShipsGO == null)
+        if (enemyMap == null || EnemyShipsGO == null)
             Debug.Log("Error at finding GameObjects in EnemyMapController. Check Start code");
         var enemyPos = enemyMap.transform.position;
-        enemyMap.transform.position = new Vector3(enemyPos.x , enemyPos.y , enemyPos.z + offsetInMap);
+        enemyMap.transform.position = new Vector3(enemyPos.x, enemyPos.y, enemyPos.z + offsetInMap);
         enemyMapShootedTiles = new List<Tile>();
         PlayerMapShotTiles = new List<Tile>();
         possiblecoordHits = new List<Coord>();
@@ -63,16 +63,16 @@ public class EnemyMapController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown ("return"))
+        if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown("return"))
         {
-            if(selectedTile == null)
+            if (selectedTile == null)
             {
                 Debug.Log("no Selected tile");
                 return;
             }
             enemyMapShootedTiles.Add(selectedTile);
             GameObject prefab = CheckSpotInMap(selectedTile);
-            Instantiate(prefab,selectedTile.transform);
+            Instantiate(prefab, selectedTile.transform);
             GameController.instance.UpdateStage(GameStage.PlayerAttackCinematic);
             Debug.Log("Player has shooted, now is time to cinematic");
         }
@@ -82,12 +82,12 @@ public class EnemyMapController : MonoBehaviour
     {
         float timeToWait = 1f;
         float elapsed = 0f;
-        while(elapsed < timeToWait)
+        while (elapsed < timeToWait)
         {
             elapsed += Time.deltaTime;
             yield return new WaitForSeconds(timeToWait);
         }
-        
+
     }
 
     public GameObject CheckSpotInMap(Tile tile)
@@ -95,7 +95,7 @@ public class EnemyMapController : MonoBehaviour
         foreach (Ship ship in enemyShips)
         {
             Tile hittedTile = ship.ocuppiedTiles.Find(Stile => Stile.ZCoord == tile.ZCoord && Stile.XCoord == tile.XCoord);
-            if(hittedTile != null)
+            if (hittedTile != null)
             {
                 ship.TakeHit(hittedTile);
                 return ship.isSunk ? sunkSprite : hitSprite;
@@ -104,16 +104,16 @@ public class EnemyMapController : MonoBehaviour
         return missSprite;
     }
 
-    
-        public HitResult ProcessEnemyHit(int z,int x)
+
+    public HitResult ProcessEnemyHit(int z, int x)
     {
         foreach (Ship ship in enemyShips)
         {
             Tile hitTile = ship.ocuppiedTiles.Find(tile => tile.ZCoord == z && tile.XCoord == x);
-            if(hitTile != null)
+            if (hitTile != null)
             {
                 ship.TakeHit(hitTile);
-                if(ship.isSunk)
+                if (ship.isSunk)
                     return HitResult.Sunk;
                 return HitResult.Hit;
             }
@@ -125,19 +125,19 @@ public class EnemyMapController : MonoBehaviour
     {
         foreach (Tile tile in originalTiles)
         {
-            Vector3 newpos = new Vector3(tile.Xpos,tile.Ypos , tile.Zpos + offsetInMap);
-            Instantiate(tile,newpos,Quaternion.identity,enemyMap.transform);
+            Vector3 newpos = new Vector3(tile.Xpos, tile.Ypos, tile.Zpos + offsetInMap);
+            Instantiate(tile, newpos, Quaternion.identity, enemyMap.transform);
         }
         MapAllTiles();
         var enemyPos = enemyMap.transform.position;
-        radar.transform.position = new Vector3(enemyPos.x+225.68f,20f,enemyPos.z - 44.5f);
-     }
+        radar.transform.position = new Vector3(enemyPos.x + 225.68f, 20f, enemyPos.z - 44.5f);
+    }
 
     public void MapAllTiles()
     {
         foreach (Transform child in enemyMap.transform)
         {
-            Tile tile =child.GetComponent<Tile>();
+            Tile tile = child.GetComponent<Tile>();
 
             tile.Xpos = tile.transform.position.x;
             tile.Ypos = tile.transform.position.y;
@@ -147,14 +147,14 @@ public class EnemyMapController : MonoBehaviour
         }
 
         var orderedTiles = allTiles.OrderByDescending(tile => tile.Zpos).ThenBy(tile => tile.Xpos);
-        
+
         int x = -1;
         int z = 0;
         float lastRowPos = orderedTiles.First().Zpos;
         foreach (Tile tile in orderedTiles)
         {
-            if(tile.Zpos == lastRowPos) //Still on the same Row
-                x++;    
+            if (tile.Zpos == lastRowPos) //Still on the same Row
+                x++;
             else // switched to a new row
             {
                 x = 0;
@@ -176,69 +176,69 @@ public class EnemyMapController : MonoBehaviour
 
     public IEnumerator CoRuGenerateEnemyShips(List<Ship> playerShipsToAddAsEnemy)
     {
-            foreach (Ship ship in playerShipsToAddAsEnemy)
+        foreach (Ship ship in playerShipsToAddAsEnemy)
+        {
+            bool foundRightSpot = false;
+            Ship newShip = null;
+            while (!foundRightSpot)
             {
-                bool foundRightSpot = false;
-                Ship newShip = null;
-                while (!foundRightSpot)
+                try
                 {
-                    try
+                    bool VerticalOrientation = Random.Range(0, 2) == 0;
+                    int rowNumber = Random.Range(0, MapController.instance.rowSize);
+                    int columnNumber = Random.Range(0, MapController.instance.columSize);
+                    Tile tile = FindTileByCoord(rowNumber, columnNumber);
+                    if (tile == null)
                     {
-                        bool VerticalOrientation = Random.Range(0, 2) == 0;
-                        int rowNumber = Random.Range(0, MapController.instance.rowSize);
-                        int columnNumber = Random.Range(0, MapController.instance.columSize);
-                        Tile tile = FindTileByCoord(rowNumber, columnNumber);
-                        if (tile == null)
-                        {
-                            Debug.Log("Check GenerateEnemyShips on EnemyMapController , wrong tile coords were generated");
-                            break;
-                        }
+                        Debug.Log("Check GenerateEnemyShips on EnemyMapController , wrong tile coords were generated");
+                        break;
+                    }
 
-                        #region Create a new instance of the ship
-                        Quaternion quaternion;
+                    #region Create a new instance of the ship
+                    Quaternion quaternion;
+                    if (!VerticalOrientation)
+                        quaternion = Quaternion.Euler(new Vector3(0, 90, 0)); //ROTATED TO HORIZONTAL
+                    else
+                        quaternion = Quaternion.identity; // ROTATED VERTICALLY
+
+                    Vector3 position = new Vector3(tile.Xpos, tile.Ypos + 6, tile.Zpos);
+                    if (ship.Size() % 2 == 0) //If the ship is even, we need to adjust the position to the center of the tile
+                    {
                         if (!VerticalOrientation)
-                            quaternion = Quaternion.Euler(new Vector3(0, 90, 0)); //ROTATED TO HORIZONTAL
+                            position.x += tile.transform.localScale.x / 2;
                         else
-                            quaternion = Quaternion.identity; // ROTATED VERTICALLY
+                            position.z -= tile.transform.localScale.z / 2;
+                    }
+                    Vector3 newPosition = position;
+                    Debug.Log("Enemy ship " + ship.shipType + " will be deployed at " + tile.XCoord + "," + tile.ZCoord + " with orientation " + (VerticalOrientation ? "Vertical" : "Horizontal"));
 
-                        Vector3 position = new Vector3(tile.Xpos, tile.Ypos + 6, tile.Zpos);
-                        if (ship.Size() % 2 == 0) //If the ship is even, we need to adjust the position to the center of the tile
-                        {
-                            if (!VerticalOrientation)
-                                position.x += tile.transform.localScale.x / 2;
-                            else
-                                position.z -= tile.transform.localScale.z / 2;
-                        }
-                        Vector3 newPosition = position;
-                        Debug.Log("Enemy ship " + ship.shipType + " will be deployed at " + tile.XCoord + "," + tile.ZCoord + " with orientation " + (VerticalOrientation ? "Vertical" : "Horizontal"));
-
-                        newShip = Instantiate(ship, newPosition, quaternion, EnemyShipsGO.transform);
-                        newShip.ocuppiedTiles.Clear();
-                    }
-                    catch (Exception ex)
-                    {
-                        logger.Log(ex.Message);
-                    }
-                    while (newShip.ocuppiedTiles.Count == 0)
-                    {
-                        logger.Log("waiting");
-                        yield return null;
-                    }
-                    foundRightSpot = CheckNewPosition(newShip);
-                    #endregion
+                    newShip = Instantiate(ship, newPosition, quaternion, EnemyShipsGO.transform);
+                    newShip.ocuppiedTiles.Clear();
                 }
-                enemyShips.Add(newShip);
-                SetEnemyShipLayerRecursive(newShip.gameObject);
+                catch (Exception ex)
+                {
+                    logger.Log(ex.Message);
+                }
+                while (newShip.ocuppiedTiles.Count == 0)
+                {
+                    logger.Log("waiting");
+                    yield return null;
+                }
+                foundRightSpot = CheckNewPosition(newShip);
+                #endregion
             }
-        
-     
+            enemyShips.Add(newShip);
+            SetEnemyShipLayerRecursive(newShip.gameObject);
+        }
+
+
     }
 
     private bool CheckNewPosition(Ship newShip)
     {
         List<Tile> newTiles = newShip.ocuppiedTiles;
         List<Tile> enemyTiles = enemyShips.SelectMany(ship => ship.ocuppiedTiles).ToList();
-        
+
         logger.Log("New tiles for battleship " + newShip.shipType + " are : " + string.Join(",", newTiles.Select(tile => "(" + tile.ZCoord + "," + tile.XCoord + ")")));
         logger.Log("Enemy tiles are:" + string.Join(",", enemyTiles.Select(tile => "(" + tile.ZCoord + "," + tile.XCoord + ")")));
         if (newTiles.Any(tile => enemyTiles.Exists(et => et.ZCoord == tile.ZCoord && et.XCoord == tile.XCoord)))
@@ -276,14 +276,14 @@ public class EnemyMapController : MonoBehaviour
     /// <param name="z"></param>
     /// <param name="x"></param>
     /// <returns>Returns the tile or null if its not found</returns>
-    public Tile FindTileByCoord(int z,int x)
+    public Tile FindTileByCoord(int z, int x)
     {
         return allTiles.FirstOrDefault(tile => tile.XCoord == x && tile.ZCoord == z);
     }
 
     public void TileIsFocus(Tile tile)
     {
-        if(enemyMapShootedTiles.Contains(tile))
+        if (enemyMapShootedTiles.Contains(tile))
         {
             return;
         }
@@ -295,106 +295,106 @@ public class EnemyMapController : MonoBehaviour
 
 
 
-/*    public bool CanShipBeDeployed(Tile originalTile,Ship newShip,bool verticallyOriented)
-    {
-        
-        List<Tile> tilesToBeOccuppied = new List<Tile>();
-        int sizeToBeOcuppied = newShip.Size();
-
-        int offset = 1; //1%2 == 1 . So we will increment  by [+1,-1,+2,-2,+3,-3]
-        tilesToBeOccuppied.Add(FindTileByCoord(originalTile.ZCoord, originalTile.XCoord));
-        sizeToBeOcuppied--;
-        bool plus = true;
-        offset++;
-
-        while (sizeToBeOcuppied > 0)
+    /*    public bool CanShipBeDeployed(Tile originalTile,Ship newShip,bool verticallyOriented)
         {
-            int auxXCoord = originalTile.XCoord;
-            int auxZCoord = originalTile.ZCoord;
-            if (!verticallyOriented)
-            {
-                if (plus)
-                {
-                    auxXCoord = originalTile.XCoord + (offset / 2);
-                }
-                else
-                {
-                    auxXCoord = originalTile.XCoord - (offset / 2);
-                }
-            }
-            else
-            {
-                if (plus)
-                {
-                    auxZCoord = originalTile.ZCoord + (offset / 2);
-                }
-                else
-                {
-                    auxZCoord = originalTile.ZCoord - (offset / 2);
-                }
-            }
-            offset++;
-            plus = !plus;
+
+            List<Tile> tilesToBeOccuppied = new List<Tile>();
+            int sizeToBeOcuppied = newShip.Size();
+
+            int offset = 1; //1%2 == 1 . So we will increment  by [+1,-1,+2,-2,+3,-3]
+            tilesToBeOccuppied.Add(FindTileByCoord(originalTile.ZCoord, originalTile.XCoord));
             sizeToBeOcuppied--;
-            AddIfExists(tilesToBeOccuppied, auxZCoord, auxXCoord);
-        }
-        //Add if exists will not add any tile outside the map. If the numbers dont match , you are trying to add a ship outside longer that the limits of the map
-        if (tilesToBeOccuppied.Count != newShip.Size())
-            return false;
+            bool plus = true;
+            offset++;
 
-
-        foreach (Ship ship in enemyShips)
-        {
-            if (ship.ocuppiedTiles.Exists(tile => tilesToBeOccuppied.Contains(tile)))
+            while (sizeToBeOcuppied > 0)
+            {
+                int auxXCoord = originalTile.XCoord;
+                int auxZCoord = originalTile.ZCoord;
+                if (!verticallyOriented)
+                {
+                    if (plus)
+                    {
+                        auxXCoord = originalTile.XCoord + (offset / 2);
+                    }
+                    else
+                    {
+                        auxXCoord = originalTile.XCoord - (offset / 2);
+                    }
+                }
+                else
+                {
+                    if (plus)
+                    {
+                        auxZCoord = originalTile.ZCoord + (offset / 2);
+                    }
+                    else
+                    {
+                        auxZCoord = originalTile.ZCoord - (offset / 2);
+                    }
+                }
+                offset++;
+                plus = !plus;
+                sizeToBeOcuppied--;
+                AddIfExists(tilesToBeOccuppied, auxZCoord, auxXCoord);
+            }
+            //Add if exists will not add any tile outside the map. If the numbers dont match , you are trying to add a ship outside longer that the limits of the map
+            if (tilesToBeOccuppied.Count != newShip.Size())
                 return false;
-        }
-        Debug.Log("tiles checked are :" + string.Join(",", tilesToBeOccuppied.Select(tile => "(" + tile.ZCoord + "," + tile.XCoord + ")")));
-        return true;
-    }*/
+
+
+            foreach (Ship ship in enemyShips)
+            {
+                if (ship.ocuppiedTiles.Exists(tile => tilesToBeOccuppied.Contains(tile)))
+                    return false;
+            }
+            Debug.Log("tiles checked are :" + string.Join(",", tilesToBeOccuppied.Select(tile => "(" + tile.ZCoord + "," + tile.XCoord + ")")));
+            return true;
+        }*/
 
     public void IAEnemyShot()
-    {   
-        Coord coord = null;    
-        if(shipshotachieved)
+    {
+        Coord coord = null;
+        if (shipshotachieved)
         {
-        coord = possiblecoordHits[Random.Range(0,possiblecoordHits.Count)];
-        rowNumber = coord.row;
-        columnNumber = coord.column;
-        possiblecoordHits.Remove(coord);
+            coord = possiblecoordHits[Random.Range(0, possiblecoordHits.Count)];
+            rowNumber = coord.row;
+            columnNumber = coord.column;
+            possiblecoordHits.Remove(coord);
         }
         else
         {
-        bool virginSpot = false;
-               
-        while(!virginSpot)
-        {
-            rowNumber = Random.Range(0,MapController.instance.rowSize);
-            columnNumber = Random.Range(0,MapController.instance.columSize);
-            var tile = PlayerMapShotTiles.Find(tile => tile.ZCoord == rowNumber && tile.XCoord == columnNumber);
-            if(tile == null)
+            bool virginSpot = false;
+
+            while (!virginSpot)
             {
-                virginSpot=true;
+                rowNumber = Random.Range(0, MapController.instance.rowSize);
+                columnNumber = Random.Range(0, MapController.instance.columSize);
+                var tile = PlayerMapShotTiles.Find(tile => tile.ZCoord == rowNumber && tile.XCoord == columnNumber);
+                if (tile == null)
+                {
+                    virginSpot = true;
+                }
             }
         }
-        }
 
-       HitResult hitresult = PlayerController.instance.ProcessEnemyHit(rowNumber,columnNumber);
-       Debug.Log("IA have shooted , now is Player turn");
-       Tile newTile = MapController.instance.FindTileByCoord(rowNumber,columnNumber);
-       PlayerMapShotTiles.Add(newTile);
+        HitResult hitresult = PlayerController.instance.ProcessEnemyHit(rowNumber, columnNumber);
+        Debug.Log("IA have shooted , now is Player turn");
+        Tile newTile = MapController.instance.FindTileByCoord(rowNumber, columnNumber);
+        PlayerMapShotTiles.Add(newTile);
 
-    
 
-        if(hitresult == HitResult.Hit)
+
+        if (hitresult == HitResult.Hit)
         {
-            if(!shipshotachieved) // primera vez que se acierta
-            { 
-                AddPossibleTarget(rowNumber + 1,columnNumber);
-                AddPossibleTarget(rowNumber,columnNumber + 1);
-                AddPossibleTarget(rowNumber - 1,columnNumber);
-                AddPossibleTarget(rowNumber,columnNumber - 1); 
+            if (!shipshotachieved) // primera vez que se acierta
+            {
+                AddPossibleTarget(rowNumber + 1, columnNumber);
+                AddPossibleTarget(rowNumber, columnNumber + 1);
+                AddPossibleTarget(rowNumber - 1, columnNumber);
+                AddPossibleTarget(rowNumber, columnNumber - 1);
                 shipshotachieved = true;
-                coord = new Coord(rowNumber,columnNumber);
+                coord = new Coord(rowNumber, columnNumber);
                 successfulCoordHits.Add(coord);
             }
             else
@@ -406,30 +406,30 @@ public class EnemyMapController : MonoBehaviour
 
                 possiblecoordHits.Clear();
 
-                if(rowpossibleHit == 0) // fila acertada por segunda vez
+                if (rowpossibleHit == 0) // fila acertada por segunda vez
                 {
                     int columnMaxNum = successfulCoordHits.Max(x => x.column) + 1;
                     int columnMinNum = successfulCoordHits.Min(x => x.column) - 1;
-                    AddPossibleTarget(rowNumber,columnMaxNum);
-                    AddPossibleTarget(rowNumber,columnMinNum);
+                    AddPossibleTarget(rowNumber, columnMaxNum);
+                    AddPossibleTarget(rowNumber, columnMinNum);
                 }
                 else // columna acertada por segunda vez
                 {
                     int rowMaxNum = successfulCoordHits.Max(x => x.row) + 1;
                     int rowMinNum = successfulCoordHits.Min(x => x.row) - 1;
-                    AddPossibleTarget(rowMaxNum,columnNumber);
-                    AddPossibleTarget(rowMinNum,columnNumber);
+                    AddPossibleTarget(rowMaxNum, columnNumber);
+                    AddPossibleTarget(rowMinNum, columnNumber);
                 }
 
             }
-     
+
         }
-           if(hitresult == HitResult.Sunk || (shipshotachieved && possiblecoordHits.Count == 0))
-       {
-          shipshotachieved = false;
-          possiblecoordHits.Clear();
-          successfulCoordHits.Clear();
-       }
+        if (hitresult == HitResult.Sunk || (shipshotachieved && possiblecoordHits.Count == 0))
+        {
+            shipshotachieved = false;
+            possiblecoordHits.Clear();
+            successfulCoordHits.Clear();
+        }
         Debug.Log(hitresult.ToString());
 
     }
@@ -438,12 +438,12 @@ public class EnemyMapController : MonoBehaviour
     {
         var tile = PlayerMapShotTiles.Find(tile => tile.ZCoord == rowNumber && tile.XCoord == columnNumber);
 
-        if(MapController.instance.FindTileByCoord(rowNumber,columnNumber) == null || tile != null)
+        if (MapController.instance.FindTileByCoord(rowNumber, columnNumber) == null || tile != null)
         {
             return;
         }
-        possiblecoordHits.Add(new Coord(rowNumber,columnNumber));
-            
+        possiblecoordHits.Add(new Coord(rowNumber, columnNumber));
+
     }
 
     internal bool CheckEndOfGame()
@@ -455,7 +455,7 @@ public class Coord : MonoBehaviour
 {
     public int row;
     public int column;
-    public Coord(int row,int column)
+    public Coord(int row, int column)
     {
         this.row = row;
         this.column = column;
