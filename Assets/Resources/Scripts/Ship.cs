@@ -134,7 +134,6 @@ public class ShipTile
         this.tile = tile;
         this.hitted = false;
         this.tileNumber = ++number;
-        Debug.Log("Tile number: " + tileNumber + "is tile: " + tile.name);
     }
 }
 

@@ -41,11 +41,6 @@ public class ShipPanelControl : MonoBehaviour
       
     }
 
-    public void sendConsoleMessage(string message)
-    {
-        Debug.Log(message); 
-    }
-
 
     public void ClearPanel(ShipInformationScriptableObject shipInformationScriptableObject)
     {

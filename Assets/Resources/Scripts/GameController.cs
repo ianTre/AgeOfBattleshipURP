@@ -176,7 +176,6 @@ public class GameController : MonoBehaviour
         {
             currentStage = GameStage.EndOfGame;
             SetStateOfCameras(false, false, false, false);
-            Debug.Log("End of Game: " + winner + " wins!");
             // Show end game panel
             endGameCanvas.SetActive(true);
             StartCoroutine(DeactivateEndGameCanvas(5));
@@ -189,7 +188,6 @@ public class GameController : MonoBehaviour
         currentStage = GameStage.EndOfGame;
         SetStateOfCameras(false, false, false, false);
         GameObject.Find("InitialSetupCanvas").SetActive(false);
-        Debug.Log("End of Game: " + winner + " wins!");
         // Show end game panel
         endGameCanvas.SetActive(true);
         StartCoroutine(DeactivateEndGameCanvas(10));

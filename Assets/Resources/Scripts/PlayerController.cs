@@ -61,7 +61,6 @@ public class PlayerController : MonoBehaviour
 
             GameObject.Find("TimeLine").GetComponent<PlayableDirector>().Play();
             //add time 6 seconds stop the timeline         
-            Debug.Log("Timeline started");
         }
     }
 
@@ -121,10 +120,6 @@ public class PlayerController : MonoBehaviour
         if (shipCount > 0) // (totalShipAvailable == shipCount) << original condition, temporarily changed
         {
             GameController.instance.UpdateStage(GameStage.PlayerAttackEnemyMap);
-        }
-        else
-        {
-            Debug.Log("You must deploy all ships");
         }
     }
 

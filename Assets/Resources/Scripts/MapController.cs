@@ -1,3 +1,4 @@
+using Assets.Resources.Scripts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ public class MapController : MonoBehaviour
     public static MapController instance;
     private bool IsDragAndDroping = false;
     private List<Tile> tilesToBeOccuppied ;
+    private AOBLogger logger;
     
     //IMPORTANT: WE WILL ALWAYS FOLLOW THE PATTERN (ROW , COLUMN) , so it will be (Z , X) .
 
@@ -29,6 +31,7 @@ public class MapController : MonoBehaviour
         MapAllTiles();
         this.rowSize = AllTiles.OrderBy(tile => tile.ZCoord).Last().ZCoord;
         this.columSize = AllTiles.OrderBy(tile => tile.XCoord).Last().XCoord;
+        this.logger = new AOBLogger();
     }
 
 
@@ -136,7 +139,9 @@ public class MapController : MonoBehaviour
         foreach (Ship ship in PlayerController.instance.ships)
         {
             if (ship.ocuppiedTiles.Exists(tile => tilesToBeOccuppied.Contains(tile)))
+            {
                 return false;
+            }
         }
 
         foreach (Tile tile in tilesToBeOccuppied)

@@ -45,6 +45,7 @@ public class AnimationController : MonoBehaviour
 
     public void PlayExplosion()
     {
+        currentPosition.y += 100;
         cameraRotatorFull.GetComponent<CameraRotator>().StartRotation(currentPosition);
         cameraRotatorFull.GetComponentInChildren<AudioSource>().clip = BombFalling;
         cameraRotatorFull.GetComponentInChildren<AudioSource>().Play();

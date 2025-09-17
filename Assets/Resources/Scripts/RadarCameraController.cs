@@ -12,7 +12,7 @@ public class RadarCameraController : MonoBehaviour
 
     public float minZoom;
     public float maxZoom;
-    private float curZoom;
+    public float curZoom;
     public float zoomSpeed;
     [SerializeField]
     private GameObject radarObject;
@@ -24,11 +24,15 @@ public class RadarCameraController : MonoBehaviour
     private float VerticalMaxMovement;
     [SerializeField]
     private float HorizontalMaxMovement;
+    private float originalVerticalMaxMovement;
+    private float originalHorizontalMaxMovement;
     void Start()
     {
-        curZoom = cam.transform.localPosition.y;
+        cam.orthographicSize = curZoom;
         curXRot = -50;
         deltaMovement = new Vector3(0, 0, 0);
+        originalVerticalMaxMovement = VerticalMaxMovement;
+        originalHorizontalMaxMovement = HorizontalMaxMovement;
     }
 
     // Update is called once per frame
@@ -38,19 +42,31 @@ public class RadarCameraController : MonoBehaviour
         {
             return;
         }
-//PREGUNTAR QUE ES EL DEVELOPER MODE - DESACTIVADO FUNCIONA EL GRID
-       /* if (!DeveloperMode)
-            cam.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Water", "UI"); 
-            cam.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "UI");*/
-//PREGUNTAR QUE ES EL DEVELOPER MODE
+        //PREGUNTAR QUE ES EL DEVELOPER MODE - DESACTIVADO FUNCIONA EL GRID
+        /* if (!DeveloperMode)
+             cam.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Water", "UI"); 
+             cam.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "UI");*/
+        //PREGUNTAR QUE ES EL DEVELOPER MODE
 
+
+        //REGLA 3 
+        //ZOOM()      VERTTICAL
+
+        //300    -10 
+        //250    -5
+        //200    0
+        //150    10   
+        //100    20
+    
 
 
         //ZOOM
         curZoom += Input.GetAxis("Mouse ScrollWheel") * -zoomSpeed;
         curZoom = Mathf.Clamp(curZoom, minZoom, maxZoom);
 
-        cam.transform.localPosition = Vector3.up * curZoom;
+        cam.orthographicSize = curZoom;
+        VerticalMaxMovement = curZoom >= 200 ? (float)-0.1 * curXRot + 20 : (float)-0.2 * curXRot + 40;
+
 
         //Movement
         Vector3 forward = new Vector3(0, 0, 1);

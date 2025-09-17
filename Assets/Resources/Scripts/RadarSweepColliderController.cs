@@ -15,7 +15,6 @@ public class RadarSweepColliderController : MonoBehaviour
         AudioSource audio = GetComponent<AudioSource>();
         audio.clip = RadarBeepSound;
         HitIcon = collider.gameObject.name;
-        Debug.Log(HitIcon);
         if (collider.tag == "SweepHit")
         {
             collider.gameObject.GetComponent<RadarIconFadeoutController>().ResetAlpha();
@@ -26,9 +25,7 @@ public class RadarSweepColliderController : MonoBehaviour
                 audio.Play();
             }
         }
-        //else
-            //    Debug.Log("wrong collider: " + collider.GetInstanceID().ToString() + " - " + collider.name + " - " + collider.tag ?? "");
-        }
+    }
 
     private void Update()
     {

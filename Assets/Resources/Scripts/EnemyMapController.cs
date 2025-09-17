@@ -74,7 +74,6 @@ public class EnemyMapController : MonoBehaviour
             GameObject prefab = CheckSpotInMap(selectedTile);
             Instantiate(prefab, selectedTile.transform);
             GameController.instance.UpdateStage(GameStage.PlayerAttackCinematic);
-            Debug.Log("Player has shooted, now is time to cinematic");
         }
     }
 
@@ -171,7 +170,6 @@ public class EnemyMapController : MonoBehaviour
     public void GenerateEnemyShips(List<Ship> playerShipsToAddAsEnemy)
     {
         StartCoroutine(CoRuGenerateEnemyShips(playerShipsToAddAsEnemy));
-        logger.Log("Finish coroutine");
     }
 
     public IEnumerator CoRuGenerateEnemyShips(List<Ship> playerShipsToAddAsEnemy)
@@ -191,8 +189,9 @@ public class EnemyMapController : MonoBehaviour
                     if (tile == null)
                     {
                         Debug.Log("Check GenerateEnemyShips on EnemyMapController , wrong tile coords were generated");
-                        break;
+                        continue;
                     }
+                    
 
                     #region Create a new instance of the ship
                     Quaternion quaternion;
@@ -210,10 +209,16 @@ public class EnemyMapController : MonoBehaviour
                             position.z -= tile.transform.localScale.z / 2;
                     }
                     Vector3 newPosition = position;
-                    Debug.Log("Enemy ship " + ship.shipType + " will be deployed at " + tile.XCoord + "," + tile.ZCoord + " with orientation " + (VerticalOrientation ? "Vertical" : "Horizontal"));
 
                     newShip = Instantiate(ship, newPosition, quaternion, EnemyShipsGO.transform);
                     newShip.ocuppiedTiles.Clear();
+                    
+                    if(!CanShipBeDeployed(tile, newShip, !VerticalOrientation))
+                    {
+                        foundRightSpot = false;
+                        Destroy(newShip.gameObject);
+                        continue;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -221,7 +226,6 @@ public class EnemyMapController : MonoBehaviour
                 }
                 while (newShip.ocuppiedTiles.Count == 0)
                 {
-                    logger.Log("waiting");
                     yield return null;
                 }
                 foundRightSpot = CheckNewPosition(newShip);
@@ -239,15 +243,80 @@ public class EnemyMapController : MonoBehaviour
         List<Tile> newTiles = newShip.ocuppiedTiles;
         List<Tile> enemyTiles = enemyShips.SelectMany(ship => ship.ocuppiedTiles).ToList();
 
-        logger.Log("New tiles for battleship " + newShip.shipType + " are : " + string.Join(",", newTiles.Select(tile => "(" + tile.ZCoord + "," + tile.XCoord + ")")));
-        logger.Log("Enemy tiles are:" + string.Join(",", enemyTiles.Select(tile => "(" + tile.ZCoord + "," + tile.XCoord + ")")));
-        if (newTiles.Any(tile => enemyTiles.Exists(et => et.ZCoord == tile.ZCoord && et.XCoord == tile.XCoord)))
+        if (newTiles.Any(tile => enemyTiles.Exists(et => et.ZCoord == tile.ZCoord && et.XCoord == tile.XCoord))) // Is overlaping with another ship
+        {
+            Destroy(newShip.gameObject);
+            return false;
+        }
+        if(newShip.ocuppiedTiles.Count != newShip.Size() ) //Is doing overflow outside the map
         {
             Destroy(newShip.gameObject);
             return false;
         }
         return true;
 
+    }
+
+    public bool CanShipBeDeployed(Tile originalTile, Ship newShip,bool verticallyOriented)
+    {
+        logger.Log("Can Ship be Deployed? for " + newShip.shipType.ToString() + "in tile" + originalTile.ZCoord + " , " + originalTile.XCoord);
+        List<Tile> tilesToBeOccuppied = new List<Tile>();
+        int sizeToBeOcuppied = newShip.Size();
+
+        int offset = 1; //1/2 == 1 . So we will increment  by [+1,-1,+2,-2,+3,-3]
+        tilesToBeOccuppied.Add(FindTileByCoord(originalTile.ZCoord, originalTile.XCoord));
+        sizeToBeOcuppied--;
+        bool plus = true;
+        offset++;
+        while (sizeToBeOcuppied > 0)
+        {
+            int auxXCoord = originalTile.XCoord;
+            int auxZCoord = originalTile.ZCoord;
+            if (verticallyOriented)
+            {
+                if (plus)
+                {
+                    auxXCoord = originalTile.XCoord + (offset / 2);
+                }
+                else
+                {
+                    auxXCoord = originalTile.XCoord - (offset / 2);
+                }
+            }
+            else
+            {
+                if (plus)
+                {
+                    auxZCoord = originalTile.ZCoord + (offset / 2);
+                }
+                else
+                {
+                    auxZCoord = originalTile.ZCoord - (offset / 2);
+                }
+            }
+            offset++;
+            plus = !plus;
+            sizeToBeOcuppied--;
+            AddIfExists(tilesToBeOccuppied, auxZCoord, auxXCoord);
+        }
+        //Add if exists will not add any tile outside the map. If the numbers dont match , you are trying to add a ship outside longer that the limits of the map
+        if (tilesToBeOccuppied.Count != newShip.Size())
+        {
+            logger.Log("Returning FALSE");
+            return false;
+        }
+
+
+        foreach (Ship ship in enemyShips)
+        {
+            if (ship.ocuppiedTiles.Exists(tile => tilesToBeOccuppied.Contains(tile)))
+            {
+                logger.Log("Returning FALSE");
+                return false;
+            }
+        }
+        logger.Log("Returning TRUE");
+        return true;
     }
 
     private void SetEnemyShipLayerRecursive(GameObject _go)
@@ -265,9 +334,13 @@ public class EnemyMapController : MonoBehaviour
 
     private void AddIfExists(List<Tile> list, int z, int x)
     {
+        logger.Log("Adding if Exist tile" + z + "," + x);
         Tile tile = FindTileByCoord(z, x);
         if (tile != null)
+        { 
             list.Add(tile);
+            logger.Log("Adding.");
+        }
     }
 
     /// <summary>
@@ -348,7 +421,6 @@ public class EnemyMapController : MonoBehaviour
                 if (ship.ocuppiedTiles.Exists(tile => tilesToBeOccuppied.Contains(tile)))
                     return false;
             }
-            Debug.Log("tiles checked are :" + string.Join(",", tilesToBeOccuppied.Select(tile => "(" + tile.ZCoord + "," + tile.XCoord + ")")));
             return true;
         }*/
 
@@ -379,7 +451,6 @@ public class EnemyMapController : MonoBehaviour
         }
 
         HitResult hitresult = PlayerController.instance.ProcessEnemyHit(rowNumber, columnNumber);
-        Debug.Log("IA have shooted , now is Player turn");
         Tile newTile = MapController.instance.FindTileByCoord(rowNumber, columnNumber);
         PlayerMapShotTiles.Add(newTile);
 
@@ -430,8 +501,6 @@ public class EnemyMapController : MonoBehaviour
             possiblecoordHits.Clear();
             successfulCoordHits.Clear();
         }
-        Debug.Log(hitresult.ToString());
-
     }
 
     private void AddPossibleTarget(int rowNumber, int columnNumber)

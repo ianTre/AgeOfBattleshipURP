@@ -7540,6 +7540,7 @@ GameObject:
   m_Component:
   - component: {fileID: 383611077}
   - component: {fileID: 383611078}
+  - component: {fileID: 383611079}
   m_Layer: 0
   m_Name: RotatorCamera
   m_TagString: Untagged
@@ -7601,7 +7602,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 39
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -7613,6 +7614,50 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &383611079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383611076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &391533120
 GameObject:
   m_ObjectHideFlags: 0
@@ -11418,13 +11463,14 @@ MonoBehaviour:
   DeveloperMode: 0
   moveSpeed: 60
   curXRot: 0
-  minZoom: -30
-  maxZoom: 200
+  minZoom: 100
+  maxZoom: 300
+  curZoom: 200
   zoomSpeed: 20
   radarObject: {fileID: 363976003}
   cam: {fileID: 1193503046}
-  VerticalMaxMovement: 40
-  HorizontalMaxMovement: 20
+  VerticalMaxMovement: 20
+  HorizontalMaxMovement: 30
 --- !u!4 &608962254
 Transform:
   m_ObjectHideFlags: 0
@@ -20978,6 +21024,7 @@ MonoBehaviour:
   camera4: {fileID: 1780412177}
   endGameCanvas: {fileID: 495221806}
   gameOverSound: {fileID: 8300000, guid: b3aededfddc478649b030d29914c81a4, type: 3}
+  FixedIAShot: 0
 --- !u!114 &1318512640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28644,7 +28691,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1878529979}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7a49b8eb96fb64eb0f84a68702bdc5, type: 3}
   m_Name: 
@@ -28660,7 +28707,7 @@ Transform:
   m_GameObject: {fileID: 1878529979}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 115.3, y: 0, z: 0}
+  m_LocalPosition: {x: 115.3, y: -0.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

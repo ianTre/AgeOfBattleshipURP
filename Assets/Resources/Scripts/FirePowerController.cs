@@ -38,7 +38,6 @@ public class FirePowerController : MonoBehaviour
             var explosion = cannon.GetComponentInChildren<ParticleSystem>();
             if (explosion == null)
             {
-                Debug.Log("Explosion not found in cannon: " + cannon.name);
                 continue;
             }
             //Vector3 cannonPosition = new Vector3(cannon.transform.position.x, cannon.transform.position.y, cannon.transform.position.z + 15);
@@ -89,7 +88,6 @@ public class FirePowerController : MonoBehaviour
                 spot.transform.localScale = newScale;
                 spot.GetComponent<ParticleSystem>().Play();
             }
-            Debug.Log("Ship is sunk");
         }
         
         if (totalSizeOfShip - totalHits == 1)
