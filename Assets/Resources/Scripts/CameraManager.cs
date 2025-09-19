@@ -23,8 +23,13 @@ public class CameraManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+    }
+
+    void Awake()
+    {
         allCameras = new List<Camera>();
-        if(deployCamera!=null)
+        if (deployCamera != null)
             allCameras.Add(deployCamera);
         if (radarCamera != null)
             allCameras.Add(radarCamera);
@@ -36,10 +41,6 @@ public class CameraManager : MonoBehaviour
             allCameras.Add(camera5);
         if (camera6 != null)
             allCameras.Add(camera6);
-    }
-
-    void Awake()
-    {
         instance = this;
     }
 
