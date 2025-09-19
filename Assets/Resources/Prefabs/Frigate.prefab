@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 65574636772850786}
   m_Layer: 0
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 65079764733770380}
   m_Layer: 0
   m_Name: Medium Cannons
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 4794317069312380}
   m_Layer: 0
   m_Name: Weapons
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 65086917386475724}
   m_Layer: 0
   m_Name: Medium Turret
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -515,7 +515,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -666,7 +666,7 @@ GameObject:
   - component: {fileID: 65287034085015910}
   m_Layer: 0
   m_Name: Small Turret
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -772,7 +772,7 @@ GameObject:
   - component: {fileID: 65085382081389334}
   m_Layer: 0
   m_Name: Medium Turret
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -878,7 +878,7 @@ GameObject:
   - component: {fileID: 65732860909666832}
   m_Layer: 0
   m_Name: Medium Cannons
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -984,7 +984,7 @@ GameObject:
   - component: {fileID: 65974714862525504}
   m_Layer: 0
   m_Name: Small Cannons
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1086,7 +1086,7 @@ GameObject:
   - component: {fileID: 5844606206192526778}
   m_Layer: 0
   m_Name: FireSpots
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1559,6 +1559,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BigExplosion Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498579228895113724, guid: 270ebb065466cde43888f0def9dd286c,
+        type: 3}
+      propertyPath: m_TagString
+      value: ShipComponenet
       objectReference: {fileID: 0}
     - target: {fileID: 1589013740217536142, guid: 270ebb065466cde43888f0def9dd286c,
         type: 3}

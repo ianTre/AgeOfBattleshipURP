@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Assets.Resources.Scripts;
 using Unity.VisualScripting;
@@ -30,18 +31,21 @@ public class InputController : MonoBehaviour
         instance = this;
     }
 
+    public void UpdateCameraReference()
+    {
+        m_Camera = Camera.main;
+    }
+
     // Update is called once per frame
     void Update()
     {
+        
         Mouse mouse = Mouse.current;
         if (mouse.leftButton.wasPressedThisFrame)
         {
             isMouseDown = true;
             Debug.Log("Mouse down");
-            if (GameController.instance.currentStage == GameStage.Deploy)
-            {
-                MouseRayCastSelectionMode(mouse);
-            }
+            MouseRayCastSelectionMode(mouse);
         }
 
         if (mouse.leftButton.wasReleasedThisFrame)
@@ -71,23 +75,24 @@ public class InputController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G) && GameController.instance.currentStage == GameStage.PlayerAttackEnemyMap) // muestra el grid
         {
             ShowGridOnEnemyMap();
-            
+
         }
-     
+
 
     }
+
     public void ShowGridOnEnemyMap()
-    { 
+    {
         if (!isGridOn)
-            {
-                radarCameraController.cam.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Water", "UI");
-                isGridOn = true;
-            }
-            else
-            {
-                radarCameraController.cam.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "UI");
-                isGridOn = false;
-            }  
+        {
+            radarCameraController.cam.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Water", "UI");
+            isGridOn = true;
+        }
+        else
+        {
+            radarCameraController.cam.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "UI");
+            isGridOn = false;
+        }
     }
 
     private void MouseRayCastSelectionMode(Mouse mouse)
@@ -98,26 +103,46 @@ public class InputController : MonoBehaviour
         {
             hittedObject = hit.collider.gameObject;
             // Use the hit variable to determine what was clicked on.
-            if (hittedObject.tag == "Ship" || hittedObject.tag == "ShipComponenet")
+            if (GameController.instance.currentStage == GameStage.Deploy && (hittedObject.tag == "Ship" || hittedObject.tag == "ShipComponenet"))
             {
-                while (hittedObject.tag != "Ship")
-                {
-                    hittedObject = hittedObject.transform.parent.gameObject;
-                }
-                Ship ship = hittedObject.GetComponent<Ship>();
-
-                if (!ship.hasfocus)
-                    PlayerController.instance.SetSelectedShip(ship);
-                else
-                    PlayerController.instance.ClearSelectedShip();
+                ClickOnShip();
+                return;
             }
-            else
+            if (hittedObject.tag == "WaterTile")
             {
-                PlayerController.instance.ClearSelectedShip();
+                ClickOnWaterTile();
+                return;
             }
+            ClearAllSelections();
+            
 
         }
     }
-    
 
+    private void ClickOnShip()
+    {
+        while (hittedObject.tag != "Ship")
+        {
+            hittedObject = hittedObject.transform.parent.gameObject;
+        }
+        Ship ship = hittedObject.GetComponent<Ship>();
+
+        if (!ship.hasfocus)
+            PlayerController.instance.SetSelectedShip(ship);
+        else
+            PlayerController.instance.ClearSelectedShip();
+    }
+
+    static void ClearAllSelections()
+    {
+        PlayerController.instance.ClearSelectedShip();
+        EnemyMapController.instance.ClearTileSelection();
+    }
+    private void ClickOnWaterTile()
+    {
+        Tile selectedTile = hittedObject.GetComponent<Tile>();
+        if (!selectedTile.isEnemyTile)
+            return;
+        selectedTile.TileBeingClicked();
+    }
 }

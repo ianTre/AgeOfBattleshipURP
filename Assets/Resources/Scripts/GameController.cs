@@ -35,9 +35,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         currentStage = GameStage.Deploy;
-        camera1.gameObject.SetActive(true);
-        camera2.gameObject.SetActive(false);
-
+        CameraManager.instance.ChangeToDeployStage();
 
         coordinates.Add("0,0");
         coordinates.Add("0,1");
@@ -66,7 +64,7 @@ public class GameController : MonoBehaviour
         switch (actionStage)
         {
             case GameStage.PlayerAttackEnemyMap:
-                TransitionToPlayerAttackEnemyMap();
+                StartCoroutine(TransitionToPlayerAttackEnemyMap());
                 break;
 
             case GameStage.PlayerAttackCinematic:
@@ -85,14 +83,16 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void TransitionToPlayerAttackEnemyMap()
+    public IEnumerator TransitionToPlayerAttackEnemyMap()
     {
         if (currentStage == GameStage.Deploy)
         {
             EndDeployStage();
         }
+        yield return new WaitForSeconds(1);
+        GameObject.Find("InitialSetupCanvas")?.SetActive(false);
         currentStage = GameStage.PlayerAttackEnemyMap;
-        SetStateOfCameras(false, true, true, false);
+        CameraManager.instance.ChangeToPlayerAtacckIARadar();
         shipToAction = PlayerController.instance.getShipToBeActioned();
         GameObject.Find("CameraRotator").GetComponent<CameraRotator>().StartRotation(shipToAction.transform.position);
         turn++;
@@ -150,7 +150,7 @@ public class GameController : MonoBehaviour
     public void TransitionToIAAttackCinematic()
     {
         currentStage = GameStage.IAAttackCinematic;
-        SetStateOfCameras(false, false, false, true);
+        CameraManager.instance.ChangeToPlayerAtacckIACinematick();
         AnimationController.instance.PlayExplosion();
         //Next step needs to be triggered by animation event
         //actionStage = GameStage.PlayerAttackEnemyMap; 
@@ -159,11 +159,11 @@ public class GameController : MonoBehaviour
     public void EndDeployStage()
     {
         Debug.Log("End Deploy Stage");
+        currentStage = GameStage.PlayerAttackEnemyMap;
         List<Tile> playerTiles = MapController.instance.AllTiles;
         EnemyMapController.instance.GenerateEnemyMap(playerTiles);
         List<Ship> ships = PlayerController.instance.ships;
         PlayerController.instance.ClearSelectedShip();
-        GameObject.Find("InitialSetupCanvas").SetActive(false);
         EnemyMapController.instance.GenerateEnemyShips(ships);
     }
 
@@ -175,7 +175,7 @@ public class GameController : MonoBehaviour
         if (winner == "IA") // In case we want different end game for IA
         {
             currentStage = GameStage.EndOfGame;
-            SetStateOfCameras(false, false, false, false);
+            CameraManager.instance.TurnOffAllCameras();
             // Show end game panel
             endGameCanvas.SetActive(true);
             StartCoroutine(DeactivateEndGameCanvas(5));
@@ -186,7 +186,7 @@ public class GameController : MonoBehaviour
         }
 
         currentStage = GameStage.EndOfGame;
-        SetStateOfCameras(false, false, false, false);
+        CameraManager.instance.TurnOffAllCameras();
         GameObject.Find("InitialSetupCanvas").SetActive(false);
         // Show end game panel
         endGameCanvas.SetActive(true);

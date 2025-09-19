@@ -15,8 +15,7 @@ public class CameraRotator : MonoBehaviour
 
     public void StartRotation(Vector3 position)
     {
-        transform.position = position; // Set the camera position
-        transform.rotation = Quaternion.Euler(0, 0, 0); // Reset rotation to default
+        transform.position = new Vector3(position.x,transform.position.y,position.z); // Set the camera position
         isRotating = true; // Start rotating
     }
 

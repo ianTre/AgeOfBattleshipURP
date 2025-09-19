@@ -17,6 +17,8 @@ public class Tile : MonoBehaviour
     MapController mapController;
     List<Tile> neighborhoods;
     bool hoverTriggered = false;
+    public bool isEnemyTile=false;
+    
     
     // Start is called before the first frame update
     void Start()
@@ -68,11 +70,16 @@ public class Tile : MonoBehaviour
 
     void OnMouseDown()
    {
-       if(GameController.instance.currentStage == GameStage.PlayerAttackEnemyMap)
-       {
-            EnemyMapController.instance.TileIsFocus(this);
-       }
+
    }
+
+    public void TileBeingClicked()
+    {
+        if (GameController.instance.currentStage == GameStage.PlayerAttackEnemyMap)
+        {
+            EnemyMapController.instance.TileFocus(this);
+        }
+    }
 
 
     private void HighlightNeighborhood()
@@ -87,6 +94,8 @@ public class Tile : MonoBehaviour
 
     void OnMouseExit()
     {
+        if (isEnemyTile)
+            return;
         hoverTriggered=false;
         // Reset the color of the GameObject back to normal
         DeHighlighMe();

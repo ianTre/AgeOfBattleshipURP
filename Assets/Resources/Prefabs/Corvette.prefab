@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 65252156427083896}
   m_Layer: 0
   m_Name: Small Turret
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 4189285956768664}
   m_Layer: 0
   m_Name: Weapons
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -312,7 +312,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -463,7 +463,7 @@ GameObject:
   - component: {fileID: 65751940074335644}
   m_Layer: 0
   m_Name: Small Turret
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -570,7 +570,7 @@ GameObject:
   - component: {fileID: 65957045635092140}
   m_Layer: 0
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -688,7 +688,7 @@ GameObject:
   - component: {fileID: 65132201911790092}
   m_Layer: 0
   m_Name: Small Cannons
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -793,7 +793,7 @@ GameObject:
   - component: {fileID: 65097803097415530}
   m_Layer: 0
   m_Name: Small Cannons
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -896,7 +896,7 @@ GameObject:
   - component: {fileID: 8640044930977963966}
   m_Layer: 0
   m_Name: FireSpots
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1685,10 +1685,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1497982841998266464, guid: 270ebb065466cde43888f0def9dd286c,
+        type: 3}
+      propertyPath: m_TagString
+      value: ShipComponenet
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498209860033239780, guid: 270ebb065466cde43888f0def9dd286c,
+        type: 3}
+      propertyPath: m_TagString
+      value: ShipComponenet
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498270826509381518, guid: 270ebb065466cde43888f0def9dd286c,
+        type: 3}
+      propertyPath: m_TagString
+      value: ShipComponenet
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498346419998167252, guid: 270ebb065466cde43888f0def9dd286c,
+        type: 3}
+      propertyPath: m_TagString
+      value: ShipComponenet
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498370365759320728, guid: 270ebb065466cde43888f0def9dd286c,
+        type: 3}
+      propertyPath: m_TagString
+      value: ShipComponenet
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498576770346120870, guid: 270ebb065466cde43888f0def9dd286c,
+        type: 3}
+      propertyPath: m_TagString
+      value: ShipComponenet
+      objectReference: {fileID: 0}
     - target: {fileID: 1498579228895113724, guid: 270ebb065466cde43888f0def9dd286c,
         type: 3}
       propertyPath: m_Name
       value: BigExplosion Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498579228895113724, guid: 270ebb065466cde43888f0def9dd286c,
+        type: 3}
+      propertyPath: m_TagString
+      value: ShipComponenet
       objectReference: {fileID: 0}
     - target: {fileID: 1589013740217536142, guid: 270ebb065466cde43888f0def9dd286c,
         type: 3}

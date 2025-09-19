@@ -137,7 +137,7 @@ public class EnemyMapController : MonoBehaviour
         foreach (Transform child in enemyMap.transform)
         {
             Tile tile = child.GetComponent<Tile>();
-
+            tile.isEnemyTile = true;
             tile.Xpos = tile.transform.position.x;
             tile.Ypos = tile.transform.position.y;
             tile.Zpos = tile.transform.position.z;
@@ -354,7 +354,7 @@ public class EnemyMapController : MonoBehaviour
         return allTiles.FirstOrDefault(tile => tile.XCoord == x && tile.ZCoord == z);
     }
 
-    public void TileIsFocus(Tile tile)
+    public void TileFocus(Tile tile)
     {
         if (enemyMapShootedTiles.Contains(tile))
         {
@@ -363,6 +363,14 @@ public class EnemyMapController : MonoBehaviour
         selectedTile?.DeHighlighMe();
         selectedTile = tile;
         selectedTile.HighlightMainColor();
+    }
+
+    public void ClearTileSelection()
+    {
+        if (selectedTile == null)
+            return;
+        selectedTile?.DeHighlighMe();
+        selectedTile = null;
     }
 
 

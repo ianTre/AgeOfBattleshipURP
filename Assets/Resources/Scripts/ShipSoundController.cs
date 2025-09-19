@@ -13,9 +13,6 @@ public class ShipSoundController : MonoBehaviour
     
     [SerializeField]
     AudioClip shipShootingSound; 
-   
-    [SerializeField]
-    AudioClip waterSplashSound; 
     
     [SerializeField]
     AudioClip shipSelectSound; 
@@ -35,12 +32,20 @@ public class ShipSoundController : MonoBehaviour
 
     public void PlayShipDeploySound(Ship ship)
     {
+        if(GameController.instance.currentStage != GameStage.Deploy)
+        {
+            return;
+        }
         AudioSource audio = ship.GetComponent<AudioSource>();
         audio.clip = shipDeploySound;
         audio.Play();
     }
       public void PlayShipSelectionSoundOff(Ship ship)
     {
+        if (GameController.instance.currentStage != GameStage.Deploy)
+        {
+            return;
+        }
         AudioSource audio = ship.GetComponent<AudioSource>();
         audio.clip = shipDeploySound;
         audio.Stop();
@@ -48,6 +53,10 @@ public class ShipSoundController : MonoBehaviour
 
      public void PlayShipSelectionSound(Ship ship)
     {
+        if (GameController.instance.currentStage != GameStage.Deploy)
+        {
+            return;
+        }
         AudioSource audio = ship.GetComponent<AudioSource>();
         audio.clip = shipSelectSound;
         audio.Play();

@@ -173,7 +173,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 4643300865397132}
   m_Layer: 0
   m_Name: Weapons
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -364,7 +364,7 @@ GameObject:
   - component: {fileID: 65058822798223302}
   m_Layer: 0
   m_Name: Small Turret
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -470,7 +470,7 @@ GameObject:
   - component: {fileID: 65959799665121392}
   m_Layer: 0
   m_Name: Small Turret
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -576,7 +576,7 @@ GameObject:
   - component: {fileID: 65331271996930806}
   m_Layer: 0
   m_Name: Medium Cannons
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -681,7 +681,7 @@ GameObject:
   - component: {fileID: 65401504713120858}
   m_Layer: 0
   m_Name: Small Turret
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -787,7 +787,7 @@ GameObject:
   - component: {fileID: 65300208139746844}
   m_Layer: 0
   m_Name: Small Turret
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -893,7 +893,7 @@ GameObject:
   - component: {fileID: 65516911232428202}
   m_Layer: 0
   m_Name: Medium Turret
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -999,7 +999,7 @@ GameObject:
   - component: {fileID: 65411330152471136}
   m_Layer: 0
   m_Name: Large Cannons
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1105,7 +1105,7 @@ GameObject:
   - component: {fileID: 65609157683297756}
   m_Layer: 0
   m_Name: Small Cannons
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1220,7 +1220,7 @@ GameObject:
   - component: {fileID: 65006257719027496}
   m_Layer: 0
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1527,7 +1527,7 @@ GameObject:
   - component: {fileID: 65929293824837612}
   m_Layer: 0
   m_Name: Small Cannons
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1632,7 +1632,7 @@ GameObject:
   - component: {fileID: 65973298800535188}
   m_Layer: 0
   m_Name: Large Turret
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1738,7 +1738,7 @@ GameObject:
   - component: {fileID: 65137392979284166}
   m_Layer: 0
   m_Name: Small Cannons
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1843,7 +1843,7 @@ GameObject:
   - component: {fileID: 65804442131295942}
   m_Layer: 0
   m_Name: Medium Cannons
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1948,7 +1948,7 @@ GameObject:
   - component: {fileID: 65702323106977914}
   m_Layer: 0
   m_Name: Small Cannons
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2053,7 +2053,7 @@ GameObject:
   - component: {fileID: 65261864854778970}
   m_Layer: 0
   m_Name: Small Cannons
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2158,7 +2158,7 @@ GameObject:
   - component: {fileID: 65360037392790346}
   m_Layer: 0
   m_Name: Small Cannons
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2263,7 +2263,7 @@ GameObject:
   - component: {fileID: 65862600025646164}
   m_Layer: 0
   m_Name: Small Turret
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2369,7 +2369,7 @@ GameObject:
   - component: {fileID: 65433874582634424}
   m_Layer: 0
   m_Name: Medium Turret
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2475,7 +2475,7 @@ GameObject:
   - component: {fileID: 65912142318762568}
   m_Layer: 0
   m_Name: Small Turret
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2578,7 +2578,7 @@ GameObject:
   - component: {fileID: 6020973112659122952}
   m_Layer: 0
   m_Name: FireSpots
-  m_TagString: Untagged
+  m_TagString: ShipComponenet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2961,6 +2961,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BigExplosion Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498579228895113724, guid: 270ebb065466cde43888f0def9dd286c,
+        type: 3}
+      propertyPath: m_TagString
+      value: ShipComponenet
       objectReference: {fileID: 0}
     - target: {fileID: 1589013740217536142, guid: 270ebb065466cde43888f0def9dd286c,
         type: 3}
