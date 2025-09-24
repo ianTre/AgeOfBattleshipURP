@@ -28736,8 +28736,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1878529982}
-  - component: {fileID: 1878529981}
   - component: {fileID: 1878529980}
+  - component: {fileID: 1878529983}
   m_Layer: 0
   m_Name: CameraRotatorFull
   m_TagString: Untagged
@@ -28841,20 +28841,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1878529981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1878529979}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a7a49b8eb96fb64eb0f84a68702bdc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotateSpeed: 5
-  isRotating: 0
 --- !u!4 &1878529982
 Transform:
   m_ObjectHideFlags: 0
@@ -28871,6 +28857,24 @@ Transform:
   - {fileID: 1780412175}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1878529983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878529979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0dd1d5080630414d928ce0620cb400d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deltaXPos: 0
+  deltaYPos: 100
+  deltaZPos: -80
+  deltaXRotation: 30
+  deltaYRotation: 0
+  deltaZRotation: 0
 --- !u!1 &1886446810
 GameObject:
   m_ObjectHideFlags: 0

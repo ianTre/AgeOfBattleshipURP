@@ -87,6 +87,9 @@ public class FirePowerController : MonoBehaviour
             {
                 spot.transform.localScale = newScale;
                 spot.GetComponent<ParticleSystem>().Play();
+                AudioSource audioSource = spot.GetComponent<AudioSource>();
+                if(audioSource != null)
+                    audioSource.Play();
             }
         }
         
@@ -100,6 +103,9 @@ public class FirePowerController : MonoBehaviour
             {
                 spot.transform.localScale = newScale;
                 spot.GetComponent<ParticleSystem>().Play();
+                AudioSource audioSource = spot.GetComponent<AudioSource>();
+                if (audioSource != null)
+                    audioSource.Play();
             }
         }
 
@@ -110,6 +116,9 @@ public class FirePowerController : MonoBehaviour
             foreach (var spot in fireSpots)
             {
                 spot.GetComponent<ParticleSystem>().Play();
+                AudioSource audioSource = spot.GetComponent<AudioSource>();
+                if (audioSource != null)
+                    audioSource.Play();
             }
         }
 
@@ -121,6 +130,10 @@ public class FirePowerController : MonoBehaviour
             for (int i = 0; i < halfFire; i++)
             {
                 fireSpots[i].GetComponent<ParticleSystem>().Play();
+                AudioSource audioSource = fireSpots[i].GetComponent<AudioSource>();
+                if (audioSource != null)
+                    audioSource.Play();
+
             }
         }
 
@@ -132,6 +145,9 @@ public class FirePowerController : MonoBehaviour
             for (int i = 0; i < halfFire; i++)
             {
                 fireSpots[i].GetComponent<ParticleSystem>().Play();
+                AudioSource audioSource = fireSpots[i].GetComponent<AudioSource>();
+                if (audioSource != null)
+                    audioSource.Play();
             }
         }
         

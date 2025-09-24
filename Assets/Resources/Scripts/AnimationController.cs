@@ -46,7 +46,7 @@ public class AnimationController : MonoBehaviour
     public void PlayExplosion()
     {
         currentPosition.y += 50;
-        cameraRotatorFull.GetComponent<CameraRotator>().StartRotation(currentPosition);
+        cameraRotatorFull.GetComponent<CamaraIAAtack>().StartVisualization(currentPosition);
         cameraRotatorFull.GetComponentInChildren<AudioSource>().clip = BombFalling;
         cameraRotatorFull.GetComponentInChildren<AudioSource>().Play();
         switch (currentHitResult)
@@ -107,7 +107,6 @@ public class AnimationController : MonoBehaviour
             yield return null;
         }
         Destroy(explosion, 5f);
-        cameraRotatorFull.GetComponent<CameraRotator>().StopRotation();
         GameController.instance.UpdateStage(GameStage.PlayerAttackEnemyMap);
     }
 

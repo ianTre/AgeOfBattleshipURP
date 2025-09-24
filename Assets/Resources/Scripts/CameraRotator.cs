@@ -9,14 +9,14 @@ public class CameraRotator : MonoBehaviour
 
     void Update()
     {
-        if(isRotating)
+        if (isRotating)
             transform.Rotate(0, rotateSpeed * Time.deltaTime, 0); // Rotate around the Y-axis
     }
 
     public void StartRotation(Vector3 position)
     {
         transform.position = position; // Set the camera position
-        transform.rotation = Quaternion.Euler(30, transform.rotation.y, 0); // Reset rotation to default
+        transform.rotation = Quaternion.Euler(0, 0, 0); // Reset rotation to default
         isRotating = true; // Start rotating
     }
 
