@@ -89,9 +89,10 @@ public class GameController : MonoBehaviour
         {
             EndDeployStage();
         }
+        currentStage = GameStage.PlayerAttackEnemyMap;
         yield return new WaitForSeconds(1);
         GameObject.Find("InitialSetupCanvas")?.SetActive(false);
-        currentStage = GameStage.PlayerAttackEnemyMap;
+        
         CameraManager.instance.ChangeToPlayerAtacckIARadar();
         shipToAction = PlayerController.instance.getShipToBeActioned();
         GameObject.Find("CameraRotator").GetComponent<CameraRotator>().StartRotation(shipToAction.transform.position);

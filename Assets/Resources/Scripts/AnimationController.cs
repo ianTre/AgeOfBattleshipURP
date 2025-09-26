@@ -143,7 +143,6 @@ public class AnimationController : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
-        cameraRotatorFull.GetComponent<CameraRotator>().StopRotation();
         GameController.instance.UpdateStage(GameStage.PlayerAttackEnemyMap);
     }
 
