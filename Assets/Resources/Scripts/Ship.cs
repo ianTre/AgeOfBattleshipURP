@@ -105,22 +105,6 @@ public class Ship : MonoBehaviour
             playableDirector.Play();
         }
     }
-
-
-    //public void OnMouseDown()
-    //{          
-    //    if(hasfocus)
-    //    {
-    //     hasfocus = false;
-    //     selectionlight.SelectionLightOff(this);
-    //    }
-    //    else
-    //    {
-    //      hasfocus = true;
-    //      selectionlight.SelectionLightOn(coord, selectedTile, this); 
-    //    }
-    //}
-
 }
 
 public class ShipTile

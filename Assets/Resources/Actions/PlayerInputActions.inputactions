@@ -15,7 +15,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "MousePosition",
+                    "name": "Position",
                     "type": "Value",
                     "id": "2b1a2b70-b114-4415-a90e-f63e37ca6dd9",
                     "expectedControlType": "Vector2",
@@ -34,12 +34,12 @@
                 },
                 {
                     "name": "HorizontalAxis",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "cdbc2e19-9984-4e4e-8852-f9b8df62394b",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "DeleteAction",
@@ -54,6 +54,15 @@
                     "name": "ControlKey",
                     "type": "Button",
                     "id": "44c3bb4e-3332-48da-bc40-3a55bb9f9d45",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Selection",
+                    "type": "Button",
+                    "id": "3dd01d15-f77b-4ae0-9f1d-649cd8836125",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -79,7 +88,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MousePosition",
+                    "action": "Position",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d5cad07a-89c6-493e-bf13-0306ab1c5433",
+                    "path": "<Touchscreen>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Position",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -109,6 +129,39 @@
                     "name": "positive",
                     "id": "5e95e4ad-1259-410b-91a7-11580cadd0e8",
                     "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "VerticalAxis",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "78cb5c97-fecc-445c-816d-a1d1a68f5d11",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "VerticalAxis",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "8c608bef-0149-4b73-995a-9bdc727d7d86",
+                    "path": "<Touchscreen>/delta/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "VerticalAxis",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "48a4b1b1-1c9c-4086-9c9a-7071468e2ec1",
+                    "path": "<Touchscreen>/delta/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -150,6 +203,39 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "1D Axis",
+                    "id": "834abe99-15b3-47d5-b7d0-65271b184518",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HorizontalAxis",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "fda116e1-bed4-407a-8888-56d7654090cd",
+                    "path": "<Touchscreen>/delta/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HorizontalAxis",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "770690ae-be79-4fa3-9065-2489a29d5e47",
+                    "path": "<Touchscreen>/delta/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HorizontalAxis",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "af1eadae-61d8-48ab-b87b-9834d902075f",
                     "path": "<Keyboard>/delete",
@@ -168,6 +254,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "ControlKey",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bd8e14f0-ed14-429a-b8af-7edb79e88162",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Selection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b4b24129-d75e-4781-9bb1-eaeef20add91",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Selection",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

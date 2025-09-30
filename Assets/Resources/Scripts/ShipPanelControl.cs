@@ -26,7 +26,7 @@ public class ShipPanelControl : MonoBehaviour
 
     public void SetData(ShipInformationScriptableObject shipInformationScriptableObject)
     {
-        if(InputController.instance.isMouseDown)
+        if(InputController.instance.isTappingOrClicking)
         {
             return;
         }

@@ -37,7 +37,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MousePosition"",
+                    ""name"": ""Position"",
                     ""type"": ""Value"",
                     ""id"": ""2b1a2b70-b114-4415-a90e-f63e37ca6dd9"",
                     ""expectedControlType"": ""Vector2"",
@@ -56,12 +56,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""HorizontalAxis"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""cdbc2e19-9984-4e4e-8852-f9b8df62394b"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""DeleteAction"",
@@ -76,6 +76,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""name"": ""ControlKey"",
                     ""type"": ""Button"",
                     ""id"": ""44c3bb4e-3332-48da-bc40-3a55bb9f9d45"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Selection"",
+                    ""type"": ""Button"",
+                    ""id"": ""3dd01d15-f77b-4ae0-9f1d-649cd8836125"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -101,7 +110,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MousePosition"",
+                    ""action"": ""Position"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d5cad07a-89c6-493e-bf13-0306ab1c5433"",
+                    ""path"": ""<Touchscreen>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Position"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -131,6 +151,39 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""name"": ""positive"",
                     ""id"": ""5e95e4ad-1259-410b-91a7-11580cadd0e8"",
                     ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""VerticalAxis"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""78cb5c97-fecc-445c-816d-a1d1a68f5d11"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""VerticalAxis"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""8c608bef-0149-4b73-995a-9bdc727d7d86"",
+                    ""path"": ""<Touchscreen>/delta/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""VerticalAxis"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""48a4b1b1-1c9c-4086-9c9a-7071468e2ec1"",
+                    ""path"": ""<Touchscreen>/delta/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -172,6 +225,39 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""834abe99-15b3-47d5-b7d0-65271b184518"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HorizontalAxis"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""fda116e1-bed4-407a-8888-56d7654090cd"",
+                    ""path"": ""<Touchscreen>/delta/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HorizontalAxis"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""770690ae-be79-4fa3-9065-2489a29d5e47"",
+                    ""path"": ""<Touchscreen>/delta/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HorizontalAxis"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""af1eadae-61d8-48ab-b87b-9834d902075f"",
                     ""path"": ""<Keyboard>/delete"",
@@ -192,6 +278,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""ControlKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bd8e14f0-ed14-429a-b8af-7edb79e88162"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Selection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b4b24129-d75e-4781-9bb1-eaeef20add91"",
+                    ""path"": ""<Touchscreen>/Press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Selection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -201,11 +309,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Zoom = m_Player.FindAction("Zoom", throwIfNotFound: true);
-        m_Player_MousePosition = m_Player.FindAction("MousePosition", throwIfNotFound: true);
+        m_Player_Position = m_Player.FindAction("Position", throwIfNotFound: true);
         m_Player_VerticalAxis = m_Player.FindAction("VerticalAxis", throwIfNotFound: true);
         m_Player_HorizontalAxis = m_Player.FindAction("HorizontalAxis", throwIfNotFound: true);
         m_Player_DeleteAction = m_Player.FindAction("DeleteAction", throwIfNotFound: true);
         m_Player_ControlKey = m_Player.FindAction("ControlKey", throwIfNotFound: true);
+        m_Player_Selection = m_Player.FindAction("Selection", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
@@ -273,21 +382,23 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Zoom;
-    private readonly InputAction m_Player_MousePosition;
+    private readonly InputAction m_Player_Position;
     private readonly InputAction m_Player_VerticalAxis;
     private readonly InputAction m_Player_HorizontalAxis;
     private readonly InputAction m_Player_DeleteAction;
     private readonly InputAction m_Player_ControlKey;
+    private readonly InputAction m_Player_Selection;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Zoom => m_Wrapper.m_Player_Zoom;
-        public InputAction @MousePosition => m_Wrapper.m_Player_MousePosition;
+        public InputAction @Position => m_Wrapper.m_Player_Position;
         public InputAction @VerticalAxis => m_Wrapper.m_Player_VerticalAxis;
         public InputAction @HorizontalAxis => m_Wrapper.m_Player_HorizontalAxis;
         public InputAction @DeleteAction => m_Wrapper.m_Player_DeleteAction;
         public InputAction @ControlKey => m_Wrapper.m_Player_ControlKey;
+        public InputAction @Selection => m_Wrapper.m_Player_Selection;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -300,9 +411,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Zoom.started += instance.OnZoom;
             @Zoom.performed += instance.OnZoom;
             @Zoom.canceled += instance.OnZoom;
-            @MousePosition.started += instance.OnMousePosition;
-            @MousePosition.performed += instance.OnMousePosition;
-            @MousePosition.canceled += instance.OnMousePosition;
+            @Position.started += instance.OnPosition;
+            @Position.performed += instance.OnPosition;
+            @Position.canceled += instance.OnPosition;
             @VerticalAxis.started += instance.OnVerticalAxis;
             @VerticalAxis.performed += instance.OnVerticalAxis;
             @VerticalAxis.canceled += instance.OnVerticalAxis;
@@ -315,6 +426,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @ControlKey.started += instance.OnControlKey;
             @ControlKey.performed += instance.OnControlKey;
             @ControlKey.canceled += instance.OnControlKey;
+            @Selection.started += instance.OnSelection;
+            @Selection.performed += instance.OnSelection;
+            @Selection.canceled += instance.OnSelection;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -322,9 +436,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Zoom.started -= instance.OnZoom;
             @Zoom.performed -= instance.OnZoom;
             @Zoom.canceled -= instance.OnZoom;
-            @MousePosition.started -= instance.OnMousePosition;
-            @MousePosition.performed -= instance.OnMousePosition;
-            @MousePosition.canceled -= instance.OnMousePosition;
+            @Position.started -= instance.OnPosition;
+            @Position.performed -= instance.OnPosition;
+            @Position.canceled -= instance.OnPosition;
             @VerticalAxis.started -= instance.OnVerticalAxis;
             @VerticalAxis.performed -= instance.OnVerticalAxis;
             @VerticalAxis.canceled -= instance.OnVerticalAxis;
@@ -337,6 +451,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @ControlKey.started -= instance.OnControlKey;
             @ControlKey.performed -= instance.OnControlKey;
             @ControlKey.canceled -= instance.OnControlKey;
+            @Selection.started -= instance.OnSelection;
+            @Selection.performed -= instance.OnSelection;
+            @Selection.canceled -= instance.OnSelection;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -357,10 +474,11 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnZoom(InputAction.CallbackContext context);
-        void OnMousePosition(InputAction.CallbackContext context);
+        void OnPosition(InputAction.CallbackContext context);
         void OnVerticalAxis(InputAction.CallbackContext context);
         void OnHorizontalAxis(InputAction.CallbackContext context);
         void OnDeleteAction(InputAction.CallbackContext context);
         void OnControlKey(InputAction.CallbackContext context);
+        void OnSelection(InputAction.CallbackContext context);
     }
 }

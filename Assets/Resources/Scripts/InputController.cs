@@ -13,12 +13,12 @@ public class InputController : MonoBehaviour
     private GameObject hittedObject;
     SelectionController selectionlight;
     public static InputController instance;
-    public bool isMouseDown = false;
+    public bool isTappingOrClicking = false;
     public RadarCameraController radarCameraController;
     private bool isGridOn = false;
     private PlayerInputActions playerActions;
     public float mouseScrollY;
-    public Vector2 mousePosition;
+    public Vector2 Position;
     public float VerticalAxisMovement;
     public float HorizontalAxisMovement;
 
@@ -36,7 +36,7 @@ public class InputController : MonoBehaviour
         instance = this;
         playerActions = new PlayerInputActions();
         playerActions.Player.Zoom.performed += x => mouseScrollY = x.ReadValue<float>();
-        playerActions.Player.MousePosition.performed += x => mousePosition = x.ReadValue<Vector2>();
+        playerActions.Player.Position.performed += x => Position = x.ReadValue<Vector2>();
         playerActions.Player.VerticalAxis.performed += x => VerticalAxisMovement = x.ReadValue<float>();
         playerActions.Player.VerticalAxis.canceled += x => VerticalAxisMovement = 0;
         playerActions.Player.HorizontalAxis.performed += x => HorizontalAxisMovement = x.ReadValue<float>();
@@ -44,6 +44,8 @@ public class InputController : MonoBehaviour
         playerActions.Player.DeleteAction.performed += x => Delete();
         playerActions.Player.ControlKey.performed += x => PlayerController.instance.leftCtrlPressed = true;
         playerActions.Player.ControlKey.canceled += x => PlayerController.instance.leftCtrlPressed = false;
+        playerActions.Player.Selection.performed += x => isTappingOrClicking = true;
+        playerActions.Player.Selection.canceled += x => isTappingOrClicking = false;
     }
 
 
@@ -67,18 +69,11 @@ public class InputController : MonoBehaviour
             CameraManager.instance.HandleZoom(mouseScrollY);
         }
 
-        Mouse mouse = Mouse.current;
-        if (mouse.leftButton.wasPressedThisFrame)
+        if (isTappingOrClicking)
         {
-            isMouseDown = true;
-            Debug.Log("Mouse down");
             MouseRayCastSelectionMode();
         }
 
-        if (mouse.leftButton.wasReleasedThisFrame)
-        {
-            isMouseDown = false;
-        }
     }
 
     private static void Delete()
@@ -111,9 +106,8 @@ public class InputController : MonoBehaviour
 
     private void MouseRayCastSelectionMode()
     {
-
-        Vector3 mousePosition = Mouse.current.position.ReadValue();
-        Ray ray = m_Camera.ScreenPointToRay(mousePosition);
+//        Vector3 mousePosition = Mouse.current.position.ReadValue();
+        Ray ray = m_Camera.ScreenPointToRay(Position);
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             hittedObject = hit.collider.gameObject;
