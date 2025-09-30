@@ -59,7 +59,7 @@ public class DragUIShips : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         }
 
         RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(InputController.instance.mousePosition);
 
         if (Physics.Raycast(ray, out hit, 1000.0f))
         {
@@ -77,7 +77,7 @@ public class DragUIShips : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
         StartCoroutine(Coroutine_MoveUIElement(UIDragElement, mOriginalPosition , 0.5f));
         RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(InputController.instance.mousePosition);
         if(Physics.Raycast(ray, out hit, 1000.0f)) 
         { 
             //Vector3 worldPoint = hit.point;

@@ -68,11 +68,6 @@ public class Tile : MonoBehaviour
         //HighlightNeighborhood();
     }
 
-    void OnMouseDown()
-   {
-
-   }
-
     public void TileBeingClicked()
     {
         if (GameController.instance.currentStage == GameStage.PlayerAttackEnemyMap)

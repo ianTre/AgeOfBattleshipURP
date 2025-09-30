@@ -50,11 +50,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            leftCtrlPressed = !leftCtrlPressed;
-        }
-
+        
+        /*
         if (Input.GetKeyDown(KeyCode.M))
         {
             VirtualCamera.SetActive(true);
@@ -62,6 +59,7 @@ public class PlayerController : MonoBehaviour
             GameObject.Find("TimeLine").GetComponent<PlayableDirector>().Play();
             //add time 6 seconds stop the timeline         
         }
+        */
     }
 
     /*private void SetAtackMode(bool v)

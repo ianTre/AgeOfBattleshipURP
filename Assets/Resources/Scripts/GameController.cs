@@ -51,13 +51,6 @@ public class GameController : MonoBehaviour
     /// </summary>
     void Update()
     {
-        //BORRAR ABAJO
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            EndOfGame("German");
-        }
-        //BORRAR ARRIBA
-
         if (actionStage == currentStage)
             return;
 

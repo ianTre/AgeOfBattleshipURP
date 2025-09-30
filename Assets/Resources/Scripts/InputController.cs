@@ -16,6 +16,11 @@ public class InputController : MonoBehaviour
     public bool isMouseDown = false;
     public RadarCameraController radarCameraController;
     private bool isGridOn = false;
+    private PlayerInputActions playerActions;
+    public float mouseScrollY;
+    public Vector2 mousePosition;
+    public float VerticalAxisMovement;
+    public float HorizontalAxisMovement;
 
     void Start()
     {
@@ -29,56 +34,65 @@ public class InputController : MonoBehaviour
     void Awake()
     {
         instance = this;
+        playerActions = new PlayerInputActions();
+        playerActions.Player.Zoom.performed += x => mouseScrollY = x.ReadValue<float>();
+        playerActions.Player.MousePosition.performed += x => mousePosition = x.ReadValue<Vector2>();
+        playerActions.Player.VerticalAxis.performed += x => VerticalAxisMovement = x.ReadValue<float>();
+        playerActions.Player.VerticalAxis.canceled += x => VerticalAxisMovement = 0;
+        playerActions.Player.HorizontalAxis.performed += x => HorizontalAxisMovement = x.ReadValue<float>();
+        playerActions.Player.HorizontalAxis.canceled += x => HorizontalAxisMovement = 0;
+        playerActions.Player.DeleteAction.performed += x => Delete();
+        playerActions.Player.ControlKey.performed += x => PlayerController.instance.leftCtrlPressed = true;
+        playerActions.Player.ControlKey.canceled += x => PlayerController.instance.leftCtrlPressed = false;
     }
+
+
 
     public void UpdateCameraReference()
     {
         m_Camera = Camera.main;
     }
 
+    void OnEnable()
+    {
+        playerActions.Enable();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
+        //Handle Camera Zoom
+        if(mouseScrollY != 0)
+        {
+            CameraManager.instance.HandleZoom(mouseScrollY);
+        }
+
         Mouse mouse = Mouse.current;
         if (mouse.leftButton.wasPressedThisFrame)
         {
             isMouseDown = true;
             Debug.Log("Mouse down");
-            MouseRayCastSelectionMode(mouse);
+            MouseRayCastSelectionMode();
         }
 
         if (mouse.leftButton.wasReleasedThisFrame)
         {
             isMouseDown = false;
         }
+    }
 
-        if (Input.GetKey(KeyCode.Delete) && GameController.instance.currentStage == GameStage.Deploy)
+    private static void Delete()
+    {
+        if(GameController.instance.currentStage != GameStage.Deploy)
         {
-            Ship selectedShip = PlayerController.instance.GetSelectedShip();
-            if (selectedShip != null)
-            {
-                PlayerController.instance.ClearSelectedShip();
-                selectedShip.DestroyShip();
-            }
+            return;
         }
-
-        if (Input.GetKey(KeyCode.Alpha0)) //REMOVE BEFORE RELEASE
+        Ship selectedShip = PlayerController.instance.GetSelectedShip();
+        if (selectedShip != null)
         {
-            Ship shipToSunk;
-            if ((shipToSunk = PlayerController.instance.GetSelectedShip()) != null)
-            {
-                shipToSunk.SunkingCinematick();
-            }
+            PlayerController.instance.ClearSelectedShip();
+            selectedShip.DestroyShip();
         }
-
-        if (Input.GetKeyDown(KeyCode.G) && GameController.instance.currentStage == GameStage.PlayerAttackEnemyMap) // muestra el grid
-        {
-            ShowGridOnEnemyMap();
-
-        }
-
-
     }
 
     public void ShowGridOnEnemyMap()
@@ -95,9 +109,10 @@ public class InputController : MonoBehaviour
         }
     }
 
-    private void MouseRayCastSelectionMode(Mouse mouse)
+    private void MouseRayCastSelectionMode()
     {
-        Vector3 mousePosition = mouse.position.ReadValue();
+
+        Vector3 mousePosition = Mouse.current.position.ReadValue();
         Ray ray = m_Camera.ScreenPointToRay(mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit))
         {

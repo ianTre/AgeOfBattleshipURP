@@ -7,6 +7,7 @@ using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Input = UnityEngine.Input;
 using Random = UnityEngine.Random;
 
@@ -63,7 +64,7 @@ public class EnemyMapController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown("return"))
+        if (Keyboard.current[Key.Enter].wasPressedThisFrame)
         {
             if (selectedTile == null)
             {

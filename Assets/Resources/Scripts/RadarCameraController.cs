@@ -48,26 +48,7 @@ public class RadarCameraController : MonoBehaviour
              cam.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "UI");*/
         //PREGUNTAR QUE ES EL DEVELOPER MODE
 
-
-        //REGLA 3 
-        //ZOOM()      VERTTICAL
-
-        //300    -10 
-        //250    -5
-        //200    0
-        //150    10   
-        //100    20
-    
-
-
-        //ZOOM
-        curZoom += Input.GetAxis("Mouse ScrollWheel") * -zoomSpeed;
-        curZoom = Mathf.Clamp(curZoom, minZoom, maxZoom);
-
-        cam.orthographicSize = curZoom;
-        VerticalMaxMovement = curZoom >= 200 ? (float)-0.1 * curXRot + 20 : (float)-0.2 * curXRot + 40;
-
-
+        
         //Movement
         Vector3 forward = new Vector3(0, 0, 1);
         forward.y = 0.0f;
@@ -75,8 +56,8 @@ public class RadarCameraController : MonoBehaviour
 
         Vector3 right = cam.transform.right.normalized;
 
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveZ = Input.GetAxisRaw("Vertical");
+        float moveX = InputController.instance.HorizontalAxisMovement;
+        float moveZ = InputController.instance.VerticalAxisMovement;
 
         if (Mathf.Abs((deltaMovement + (right*moveX)).x ) > HorizontalMaxMovement ) 
         {
@@ -95,6 +76,17 @@ public class RadarCameraController : MonoBehaviour
         deltaMovement += dir;
         transform.position += dir;
         radarObject.transform.position += dir;
+        
+    }
 
+    public void Zoom(float zoomLevel)
+    {
+        float zoomDirection = zoomLevel > 0 ? 1 : -1;
+        //ZOOM
+        curZoom += zoomDirection * -zoomSpeed;
+        curZoom = Mathf.Clamp(curZoom, minZoom, maxZoom);
+
+        cam.orthographicSize = curZoom;
+        VerticalMaxMovement = curZoom >= 200 ? (float)-0.1 * curXRot + 20 : (float)-0.2 * curXRot + 40;
     }
 }

@@ -29,22 +29,18 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!isValidStage(GameController.instance.currentStage))
+        if (!isValidStage(GameController.instance.currentStage))
         {
             return;
         }
-        if(!DeveloperMode)
+        if (!DeveloperMode)
             cam.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Water", "UI");
         else
-            cam.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "UI","Developer");
-
-        //ZOOM
-        curZoom += Input.GetAxis("Mouse ScrollWheel") * -zoomSpeed;
-        curZoom = Mathf.Clamp(curZoom, minZoom, maxZoom);
-
-        cam.transform.localPosition = Vector3.up * curZoom;
+            cam.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "UI", "Developer");
 
 
+
+        /*
         //Rotate
         if (Input.GetMouseButton(1))
         {
@@ -56,6 +52,7 @@ public class CameraController : MonoBehaviour
 
             transform.eulerAngles = new Vector3(curXRot, transform.eulerAngles.y + (x * rotateSpeed), 0.0f);
         }
+        */
 
         //Movement
         Vector3 forward = cam.transform.forward;
@@ -64,15 +61,27 @@ public class CameraController : MonoBehaviour
 
         Vector3 right = cam.transform.right.normalized;
 
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveZ = Input.GetAxisRaw("Vertical");
+
+        float moveX = InputController.instance.HorizontalAxisMovement;
+        float moveZ = InputController.instance.VerticalAxisMovement;
+        
 
         Vector3 dir = forward * moveZ + right * moveX;
         dir.Normalize();
         dir *= moveSpeed * Time.deltaTime;
-        
-        transform.position += dir;
 
+        transform.position += dir;
+        
+    }
+
+    public void Zoom(float zoomLevel)
+    {
+        float zoomDirection = zoomLevel>0 ? 1 : -1;
+        //ZOOM
+        curZoom += zoomDirection * -zoomSpeed;
+        curZoom = Mathf.Clamp(curZoom, minZoom, maxZoom);
+
+        cam.transform.localPosition = Vector3.up * curZoom;
     }
 
     private bool isValidStage(GameStage currentStage)

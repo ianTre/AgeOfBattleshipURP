@@ -23,7 +23,7 @@ public class CameraManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     void Awake()
@@ -47,7 +47,24 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            
+
+    }
+
+    public void HandleZoom(float zoomLevel)
+    {
+        var activeCameras = GetActiveCamera();
+        if(activeCameras == null)
+            return;
+
+        if(activeCameras.Contains(deployCamera))
+        {
+            deployCamera.transform.GetComponentInParent<CameraController>().Zoom(zoomLevel);
+        }
+
+        if(activeCameras.Contains(radarCamera))
+        {
+            radarCamera.transform.GetComponentInParent<RadarCameraController>().Zoom(zoomLevel);
+        }
     }
 
     public void ChangeToDeployStage()
@@ -92,6 +109,11 @@ public class CameraManager : MonoBehaviour
             oldMainCamera.tag = "Untagged";
         camerasToActivate.First().tag = "MainCamera";
         InputController.instance.UpdateCameraReference();
+    }
+
+    private List<Camera> GetActiveCamera()
+    {
+        return allCameras.Where(cam => cam.gameObject.activeSelf).ToList();
     }
 
 
