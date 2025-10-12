@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -25,6 +23,6 @@ public class RadarIconFadeoutController : MonoBehaviour
         if (FadeValue > 0)
             FadeValue -= 1f * Time.deltaTime;
 
-        SpriteRenderer.color = SpriteRenderer.color.WithAlpha(FadeValue);
+        //SpriteRenderer.color = SpriteRenderer.color.WithAlpha(FadeValue);
     }
 }

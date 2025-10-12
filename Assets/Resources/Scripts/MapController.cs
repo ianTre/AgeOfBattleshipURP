@@ -15,7 +15,6 @@ public class MapController : MonoBehaviour
     public static MapController instance;
     private bool IsDragAndDroping = false;
     private List<Tile> tilesToBeOccuppied ;
-    private AOBLogger logger;
     
     //IMPORTANT: WE WILL ALWAYS FOLLOW THE PATTERN (ROW , COLUMN) , so it will be (Z , X) .
 
@@ -31,7 +30,6 @@ public class MapController : MonoBehaviour
         MapAllTiles();
         this.rowSize = AllTiles.OrderBy(tile => tile.ZCoord).Last().ZCoord;
         this.columSize = AllTiles.OrderBy(tile => tile.XCoord).Last().XCoord;
-        this.logger = new AOBLogger();
     }
 
 

@@ -21,14 +21,12 @@ public class DragUIShips : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     private Color notAvailableColor = new Color32(255,51,30,255);
     private ShipSoundController shipSounds;
     public ShipPanelControl shipPanel;
-    private AOBLogger logger;
     
     // Start is called before the first frame update
     void Start()
     {
         shipSounds = FindAnyObjectByType<ShipSoundController>(); 
         mOriginalPosition = UIDragElement.localPosition;
-        logger = new AOBLogger();
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -97,7 +95,6 @@ public class DragUIShips : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         GameObject obj;
         if (ScriptableObject.PrefabToInstantiate == null)
         {
-            logger.Log("No prefab to instatiate");
             return;
         }
         Vector3 position = new Vector3(tile.Xpos,tile.Ypos + ScriptableObject.PrefabToInstantiate.transform.localPosition.y, tile.Zpos);
@@ -134,7 +131,6 @@ public class DragUIShips : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         Ship ship = prefab.GetComponent<Ship>();
         if(ship == null)
         {
-            logger.Log("Prefab does not have a Ship component");
             return 0;
         }
         return ship.Size();

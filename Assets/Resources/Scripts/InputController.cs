@@ -1,14 +1,15 @@
 using System;
+using System.Collections;
 using System.Linq;
 using Assets.Resources.Scripts;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class InputController : MonoBehaviour
 {
     // Start is called before the first frame update
-    AOBLogger logger;
     Camera m_Camera;
     private GameObject hittedObject;
     SelectionController selectionlight;
@@ -21,11 +22,10 @@ public class InputController : MonoBehaviour
     public Vector2 Position;
     public float VerticalAxisMovement;
     public float HorizontalAxisMovement;
+    private Coroutine zoomCoroutine;
 
     void Start()
     {
-        logger = new AOBLogger();
-        logger.Log("Creating Logger");
         m_Camera = Camera.main;
         selectionlight = FindAnyObjectByType<SelectionController>();
         radarCameraController = FindAnyObjectByType<RadarCameraController>();
@@ -46,18 +46,60 @@ public class InputController : MonoBehaviour
         playerActions.Player.ControlKey.canceled += x => PlayerController.instance.leftCtrlPressed = false;
         playerActions.Player.Selection.performed += x => isTappingOrClicking = true;
         playerActions.Player.Selection.canceled += x => isTappingOrClicking = false;
+        playerActions.Player.SecondaryTouchConntact.started += _ => ZoomStart();
+        playerActions.Player.SecondaryTouchConntact.canceled += _ => ZoomEnds();
+        playerActions.Player.PrimaryTouchConntact.canceled += _ => ZoomEnds();
     }
 
+    private void ZoomEnds()
+    {
+        Debug.Log("Ending ZOOM");
+        StopCoroutine(zoomCoroutine);
+    }
 
+    private void ZoomStart()
+    {
+        zoomCoroutine = StartCoroutine(ZoomDetection());
+    }
+
+    IEnumerator ZoomDetection()
+    {
+        float previousDistance = 0f ;
+        while(true)
+        {
+            Debug.Log("I am alive");
+            float distance = Vector2.Distance
+                (playerActions.Player.PrimaryFingerPosition.ReadValue<Vector2>()
+                , playerActions.Player.SecondaryFingerPosition.ReadValue<Vector2>());
+
+            if (distance > previousDistance )
+            {
+                CameraManager.instance.HandleZoom(1);
+            }
+
+            if (distance < previousDistance)
+            {
+                CameraManager.instance.HandleZoom(-1);
+            }
+
+            previousDistance = distance;
+            yield return null;
+        }
+    }
 
     public void UpdateCameraReference()
     {
         m_Camera = Camera.main;
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
         playerActions.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerActions.Disable();
     }
 
     // Update is called once per frame

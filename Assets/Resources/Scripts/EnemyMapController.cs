@@ -40,7 +40,6 @@ public class EnemyMapController : MonoBehaviour
 
     private int rowNumber;
     private int columnNumber;
-    private AOBLogger logger;
     private void Awake()
     {
         instance = this;
@@ -48,7 +47,6 @@ public class EnemyMapController : MonoBehaviour
     // Start is called before the first frame update 
     void Start()
     {
-        logger = new AOBLogger();
         EnemyShipsGO = GameObject.Find("EnemyShips");
         enemyMap = GameObject.Find("EnemyMap");
         if (enemyMap == null || EnemyShipsGO == null)
@@ -192,7 +190,7 @@ public class EnemyMapController : MonoBehaviour
                         Debug.Log("Check GenerateEnemyShips on EnemyMapController , wrong tile coords were generated");
                         continue;
                     }
-                    
+
 
                     #region Create a new instance of the ship
                     Quaternion quaternion;
@@ -213,8 +211,8 @@ public class EnemyMapController : MonoBehaviour
 
                     newShip = Instantiate(ship, newPosition, quaternion, EnemyShipsGO.transform);
                     newShip.ocuppiedTiles.Clear();
-                    
-                    if(!CanShipBeDeployed(tile, newShip, !VerticalOrientation))
+
+                    if (!CanShipBeDeployed(tile, newShip, !VerticalOrientation))
                     {
                         foundRightSpot = false;
                         Destroy(newShip.gameObject);
@@ -223,7 +221,7 @@ public class EnemyMapController : MonoBehaviour
                 }
                 catch (Exception ex)
                 {
-                    logger.Log(ex.Message);
+                    Debug.Log(ex.Message);
                 }
                 while (newShip.ocuppiedTiles.Count == 0)
                 {
@@ -249,7 +247,7 @@ public class EnemyMapController : MonoBehaviour
             Destroy(newShip.gameObject);
             return false;
         }
-        if(newShip.ocuppiedTiles.Count != newShip.Size() ) //Is doing overflow outside the map
+        if (newShip.ocuppiedTiles.Count != newShip.Size()) //Is doing overflow outside the map
         {
             Destroy(newShip.gameObject);
             return false;
@@ -258,9 +256,8 @@ public class EnemyMapController : MonoBehaviour
 
     }
 
-    public bool CanShipBeDeployed(Tile originalTile, Ship newShip,bool verticallyOriented)
+    public bool CanShipBeDeployed(Tile originalTile, Ship newShip, bool verticallyOriented)
     {
-        logger.Log("Can Ship be Deployed? for " + newShip.shipType.ToString() + "in tile" + originalTile.ZCoord + " , " + originalTile.XCoord);
         List<Tile> tilesToBeOccuppied = new List<Tile>();
         int sizeToBeOcuppied = newShip.Size();
 
@@ -303,7 +300,6 @@ public class EnemyMapController : MonoBehaviour
         //Add if exists will not add any tile outside the map. If the numbers dont match , you are trying to add a ship outside longer that the limits of the map
         if (tilesToBeOccuppied.Count != newShip.Size())
         {
-            logger.Log("Returning FALSE");
             return false;
         }
 
@@ -312,11 +308,9 @@ public class EnemyMapController : MonoBehaviour
         {
             if (ship.ocuppiedTiles.Exists(tile => tilesToBeOccuppied.Contains(tile)))
             {
-                logger.Log("Returning FALSE");
                 return false;
             }
         }
-        logger.Log("Returning TRUE");
         return true;
     }
 
@@ -335,12 +329,10 @@ public class EnemyMapController : MonoBehaviour
 
     private void AddIfExists(List<Tile> list, int z, int x)
     {
-        logger.Log("Adding if Exist tile" + z + "," + x);
         Tile tile = FindTileByCoord(z, x);
         if (tile != null)
-        { 
+        {
             list.Add(tile);
-            logger.Log("Adding.");
         }
     }
 
