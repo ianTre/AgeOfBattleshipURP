@@ -48,7 +48,6 @@ public class InputController : MonoBehaviour
         playerActions.Player.Selection.canceled += x => isTappingOrClicking = false;
         playerActions.Player.SecondaryTouchConntact.started += _ => ZoomStart();
         playerActions.Player.SecondaryTouchConntact.canceled += _ => ZoomEnds();
-        playerActions.Player.PrimaryTouchConntact.canceled += _ => ZoomEnds();
     }
 
     private void ZoomEnds()
@@ -195,5 +194,10 @@ public class InputController : MonoBehaviour
         if (!selectedTile.isEnemyTile)
             return;
         selectedTile.TileBeingClicked();
+    }
+
+    internal void DraggingIcon()
+    {
+        VerticalAxisMovement = HorizontalAxisMovement = 0;
     }
 }

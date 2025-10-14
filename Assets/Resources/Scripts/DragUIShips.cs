@@ -55,6 +55,8 @@ public class DragUIShips : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             Vector3 offsetToOriginal = localPointerPosition - mOriginalLocalPointerPosition;
             UIDragElement.localPosition = mOriginalPanelLocalPosition + offsetToOriginal;
         }
+        //Updte Input to override movement ( so camera dont move while dragging)
+        InputController.instance.DraggingIcon();
 
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(InputController.instance.Position);

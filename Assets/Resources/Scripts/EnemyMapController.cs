@@ -62,18 +62,19 @@ public class EnemyMapController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current[Key.Enter].wasPressedThisFrame)
+    }
+
+    public void PlayerFiringAction()
+    {
+        if (selectedTile == null)
         {
-            if (selectedTile == null)
-            {
-                Debug.Log("no Selected tile");
-                return;
-            }
-            enemyMapShootedTiles.Add(selectedTile);
-            GameObject prefab = CheckSpotInMap(selectedTile);
-            Instantiate(prefab, selectedTile.transform);
-            GameController.instance.UpdateStage(GameStage.PlayerAttackCinematic);
+            Debug.Log("no Selected tile");
+            return;
         }
+        enemyMapShootedTiles.Add(selectedTile);
+        GameObject prefab = CheckSpotInMap(selectedTile);
+        Instantiate(prefab, selectedTile.transform);
+        GameController.instance.UpdateStage(GameStage.PlayerAttackCinematic);
     }
 
     IEnumerator ShowPlayerShotResultInEnemyMap(GameObject prefab)
