@@ -17,11 +17,11 @@ public class RadarSweepColliderController : MonoBehaviour
         HitIcon = collider.gameObject.name;
         if (collider.tag == "SweepHit")
         {
-            collider.gameObject.GetComponent<RadarIconFadeoutController>().ResetAlpha();
+            collider.gameObject.GetComponent<RadarIconFadeoutController>()?.ResetAlpha();
 
             if (HitIcon == "HitIcon(Clone)")
             {
-                collider.gameObject.GetComponent<RadarIconFadeoutController>().ResetAlpha();
+                collider.gameObject.GetComponent<RadarIconFadeoutController>()?.ResetAlpha();
                 audio.Play();
             }
         }

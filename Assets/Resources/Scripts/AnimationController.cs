@@ -11,8 +11,6 @@ public class AnimationController : MonoBehaviour
     [SerializeField]
     GameObject missExplosion;
     [SerializeField]
-    GameObject sunkExplosion;
-    [SerializeField]
     GameObject HitExplosion;
     public static AnimationController instance;
     public Vector3 currentPosition;
@@ -48,6 +46,7 @@ public class AnimationController : MonoBehaviour
         currentPosition.y += 50;
         cameraRotatorFull.GetComponent<CamaraIAAtack>().StartVisualization(currentPosition);
         cameraRotatorFull.GetComponentInChildren<AudioSource>().clip = BombFalling;
+
         cameraRotatorFull.GetComponentInChildren<AudioSource>().Play();
         switch (currentHitResult)
         {
@@ -226,7 +225,7 @@ public class AnimationController : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
-        cameraRotatorFull.GetComponent<CameraRotator>().StopRotation();
+        //cameraRotatorFull.GetComponent<CameraRotator>().StopRotation();
         GameController.instance.UpdateStage(GameStage.PlayerAttackEnemyMap);
     }
 }
