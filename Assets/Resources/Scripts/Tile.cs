@@ -58,15 +58,15 @@ public class Tile : MonoBehaviour
         this.meshRenderer.SetMaterials(new List<Material>{tileMaterial});
     }
 
-        void OnMouseOver()
-    {
-        if(hoverTriggered || GameController.instance.currentStage != GameStage.Deploy)
-            return;
-        hoverTriggered=true;
-        MapController.instance.TileIsBeingFocused(this);
-        // Change the color of the GameObject to red when the mouse is over GameObject
-        //HighlightNeighborhood();
-    }
+    //    void OnMouseOver()
+    //{
+    //    if(hoverTriggered || GameController.instance.currentStage != GameStage.Deploy)
+    //        return;
+    //    hoverTriggered=true;
+    //    MapController.instance.TileIsBeingFocused(this);
+    //    // Change the color of the GameObject to red when the mouse is over GameObject
+    //    //HighlightNeighborhood();
+    //}
 
     public void TileBeingClicked()
     {

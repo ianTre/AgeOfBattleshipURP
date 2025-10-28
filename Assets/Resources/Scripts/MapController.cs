@@ -74,11 +74,11 @@ public class MapController : MonoBehaviour
     }
 
 
-    public void TileIsBeingFocused(Tile tile)
-    {
-        if(!IsDragAndDroping)
-            tile.HighlightMainColor();
-    }
+    //public void TileIsBeingFocused(Tile tile)
+    //{
+    //    if(!IsDragAndDroping)
+    //        tile.HighlightMainColor();
+    //}
 
     public bool CanShipBeDeployed(Tile originalTile,Ship newShip)
     {

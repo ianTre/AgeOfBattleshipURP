@@ -21667,9 +21667,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21637d8d95983114a93f384a3482e226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missExplosion: {fileID: 3165652264736840632, guid: 31e1448bbc469064e89a752925fc2ea4,
+  missExplosion: {fileID: 3323387954473017891, guid: 0b912e9003fba894faa88cf964a6fb8a,
     type: 3}
-  sunkExplosion: {fileID: 0}
   HitExplosion: {fileID: 1498579228895113724, guid: 270ebb065466cde43888f0def9dd286c,
     type: 3}
   currentPosition: {x: 0, y: 0, z: 0}
