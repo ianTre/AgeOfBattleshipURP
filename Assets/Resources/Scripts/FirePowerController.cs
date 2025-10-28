@@ -49,6 +49,8 @@ public class FirePowerController : MonoBehaviour
 
         }
         isFiring = false;
+
+        EnemyMapController.instance.ShipStoppedFiring();
     }
 
     private void MoveCannonBackAndforward(Transform cannon)

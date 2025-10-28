@@ -40,6 +40,9 @@ public class EnemyMapController : MonoBehaviour
 
     private int rowNumber;
     private int columnNumber;
+
+    public bool firingWaitEnded = false;
+
     private void Awake()
     {
         instance = this;
@@ -64,6 +67,10 @@ public class EnemyMapController : MonoBehaviour
     {
     }
 
+    public void ShipStoppedFiring()
+    {
+        firingWaitEnded = true;
+    }
     public void PlayerFiringAction()
     {
         if (selectedTile == null)
@@ -73,20 +80,22 @@ public class EnemyMapController : MonoBehaviour
         }
         enemyMapShootedTiles.Add(selectedTile);
         GameObject prefab = CheckSpotInMap(selectedTile);
-        Instantiate(prefab, selectedTile.transform);
+        StartCoroutine(ShowPlayerShotResultInEnemyMap(prefab));
         GameController.instance.UpdateStage(GameStage.PlayerAttackCinematic);
     }
 
+
+
     IEnumerator ShowPlayerShotResultInEnemyMap(GameObject prefab)
     {
-        float timeToWait = 1f;
-        float elapsed = 0f;
-        while (elapsed < timeToWait)
+        while (!firingWaitEnded)
         {
-            elapsed += Time.deltaTime;
-            yield return new WaitForSeconds(timeToWait);
+            yield return null;
         }
+        firingWaitEnded = false;
 
+        yield return new WaitForSeconds(1f);
+        Instantiate(prefab, selectedTile.transform);
     }
 
     public GameObject CheckSpotInMap(Tile tile)
