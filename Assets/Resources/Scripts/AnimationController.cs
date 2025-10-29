@@ -72,19 +72,19 @@ public class AnimationController : MonoBehaviour
 
     public void PlayMissExplosion(Vector3 position)
     {
-        position.y += 10f;
+        position.y += 0f;
         StartCoroutine(ShowMissExplosion(3f, position));
     }
 
     public void PlayHitExplosion(Vector3 position)
     {
-        position.y += 12f;
+        position.y += 10f;
         StartCoroutine(ShowHitAnimation(3f, position));
     }
 
     public void PlaySunkExplosion(Vector3 position)
     {
-        position.y += 12f;
+        position.y += 10f;
         StartCoroutine(ShowSunkExplosion(2f, 8f, position));
     }
 

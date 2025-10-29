@@ -38,12 +38,12 @@ public class GameController : MonoBehaviour
         CameraManager.instance.ChangeToDeployStage();
 
         coordinates.Add("0,0");
-        coordinates.Add("0,1");
-        coordinates.Add("0,2");
-        coordinates.Add("0,3");
-        coordinates.Add("0,4");
-        coordinates.Add("0,5");
-        coordinates.Add("0,6");
+        coordinates.Add("1,0");
+        coordinates.Add("2,0");
+        coordinates.Add("3,0");
+        coordinates.Add("4,0");
+        coordinates.Add("5,0");
+        coordinates.Add("6,0");
     }
 
     /// <summary>

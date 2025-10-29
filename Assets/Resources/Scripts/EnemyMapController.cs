@@ -73,7 +73,7 @@ public class EnemyMapController : MonoBehaviour
     }
     public void PlayerFiringAction()
     {
-        if (selectedTile == null)
+        if (selectedTile == null || enemyMapShootedTiles.Contains(selectedTile))
         {
             Debug.Log("no Selected tile");
             return;
