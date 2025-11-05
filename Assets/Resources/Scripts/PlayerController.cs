@@ -6,6 +6,7 @@ using System.Threading;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
@@ -23,6 +24,8 @@ public class PlayerController : MonoBehaviour
     private Ship selectedShip;
     [SerializeField]
     SelectionController selectionlight;
+    [SerializeField] Sprite verticalRotationImage;
+    [SerializeField] Sprite horizontalRotationImage;
     // private int totalShipAvailable = 5;  // Total number of ships available for deployment
 
     // Start is called before the first frame update
@@ -36,6 +39,16 @@ public class PlayerController : MonoBehaviour
         ships = new List<Ship>();
         panelForShip = new Dictionary<ShipType, string>();
         AddConstantReferences();
+    }
+
+    public void ChangeRotation()
+    {
+        leftCtrlPressed = !leftCtrlPressed;
+        var button = GameObject.Find("RotationButton");
+        if(button != null)
+        { 
+            button.GetComponent<UnityEngine.UI.Image>().sprite = leftCtrlPressed ? horizontalRotationImage : verticalRotationImage;
+        }
     }
 
     private void AddConstantReferences()

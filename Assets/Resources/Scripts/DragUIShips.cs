@@ -89,7 +89,6 @@ public class DragUIShips : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         }
         MapController.instance.SetDragAndDroping(false);
         MapController.instance.CleanTiles();
-        PlayerController.instance.leftCtrlPressed=false;
     }
 
     private void CreateObject(Tile tile)

@@ -42,8 +42,6 @@ public class InputController : MonoBehaviour
         playerActions.Player.HorizontalAxis.performed += x => HorizontalAxisMovement = x.ReadValue<float>();
         playerActions.Player.HorizontalAxis.canceled += x => HorizontalAxisMovement = 0;
         playerActions.Player.DeleteAction.performed += x => Delete();
-        playerActions.Player.ControlKey.performed += x => PlayerController.instance.leftCtrlPressed = true;
-        playerActions.Player.ControlKey.canceled += x => PlayerController.instance.leftCtrlPressed = false;
         playerActions.Player.Selection.performed += x => isTappingOrClicking = true;
         playerActions.Player.Selection.canceled += x => isTappingOrClicking = false;
         playerActions.Player.SecondaryTouchConntact.started += _ => ZoomStart();
