@@ -79,6 +79,7 @@ public class EnemyMapController : MonoBehaviour
             return;
         }
         enemyMapShootedTiles.Add(selectedTile);
+        CameraManager.instance.ChangeToPlayerAtacckIARadarStage2();
         GameObject prefab = CheckSpotInMap(selectedTile);
         StartCoroutine(ShowPlayerShotResultInEnemyMap(prefab));
         GameController.instance.UpdateStage(GameStage.PlayerAttackCinematic);

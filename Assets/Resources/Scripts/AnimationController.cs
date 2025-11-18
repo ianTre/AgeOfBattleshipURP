@@ -43,7 +43,7 @@ public class AnimationController : MonoBehaviour
 
     public void PlayExplosion()
     {
-        currentPosition.y += 50;
+        currentPosition.y += 40;
         cameraRotatorFull.GetComponent<CamaraIAAtack>().StartVisualization(currentPosition);
         cameraRotatorFull.GetComponentInChildren<AudioSource>().clip = BombFalling;
 
@@ -72,19 +72,19 @@ public class AnimationController : MonoBehaviour
 
     public void PlayMissExplosion(Vector3 position)
     {
-        position.y += 0f;
+        position.y -= 30f; //Initial value is offset + 40. For splash ( water level ) +10 looks like a good value.
         StartCoroutine(ShowMissExplosion(3f, position));
     }
 
     public void PlayHitExplosion(Vector3 position)
     {
-        position.y += 10f;
+        position.y -= 20f;
         StartCoroutine(ShowHitAnimation(3f, position));
     }
 
     public void PlaySunkExplosion(Vector3 position)
     {
-        position.y += 10f;
+        position.y -= 10f;
         StartCoroutine(ShowSunkExplosion(2f, 8f, position));
     }
 

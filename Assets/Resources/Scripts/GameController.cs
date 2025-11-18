@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,7 +24,10 @@ public class GameController : MonoBehaviour
     GameObject endGameCanvas;
     [SerializeField]
     AudioClip gameOverSound;
+    [SerializeField]
+    CinemachineVirtualCamera VirtualCameraShipRotator;
     public bool FixedIAShot = false; //REMOVE ASAP
+
 
     List<string> coordinates = new List<string>();
     private Ship shipToAction;
@@ -88,24 +92,33 @@ public class GameController : MonoBehaviour
         
         CameraManager.instance.ChangeToPlayerAtacckIARadar();
         shipToAction = PlayerController.instance.getShipToBeActioned();
-        GameObject.Find("CameraRotator").GetComponent<CameraRotator>().StartRotation(shipToAction.transform.position);
+        GameObject.Find("AnchorOrbiter")?.GetComponent<CameraRotator>()?.StartRotation(shipToAction.transform.position);
+        VirtualCameraShipRotator.LookAt = shipToAction.GetComponent<FirePowerController>().cannons[0]?.transform;
         turn++;
     }
 
     public void TransitionToPlayerAttackCinematic()
     {
         currentStage = GameStage.PlayerAttackCinematic;
-        shipToAction.GetComponent<FirePowerController>().FireCannons();
-        StartCoroutine(CWaitForSeconds(2.0f));
+        //shipToAction.GetComponent<FirePowerController>().FireCannons();
+        StartCoroutine(CWaitForSeconds(2.0f,3f));
     }
 
-    IEnumerator CWaitForSeconds(float v)
+    IEnumerator CWaitForSeconds(float waitAfterShot,float waitBeforeShot)
     {
+        while (waitBeforeShot > 0)
+        {
+            waitBeforeShot -= Time.deltaTime;
+            yield return null;
+        }
+        shipToAction.GetComponent<FirePowerController>().FireCannons();
+
         while (shipToAction.GetComponent<FirePowerController>().isFiring)
         {
             yield return null;
         }
-        yield return new WaitForSeconds(v);
+        yield return new WaitForSeconds(waitAfterShot);
+        
         if (EnemyMapController.instance.CheckEndOfGame())
         {
             actionStage = GameStage.EndOfGame;
@@ -115,7 +128,7 @@ public class GameController : MonoBehaviour
         {
             actionStage = GameStage.IAAttackPlayerMap;
         }
-        GameObject.Find("CameraRotator").GetComponent<CameraRotator>().StopRotation();
+        GameObject.Find("AnchorOrbiter")?.GetComponent<CameraRotator>()?.StopRotation();
     }
 
     public void TransitionToIAAttack()

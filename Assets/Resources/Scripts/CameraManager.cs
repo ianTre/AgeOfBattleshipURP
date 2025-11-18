@@ -1,3 +1,5 @@
+using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +19,12 @@ public class CameraManager : MonoBehaviour
     Camera camera5;
     [SerializeField]
     Camera camera6;
+    [SerializeField]
+    CinemachineVirtualCamera VirtualCameraEagleView;
+    [SerializeField]
+    CinemachineVirtualCamera VirtualCameraShipRotator;
+
+
     List<Camera> allCameras;
     public static CameraManager instance;
 
@@ -67,6 +75,8 @@ public class CameraManager : MonoBehaviour
         }
     }
 
+    
+
     public void ChangeToDeployStage()
     {
         List<Camera> cameraToActivate = new List<Camera>
@@ -84,6 +94,13 @@ public class CameraManager : MonoBehaviour
             radarSmallRotatorCamera
         };
         ActivateCamera(cameraToActivate);
+        VirtualCameraEagleView.gameObject.SetActive(true);
+    }
+
+    public void ChangeToPlayerAtacckIARadarStage2()
+    {
+        VirtualCameraEagleView.gameObject.SetActive(false);
+        VirtualCameraShipRotator.gameObject.SetActive(true);
     }
 
     public void ChangeToPlayerAtacckIACinematick()
@@ -93,6 +110,8 @@ public class CameraManager : MonoBehaviour
             CinemPlayerMapCamera,
         };
         ActivateCamera(cameraToActivate);
+        VirtualCameraEagleView.gameObject.SetActive(false);
+        VirtualCameraShipRotator.gameObject.SetActive(false);
     }
 
     public void TurnOffAllCameras()
