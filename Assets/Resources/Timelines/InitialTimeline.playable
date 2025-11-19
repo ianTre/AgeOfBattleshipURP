@@ -553,6 +553,8 @@ AnimationClip:
   m_PPtrCurves:
   - serializedVersion: 2
     curve:
+    - time: 2.5166667
+      value: {fileID: 0}
     - time: 2.5833333
       value: {fileID: 0}
     - time: 11.5
@@ -597,6 +599,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
+    - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
   m_AnimationClipSettings:
