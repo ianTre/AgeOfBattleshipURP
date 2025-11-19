@@ -86,7 +86,7 @@ public class GameController : MonoBehaviour
         CameraManager.instance.ChangeToDeployStage();
         GameObject initialSetupCanvas = GameObject.Find("CanvasObjects");
         initialSetupCanvas?.transform.GetChild(0)?.gameObject.SetActive(true);
-        Destroy(GameObject.Find("InitialSceneAssests"));
+        //Destroy(GameObject.Find("InitialSceneAssests"));
     }
 
     public IEnumerator TransitionToPlayerAttackEnemyMap()
