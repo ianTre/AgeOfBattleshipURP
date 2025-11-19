@@ -39,8 +39,8 @@ public class GameController : MonoBehaviour
     void Start()
     {
         currentStage = GameStage.Deploy;
-        CameraManager.instance.ChangeToDeployStage();
-
+        //CameraManager.instance.ChangeToDeployStage();
+        StartCoroutine(TransitionFromAnimationToDeployScene());
         coordinates.Add("0,0");
         coordinates.Add("1,0");
         coordinates.Add("2,0");
@@ -78,6 +78,15 @@ public class GameController : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public IEnumerator TransitionFromAnimationToDeployScene()
+    {
+        yield return new WaitForSeconds(16);
+        CameraManager.instance.ChangeToDeployStage();
+        GameObject initialSetupCanvas = GameObject.Find("CanvasObjects");
+        initialSetupCanvas?.transform.GetChild(0)?.gameObject.SetActive(true);
+        Destroy(GameObject.Find("InitialSceneAssests"));
     }
 
     public IEnumerator TransitionToPlayerAttackEnemyMap()

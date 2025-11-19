@@ -290,6 +290,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &30196591
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -361,74 +362,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 30196586}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &31763193
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 31763196}
-  - component: {fileID: 31763195}
-  - component: {fileID: 31763194}
-  m_Layer: 0
-  m_Name: EventSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &31763194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 31763193}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
---- !u!114 &31763195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 31763193}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!4 &31763196
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 31763193}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &68235074
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,6 +458,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &68235079
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -692,6 +626,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &70412763
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -859,6 +794,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &72798962
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1087,6 +1023,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &84312589
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1254,6 +1191,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &89330025
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1421,6 +1359,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &90763415
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1588,6 +1527,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &103145750
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1812,6 +1752,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &124513318
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1979,6 +1920,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &131466652
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2146,6 +2088,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &137048850
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2313,6 +2256,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &146141853
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2480,6 +2424,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &148624845
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2647,6 +2592,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &158476889
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2814,6 +2760,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &179801986
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2981,6 +2928,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &180282924
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3148,6 +3096,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &202546644
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3315,6 +3264,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &207557351
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3482,6 +3432,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &209480277
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3649,6 +3600,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &218493835
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3848,6 +3800,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &224306470
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4015,6 +3968,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &236748628
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4182,6 +4136,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &243583010
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4349,6 +4304,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &251209315
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4516,6 +4472,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &267943495
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4683,6 +4640,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &274719059
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4951,6 +4909,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &298324098
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5118,6 +5077,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &307293033
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5285,6 +5245,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &309368972
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5452,6 +5413,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &313399223
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5619,6 +5581,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &314539537
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5786,6 +5749,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &324695844
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6125,6 +6089,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &332538638
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6292,6 +6257,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &346917392
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6459,6 +6425,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &362779055
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6626,6 +6593,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &377108305
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6793,6 +6761,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &406226379
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6960,6 +6929,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &443063511
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7221,6 +7191,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &469346656
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7388,6 +7359,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &479916802
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7555,6 +7527,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &491261803
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7722,6 +7695,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &491500596
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7889,6 +7863,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &493737382
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8056,6 +8031,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &494868922
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8223,6 +8199,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &512645458
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8390,6 +8367,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &522204745
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8557,6 +8535,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &524129673
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8724,6 +8703,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &525525652
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8891,6 +8871,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &531865790
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9058,6 +9039,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &547362832
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9225,6 +9207,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &550214269
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9392,6 +9375,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &550467081
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9771,6 +9755,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &576302670
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10499,6 +10484,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &651950371
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10666,6 +10652,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &685439482
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10833,6 +10820,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &686739720
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11000,6 +10988,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &697094873
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11167,6 +11156,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &711885893
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11334,6 +11324,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &721773190
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11501,6 +11492,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &725116829
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11668,6 +11660,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &726710890
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11835,6 +11828,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &732425069
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12059,6 +12053,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &752570745
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12226,6 +12221,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &755237895
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12393,6 +12389,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &781994273
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12560,6 +12557,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &805579153
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12727,6 +12725,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &830161471
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12943,6 +12942,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &850521305
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13110,6 +13110,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &858372276
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13277,6 +13278,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &859492671
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13501,6 +13503,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &870087642
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13668,6 +13671,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &878968107
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13892,6 +13896,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &896541742
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14059,6 +14064,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &903130072
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14226,6 +14232,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &904046003
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14393,6 +14400,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &963182210
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14560,6 +14568,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &968028928
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14727,6 +14736,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &968123975
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15028,6 +15038,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &984136657
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15288,6 +15299,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &995572624
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15567,6 +15579,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1049441660
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15734,6 +15747,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1053157118
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15901,6 +15915,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1112033977
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16068,6 +16083,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1112525776
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16235,6 +16251,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1115824695
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16402,6 +16419,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1116219823
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16569,6 +16587,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1137085318
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16736,6 +16755,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1176024056
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16903,6 +16923,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1182681670
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17070,6 +17091,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1183288394
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17237,6 +17259,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1197470556
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17453,6 +17476,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1210502346
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17703,6 +17727,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1233790934
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17870,6 +17895,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1249864229
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18037,6 +18063,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1253172934
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18204,6 +18231,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1261277549
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18371,6 +18399,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1268935022
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18569,6 +18598,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1298635984
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18736,6 +18766,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1299870270
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18903,6 +18934,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1313005051
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19070,6 +19102,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1326503301
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19237,6 +19270,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1337474961
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19404,6 +19438,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1347765811
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19571,6 +19606,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1376960329
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19738,6 +19774,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1381169954
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19905,6 +19942,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1391448923
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20072,6 +20110,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1415459855
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20239,6 +20278,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1424869290
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20406,6 +20446,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1428907030
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20573,6 +20614,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1443608914
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20740,6 +20782,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1458976143
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20907,6 +20950,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1466991779
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21135,6 +21179,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1485426350
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21302,6 +21347,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1492391678
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21469,6 +21515,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1504360934
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21636,6 +21683,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1506334848
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21803,6 +21851,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1515160377
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21970,6 +22019,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1516212555
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22137,6 +22187,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1530997760
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22361,6 +22412,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1564991732
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22528,6 +22580,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1568439708
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22695,6 +22748,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1576954115
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22862,6 +22916,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1602854267
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23029,6 +23084,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1616508955
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23294,6 +23350,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1627602314
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23461,6 +23518,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1658295136
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23628,6 +23686,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1663972646
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23795,6 +23854,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1678772361
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23962,6 +24022,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1716243359
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24129,6 +24190,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1729960537
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24296,6 +24358,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1731528253
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24463,6 +24526,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1738704384
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24630,6 +24694,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1772731093
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24701,177 +24766,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1772731088}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1776522629
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1776522632}
-  - component: {fileID: 1776522631}
-  - component: {fileID: 1776522630}
-  m_Layer: 0
-  m_Name: Text (TMP)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1776522630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1776522629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: AGE OF BATTLESHIPS
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 200
-  m_fontSizeBase: 200
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 1
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 0
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 1
-  m_verticalMapping: 0
-  m_uvLineOffset: 100
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  _SortingLayer: 0
-  _SortingLayerID: 0
-  _SortingOrder: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 1776522631}
-  m_maskType: 0
---- !u!23 &1776522631
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1776522629}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 0
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 10
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!224 &1776522632
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1776522629}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 3292}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2358, y: 7}
-  m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1785127549
 GameObject:
   m_ObjectHideFlags: 0
@@ -24968,6 +24862,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1785127554
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25135,6 +25030,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1785788029
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25302,6 +25198,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1800657614
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25469,6 +25366,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1803748665
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25636,6 +25534,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1836656611
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25803,6 +25702,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1843336554
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26014,6 +25914,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1886446815
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26181,6 +26082,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1888374070
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26556,6 +26458,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1896753707
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26723,6 +26626,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1916292027
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26890,6 +26794,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1920833146
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27057,6 +26962,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1939020739
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27224,6 +27130,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1947668690
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27391,6 +27298,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1951982005
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27558,6 +27466,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1961017366
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27725,6 +27634,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1974798723
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27892,6 +27802,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1975265512
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28059,6 +27970,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1981165307
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28226,6 +28138,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1983970024
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28393,6 +28306,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1984558188
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28560,6 +28474,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1989001988
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28727,6 +28642,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &1999112621
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28894,6 +28810,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &2004308607
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29122,6 +29039,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &2021697937
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29289,6 +29207,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &2057656870
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29456,6 +29375,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &2071173388
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29629,6 +29549,7 @@ MonoBehaviour:
   XCoord: 0
   ZCoord: 0
   tileMaterial: {fileID: 2100000, guid: 3172f71748974b34ab525e1dd4c7a9d7, type: 2}
+  isEnemyTile: 0
 --- !u!65 &2124362365
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29713,7 +29634,6 @@ SceneRoots:
   - {fileID: 1893919953}
   - {fileID: 1277838836}
   - {fileID: 968353903}
-  - {fileID: 31763196}
   - {fileID: 649275356}
   - {fileID: 879649622}
   - {fileID: 862431299}
@@ -29727,4 +29647,3 @@ SceneRoots:
   - {fileID: 455871582}
   - {fileID: 1034468415}
   - {fileID: 575085093}
-  - {fileID: 1776522632}
