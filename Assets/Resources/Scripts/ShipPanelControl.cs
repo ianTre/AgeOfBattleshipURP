@@ -36,7 +36,8 @@ public class ShipPanelControl : MonoBehaviour
         RectTransform shipPanels = panel.GetComponent<RectTransform>();
         namelabel.text = "Name: " + shipInformationScriptableObject.shipName.ToString();
         shipUsableNumber.text = "Number of ships available: " + shipInformationScriptableObject.quantity;
-        shipInfoPanel.anchoredPosition = new Vector2(shipPanels.anchoredPosition.x, shipInfoPanel.anchoredPosition.y);
+        //shipInfoPanel.anchoredPosition = new Vector2(shipPanels.anchoredPosition.x, shipInfoPanel.anchoredPosition.y);
+        shipInfoPanel.anchoredPosition = new Vector2(20, 250);
         panelImage.sprite = shipInformationScriptableObject.image;
       
     }
