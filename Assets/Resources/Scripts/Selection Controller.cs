@@ -19,7 +19,6 @@ public class SelectionController : MonoBehaviour
     {
         selectionlight = FindAnyObjectByType<SelectionController>(); 
         tile = FindAnyObjectByType<Tile>();
-        shipSounds = FindAnyObjectByType<ShipSoundController>(); 
     }
 
     // Update is called once per frame
@@ -29,20 +28,28 @@ public class SelectionController : MonoBehaviour
 
     public void SelectionLightOff(Ship ship)
     {
-        shipSounds.PlayShipSelectionSoundOff(ship);
+        if(shipSounds == null)
+        {
+            shipSounds = FindAnyObjectByType<ShipSoundController>();
+        }
+        shipSounds?.PlayShipSelectionSoundOff(ship);
         GameObject selectionlight = GameObject.Find("SelectionLight");
         ship.hasfocus = false;
         selectionlight.GetComponent<Light>().enabled = false;
     }
 
     public void SelectionLightOn(double coord, Tile selectedTile, Ship ship)
-    {      
-       float coordZ = (float)coord;
-       coordZ = CorrectZpos(coordZ);
-       shipSounds.PlayShipSelectionSound(ship);
-       GameObject selectionlight = GameObject.Find("SelectionLight");
-       selectionlight.GetComponent<Light>().enabled = true;
-       selectionlight.transform.position = new Vector3(selectedTile.Xpos,31, coordZ);
+    {
+        if (shipSounds == null)
+        {
+            shipSounds = FindAnyObjectByType<ShipSoundController>();
+        }
+        float coordZ = (float)coord;
+        coordZ = CorrectZpos(coordZ);
+        shipSounds?.PlayShipSelectionSound(ship);
+        GameObject selectionlight = GameObject.Find("SelectionLight");
+        selectionlight.GetComponent<Light>().enabled = true;
+        selectionlight.transform.position = new Vector3(selectedTile.Xpos,31, coordZ);
     }
 
     public void SelectionLightOnSimplified(Ship ship)
@@ -52,7 +59,11 @@ public class SelectionController : MonoBehaviour
         {
             previousShip.hasfocus = false;
         }
-        shipSounds.PlayShipSelectionSound(ship);
+        if (shipSounds == null)
+        {
+            shipSounds = FindAnyObjectByType<ShipSoundController>();
+        }
+        shipSounds?.PlayShipSelectionSound(ship);
         ship.hasfocus = true;
         this.GetComponent<Light>().enabled = true;
         this.transform.position = new Vector3(ship.transform.position.x, 31, ship.transform.position.z);
