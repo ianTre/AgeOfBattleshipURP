@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
+using UnityEngine.UI;
 
 public class SelectionController : MonoBehaviour 
 {
@@ -14,6 +15,8 @@ public class SelectionController : MonoBehaviour
    public SelectionController selectionlight;
    public Tile tile;
    public ShipSoundController shipSounds;
+   //agregué yo
+   public Button deleteButton;
 
     void Start()
     {
@@ -67,6 +70,9 @@ public class SelectionController : MonoBehaviour
         ship.hasfocus = true;
         this.GetComponent<Light>().enabled = true;
         this.transform.position = new Vector3(ship.transform.position.x, 31, ship.transform.position.z);
+        //agregué yo
+        this.deleteButton = FindObjectOfType<Button>();
+        this.deleteButton.enabled = true; 
     }
 
 
