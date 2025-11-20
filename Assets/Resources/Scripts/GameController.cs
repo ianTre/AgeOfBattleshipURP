@@ -27,6 +27,8 @@ public class GameController : MonoBehaviour
     [SerializeField]
     CinemachineVirtualCamera VirtualCameraShipRotator;
     public bool FixedIAShot = false; //REMOVE ASAP
+    [SerializeField]
+    CinemachineVirtualCamera VirtualCameraInitialRotation;
 
 
     List<string> coordinates = new List<string>();
@@ -82,11 +84,12 @@ public class GameController : MonoBehaviour
 
     public IEnumerator TransitionFromAnimationToDeployScene()
     {
+        
         yield return new WaitForSeconds(16);
         CameraManager.instance.ChangeToDeployStage();
         GameObject initialSetupCanvas = GameObject.Find("CanvasObjects");
         initialSetupCanvas?.transform.GetChild(0)?.gameObject.SetActive(true);
-        //Destroy(GameObject.Find("InitialSceneAssests"));
+        Destroy(GameObject.Find("InitialSceneAssests"));
     }
 
     public IEnumerator TransitionToPlayerAttackEnemyMap()

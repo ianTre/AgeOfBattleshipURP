@@ -34,7 +34,6 @@ public class SelectionController : MonoBehaviour
         }
         shipSounds?.PlayShipSelectionSoundOff(ship);
         GameObject selectionlight = GameObject.Find("SelectionLight");
-        ship.hasfocus = false;
         selectionlight.GetComponent<Light>().enabled = false;
     }
 
@@ -64,7 +63,6 @@ public class SelectionController : MonoBehaviour
             shipSounds = FindAnyObjectByType<ShipSoundController>();
         }
         shipSounds?.PlayShipSelectionSound(ship);
-        ship.hasfocus = true;
         this.GetComponent<Light>().enabled = true;
         this.transform.position = new Vector3(ship.transform.position.x, 31, ship.transform.position.z);
     }

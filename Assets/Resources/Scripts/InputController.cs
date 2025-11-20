@@ -43,7 +43,7 @@ public class InputController : MonoBehaviour
         playerActions.Player.HorizontalAxis.canceled += x => HorizontalAxisMovement = 0;
         playerActions.Player.DeleteAction.performed += x => Delete();
         playerActions.Player.Selection.performed += x => isTappingOrClicking = true;
-        playerActions.Player.Selection.canceled += x => isTappingOrClicking = false;
+        //playerActions.Player.Selection.canceled += x => isTappingOrClicking = false;
         playerActions.Player.SecondaryTouchConntact.started += _ => ZoomStart();
         playerActions.Player.SecondaryTouchConntact.canceled += _ => ZoomEnds();
     }
@@ -110,7 +110,9 @@ public class InputController : MonoBehaviour
 
         if (isTappingOrClicking)
         {
+            Debug.Log("Clicking detected");
             MouseRayCastSelectionMode();
+            isTappingOrClicking = false;
         }
 
     }

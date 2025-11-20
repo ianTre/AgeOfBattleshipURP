@@ -297,7 +297,7 @@
                     "name": "",
                     "id": "bd8e14f0-ed14-429a-b8af-7edb79e88162",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Selection",
@@ -307,7 +307,7 @@
                 {
                     "name": "",
                     "id": "b4b24129-d75e-4781-9bb1-eaeef20add91",
-                    "path": "<Touchscreen>/Press",
+                    "path": "<Touchscreen>/primaryTouch/tap",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

@@ -206,15 +206,15 @@ public class PlayerController : MonoBehaviour
         }
         ClearSelectedShip();
         selectedShip = ship; 
+        selectionlight.SelectionLightOnSimplified(selectedShip);
         selectedShip.hasfocus = true;
-        selectionlight.SelectionLightOnSimplified(selectedShip); 
     }
     public void ClearSelectedShip()
     {
         if (selectedShip == null)
             return;
-        selectedShip.hasfocus = false;
         selectionlight.SelectionLightOff(selectedShip);
+        selectedShip.hasfocus = false;
         selectedShip = null;       
     }
 }
