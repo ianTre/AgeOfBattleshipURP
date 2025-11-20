@@ -100,7 +100,7 @@ public class AnimationController : MonoBehaviour
         cameraRotatorFull.GetComponentInChildren<AudioSource>().Play();
         GameObject explosion = Instantiate(missExplosion, position, Quaternion.identity);
         elapsed = 0f;
-        while (elapsed < 5f)
+        while (elapsed < 2f)
         {
             elapsed += Time.deltaTime;
             yield return null;

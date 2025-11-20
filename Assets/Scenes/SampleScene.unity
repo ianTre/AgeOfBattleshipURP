@@ -23791,6 +23791,9 @@ MonoBehaviour:
   Position: {x: 0, y: 0}
   VerticalAxisMovement: 0
   HorizontalAxisMovement: 0
+  IgnoreMe:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!114 &1318512637
 MonoBehaviour:
   m_ObjectHideFlags: 0

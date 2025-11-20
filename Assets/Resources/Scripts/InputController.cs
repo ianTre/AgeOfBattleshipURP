@@ -23,6 +23,7 @@ public class InputController : MonoBehaviour
     public float VerticalAxisMovement;
     public float HorizontalAxisMovement;
     private Coroutine zoomCoroutine;
+    public LayerMask IgnoreMe;
 
     void Start()
     {
@@ -149,7 +150,7 @@ public class InputController : MonoBehaviour
     {
 //        Vector3 mousePosition = Mouse.current.position.ReadValue();
         Ray ray = m_Camera.ScreenPointToRay(Position);
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        if (Physics.Raycast(ray, out RaycastHit hit,1000f, ~IgnoreMe))
         {
             hittedObject = hit.collider.gameObject;
             // Use the hit variable to determine what was clicked on.
