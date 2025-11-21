@@ -109,6 +109,18 @@ public class AnimationController : MonoBehaviour
         GameController.instance.UpdateStage(GameStage.PlayerAttackEnemyMap);
     }
 
+    public void PlayMissExplotionSound(AudioSource audioSource)
+    {
+        audioSource.clip = WaterSplash;
+        audioSource.Play();
+    }
+
+    public void PlayHitExplotionSound(AudioSource audioSource)
+    {
+        audioSource.clip = BombExplosion;
+        audioSource.Play();
+    }
+
 
     public IEnumerator ShowHitAnimation(float delay, Vector3 position)
     {

@@ -97,10 +97,11 @@ public class GameController : MonoBehaviour
         if (currentStage == GameStage.Deploy)
         {
             EndDeployStage();
+            GameObject.Find("InitialSetupCanvas")?.SetActive(false);
         }
         currentStage = GameStage.PlayerAttackEnemyMap;
         yield return new WaitForSeconds(1);
-        GameObject.Find("InitialSetupCanvas")?.SetActive(false);
+        
         
         CameraManager.instance.ChangeToPlayerAtacckIARadar();
         shipToAction = PlayerController.instance.getShipToBeActioned();
@@ -113,7 +114,7 @@ public class GameController : MonoBehaviour
     {
         currentStage = GameStage.PlayerAttackCinematic;
         //shipToAction.GetComponent<FirePowerController>().FireCannons();
-        StartCoroutine(CWaitForSeconds(2.0f,3f));
+        StartCoroutine(CWaitForSeconds(5.0f,3f));
     }
 
     IEnumerator CWaitForSeconds(float waitAfterShot,float waitBeforeShot)
@@ -190,7 +191,8 @@ public class GameController : MonoBehaviour
     {
         GameObject endGamePanel;
         AudioSource audio;
-
+        UnityEngine.SceneManagement.SceneManager.LoadScene("FinalScene");
+        /*
         if (winner == "IA") // In case we want different end game for IA
         {
             currentStage = GameStage.EndOfGame;
@@ -215,7 +217,7 @@ public class GameController : MonoBehaviour
         audio = endGamePanel.GetComponent<AudioSource>();
         audio.clip = gameOverSound;
         audio.Play();
-
+        */
     }
 
     public IEnumerator DeactivateEndGameCanvas(float time)

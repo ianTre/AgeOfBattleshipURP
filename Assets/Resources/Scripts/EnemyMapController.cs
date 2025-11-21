@@ -43,6 +43,9 @@ public class EnemyMapController : MonoBehaviour
 
     public bool firingWaitEnded = false;
 
+    [SerializeField]
+    public Light focusLight;
+
     private void Awake()
     {
         instance = this;
@@ -81,6 +84,7 @@ public class EnemyMapController : MonoBehaviour
         enemyMapShootedTiles.Add(selectedTile);
         CameraManager.instance.ChangeToPlayerAtacckIARadarStage2();
         GameObject prefab = CheckSpotInMap(selectedTile);
+        selectedTile.DeHighlighMe();
         StartCoroutine(ShowPlayerShotResultInEnemyMap(prefab));
         GameController.instance.UpdateStage(GameStage.PlayerAttackCinematic);
     }
@@ -94,8 +98,8 @@ public class EnemyMapController : MonoBehaviour
             yield return null;
         }
         firingWaitEnded = false;
-
-        yield return new WaitForSeconds(1f);
+        focusLight.GetComponent<FocusAttention>().PreviousToShowResult(selectedTile,prefab==missSprite);
+        yield return new WaitForSeconds(3.5f);
         Instantiate(prefab, selectedTile.transform);
     }
 

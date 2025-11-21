@@ -130,7 +130,7 @@ public class CameraManager : MonoBehaviour
         InputController.instance.UpdateCameraReference();
     }
 
-    private List<Camera> GetActiveCamera()
+    public List<Camera> GetActiveCamera()
     {
         return allCameras.Where(cam => cam.gameObject.activeSelf).ToList();
     }
