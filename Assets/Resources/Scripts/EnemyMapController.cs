@@ -101,6 +101,19 @@ public class EnemyMapController : MonoBehaviour
         focusLight.GetComponent<FocusAttention>().PreviousToShowResult(selectedTile,prefab==missSprite);
         yield return new WaitForSeconds(3.5f);
         Instantiate(prefab, selectedTile.transform);
+        if(prefab == sunkSprite)
+        {
+            UpdateAllOtherSprites(selectedTile , prefab);
+        }
+    }
+
+    private void UpdateAllOtherSprites(Tile selectedTile, GameObject sunkPrefab)
+    {
+        //Step 1. Find enemy ship using selectedTile and save it in variable sunkShip.  -> tip : check logic in CheckSpotInMap method for help.
+        //Step 2  var allHittedTiles = FindAllTilesOfShipThatAreHitted(sunkShip);   -> Create a new method that finds all tiles from that ship. you can get the ship tiles from the ship.shipTiles list.
+        //Step 3. Loop through allHittedTiles and for each tile instantiate the sunkSprite prefab that is stored in sunkPrefab. Check line 103 to see how to instantiate the prefab in the tile.
+        //step 4  Destroy or hide the previous hit sprites in those tiles to avoid overlapping.
+        //Step 5. Done :)
     }
 
     public GameObject CheckSpotInMap(Tile tile)
