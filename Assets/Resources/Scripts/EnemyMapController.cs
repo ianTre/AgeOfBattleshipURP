@@ -37,7 +37,7 @@ public class EnemyMapController : MonoBehaviour
     List<Coord> possiblecoordHits;
     [SerializeField]
     List<Coord> successfulCoordHits;
-
+    private Ship sunkShip;
     private int rowNumber;
     private int columnNumber;
 
@@ -110,10 +110,36 @@ public class EnemyMapController : MonoBehaviour
     private void UpdateAllOtherSprites(Tile selectedTile, GameObject sunkPrefab)
     {
         //Step 1. Find enemy ship using selectedTile and save it in variable sunkShip.  -> tip : check logic in CheckSpotInMap method for help.
+        foreach (Ship ship in enemyShips)
+        {
+            if (ship.isSunk && sunkPrefab != null)
+            {
+            selectedTile = ship.ocuppiedTiles.Find(Stile => Stile.ZCoord == selectedTile.ZCoord && Stile.XCoord == selectedTile.XCoord);
+            if (selectedTile != null)
+                {
+                 sunkShip = ship;   
+                }
+            }  
+        }
         //Step 2  var allHittedTiles = FindAllTilesOfShipThatAreHitted(sunkShip);   -> Create a new method that finds all tiles from that ship. you can get the ship tiles from the ship.shipTiles list.
+        List<Tile> allHittedTiles = FindAllTilesOfShipThatAreHitted(sunkShip);
         //Step 3. Loop through allHittedTiles and for each tile instantiate the sunkSprite prefab that is stored in sunkPrefab. Check line 103 to see how to instantiate the prefab in the tile.
         //step 4  Destroy or hide the previous hit sprites in those tiles to avoid overlapping.
-        //Step 5. Done :)
+        foreach (Tile tile in allHittedTiles)
+        {
+            Instantiate(sunkPrefab, tile.transform);
+            Destroy(GameObject.Find("HitIcon(Clone)"));
+            if(hitSprite == null)
+            {
+                Instantiate(hitSprite);
+            }
+        }
+    }
+
+    private List<Tile> FindAllTilesOfShipThatAreHitted(Ship sunkShip)
+    {
+        List<Tile> hittedTile = sunkShip.ocuppiedTiles;
+        return hittedTile;
     }
 
     public GameObject CheckSpotInMap(Tile tile)
