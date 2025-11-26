@@ -21,6 +21,8 @@ public class EnemyMapController : MonoBehaviour
     public List<Ship> enemyShips;
     [SerializeField]
     GameObject radar;
+    [SerializeField]
+    Vector3 radarPosOffset;
     public List<Tile> enemyMapShootedTiles;
     public Tile selectedTile;
     [SerializeField]
@@ -98,12 +100,12 @@ public class EnemyMapController : MonoBehaviour
             yield return null;
         }
         firingWaitEnded = false;
-        focusLight.GetComponent<FocusAttention>().PreviousToShowResult(selectedTile,prefab==missSprite);
+        focusLight.GetComponent<FocusAttention>().PreviousToShowResult(selectedTile, prefab == missSprite);
         yield return new WaitForSeconds(3.5f);
         Instantiate(prefab, selectedTile.transform);
-        if(prefab == sunkSprite)
+        if (prefab == sunkSprite)
         {
-            UpdateAllOtherSprites(selectedTile , prefab);
+            UpdateAllOtherSprites(selectedTile, prefab);
         }
     }
 
@@ -114,12 +116,12 @@ public class EnemyMapController : MonoBehaviour
         {
             if (ship.isSunk && sunkPrefab != null)
             {
-            selectedTile = ship.ocuppiedTiles.Find(Stile => Stile.ZCoord == selectedTile.ZCoord && Stile.XCoord == selectedTile.XCoord);
-            if (selectedTile != null)
-                {
-                 sunkShip = ship;   
+                if(ship.ocuppiedTiles.Any(tile => tile.ZCoord == selectedTile.ZCoord && tile.XCoord == selectedTile.XCoord))
+                { 
+                    sunkShip = ship;
+                    break;
                 }
-            }  
+            }
         }
         //Step 2  var allHittedTiles = FindAllTilesOfShipThatAreHitted(sunkShip);   -> Create a new method that finds all tiles from that ship. you can get the ship tiles from the ship.shipTiles list.
         List<Tile> allHittedTiles = FindAllTilesOfShipThatAreHitted(sunkShip);
@@ -128,11 +130,9 @@ public class EnemyMapController : MonoBehaviour
         foreach (Tile tile in allHittedTiles)
         {
             Instantiate(sunkPrefab, tile.transform);
-            Destroy(GameObject.Find("HitIcon(Clone)"));
-            if(hitSprite == null)
-            {
-                Instantiate(hitSprite);
-            }
+            var hitIcon = tile.transform.Find("HitIcon(Clone)");
+            if(hitIcon != null)
+                Destroy(hitIcon.gameObject);
         }
     }
 
@@ -182,7 +182,7 @@ public class EnemyMapController : MonoBehaviour
         }
         MapAllTiles();
         var enemyPos = enemyMap.transform.position;
-        radar.transform.position = new Vector3(enemyPos.x + 225.68f, 20f, enemyPos.z - 44.5f);
+        radar.transform.position = new Vector3(enemyPos.x + radarPosOffset.x, 20f + radarPosOffset.y , enemyPos.z + radarPosOffset.z);
     }
 
     public void MapAllTiles()

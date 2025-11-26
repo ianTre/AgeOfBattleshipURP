@@ -35,6 +35,9 @@ public class FocusAttention : MonoBehaviour
 
     public IEnumerator ChangeLightIntensity(float initial, float final, float growingTime, float stayingTime, float decreasingTime, bool isMiss)
     {
+        Camera activeCamera = CameraManager.instance.GetActiveCamera().First();
+        AudioSource audioSource = activeCamera.GetComponent<AudioSource>();
+        AnimationController.instance.PlayMissileIncomingSound(audioSource);
         focusLight.range = initial;
         float elapsed = 0f;
         while (elapsed < growingTime)
@@ -50,14 +53,14 @@ public class FocusAttention : MonoBehaviour
             yield return null;
         }
         elapsed = 0f;
-        Camera activeCamera = CameraManager.instance.GetActiveCamera().First();
-        AudioSource audioSource = activeCamera.GetComponent<AudioSource>();
+        
         while (elapsed < decreasingTime)
         {
             focusLight.range = Mathf.Lerp(final, initial, elapsed / decreasingTime);
             elapsed += Time.deltaTime;
             yield return null;
         }
+        AnimationController.instance.StopSound(audioSource);
         if (isMiss)
             AnimationController.instance.PlayMissExplotionSound(audioSource);
         else

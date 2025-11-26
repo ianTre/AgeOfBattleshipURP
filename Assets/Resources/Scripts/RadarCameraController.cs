@@ -42,13 +42,6 @@ public class RadarCameraController : MonoBehaviour
         {
             return;
         }
-        //PREGUNTAR QUE ES EL DEVELOPER MODE - DESACTIVADO FUNCIONA EL GRID
-        /* if (!DeveloperMode)
-             cam.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Water", "UI"); 
-             cam.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "UI");*/
-        //PREGUNTAR QUE ES EL DEVELOPER MODE
-
-        
         //Movement
         Vector3 forward = new Vector3(0, 0, 1);
         forward.y = 0.0f;

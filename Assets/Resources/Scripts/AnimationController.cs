@@ -121,6 +121,17 @@ public class AnimationController : MonoBehaviour
         audioSource.Play();
     }
 
+    public void PlayMissileIncomingSound(AudioSource audioSource)
+    {
+        audioSource.clip = BombFalling;
+        audioSource.Play();
+    }
+
+    public void StopSound(AudioSource audioSource)
+    {
+        audioSource.Stop();
+    }
+
 
     public IEnumerator ShowHitAnimation(float delay, Vector3 position)
     {

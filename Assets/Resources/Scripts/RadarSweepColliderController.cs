@@ -12,19 +12,19 @@ public class RadarSweepColliderController : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
+        if (collider.tag != "SweepHit")
+            return;
+        HitIcon = collider.gameObject.name;
+        if (HitIcon != "HitIcon(Clone)")
+        {
+            return;
+        }
         AudioSource audio = GetComponent<AudioSource>();
         audio.clip = RadarBeepSound;
-        HitIcon = collider.gameObject.name;
-        if (collider.tag == "SweepHit")
-        {
-            collider.gameObject.GetComponent<RadarIconFadeoutController>()?.ResetAlpha();
-
-            if (HitIcon == "HitIcon(Clone)")
-            {
-                collider.gameObject.GetComponent<RadarIconFadeoutController>()?.ResetAlpha();
-                audio.Play();
-            }
-        }
+        
+        //collider.gameObject.GetComponent<RadarIconFadeoutController>()?.ResetAlpha();
+        //collider.gameObject.GetComponent<RadarIconFadeoutController>()?.ResetAlpha();
+        audio.Play();
     }
 
     private void Update()
