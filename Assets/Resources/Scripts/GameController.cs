@@ -29,7 +29,8 @@ public class GameController : MonoBehaviour
     public bool FixedIAShot = false; //REMOVE ASAP
     [SerializeField]
     CinemachineVirtualCamera VirtualCameraInitialRotation;
-
+    [SerializeField]
+    AvatarController avatarController;
 
     List<string> coordinates = new List<string>();
     private Ship shipToAction;
@@ -84,7 +85,7 @@ public class GameController : MonoBehaviour
 
     public IEnumerator TransitionFromAnimationToDeployScene()
     {
-        
+
         yield return new WaitForSeconds(16);
         CameraManager.instance.ChangeToDeployStage();
         GameObject initialSetupCanvas = GameObject.Find("CanvasObjects");
@@ -101,23 +102,26 @@ public class GameController : MonoBehaviour
         }
         currentStage = GameStage.PlayerAttackEnemyMap;
         yield return new WaitForSeconds(1);
-        
-        
+
+
         CameraManager.instance.ChangeToPlayerAtacckIARadar();
         shipToAction = PlayerController.instance.getShipToBeActioned();
         GameObject.Find("AnchorOrbiter")?.GetComponent<CameraRotator>()?.StartRotation(shipToAction.transform.position);
         VirtualCameraShipRotator.LookAt = shipToAction.GetComponent<FirePowerController>().cannons[0]?.transform;
         turn++;
+        if (turn == 1)
+            avatarController.DisplayWelcomeMessage();
+
     }
 
     public void TransitionToPlayerAttackCinematic()
     {
         currentStage = GameStage.PlayerAttackCinematic;
         //shipToAction.GetComponent<FirePowerController>().FireCannons();
-        StartCoroutine(CWaitForSeconds(5.0f,3f));
+        StartCoroutine(CWaitForSeconds(5.0f, 3f));
     }
 
-    IEnumerator CWaitForSeconds(float waitAfterShot,float waitBeforeShot)
+    IEnumerator CWaitForSeconds(float waitAfterShot, float waitBeforeShot)
     {
         while (waitBeforeShot > 0)
         {
@@ -131,7 +135,7 @@ public class GameController : MonoBehaviour
             yield return null;
         }
         yield return new WaitForSeconds(waitAfterShot);
-        
+
         if (EnemyMapController.instance.CheckEndOfGame())
         {
             actionStage = GameStage.EndOfGame;

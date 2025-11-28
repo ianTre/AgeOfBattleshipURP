@@ -111,7 +111,6 @@ public class InputController : MonoBehaviour
 
         if (isTappingOrClicking)
         {
-            Debug.Log("Clicking detected");
             MouseRayCastSelectionMode();
             isTappingOrClicking = false;
         }
