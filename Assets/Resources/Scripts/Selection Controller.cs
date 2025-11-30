@@ -22,6 +22,7 @@ public class SelectionController : MonoBehaviour
     {
         selectionlight = FindAnyObjectByType<SelectionController>(); 
         tile = FindAnyObjectByType<Tile>();
+        deleteButton = Resources.FindObjectsOfTypeAll<Button>().ToList().Find(b => b.name == "DeleteShipButton");
     }
 
     // Update is called once per frame
@@ -38,6 +39,7 @@ public class SelectionController : MonoBehaviour
         shipSounds?.PlayShipSelectionSoundOff(ship);
         GameObject selectionlight = GameObject.Find("SelectionLight");
         selectionlight.GetComponent<Light>().enabled = false;
+        deleteButton.gameObject.SetActive(false);
     }
 
     public void SelectionLightOn(double coord, Tile selectedTile, Ship ship)
@@ -69,10 +71,34 @@ public class SelectionController : MonoBehaviour
         this.GetComponent<Light>().enabled = true;
         this.transform.position = new Vector3(ship.transform.position.x, 31, ship.transform.position.z);
         //agregué yo
-        this.deleteButton = FindObjectOfType<Button>();
-        this.deleteButton.enabled = true; 
+        deleteButton.gameObject.SetActive(true);
+        int xPos = (int)ship.transform.position.x;
+        int yPos = (int)ship.transform.position.y;
+        int zPos = (int)ship.transform.position.z;
+        Debug.Log(xPos);
+        Debug.Log(yPos);
+        Debug.Log(zPos);
+        deleteButton.gameObject.GetComponent<RectTransform>().position = selectionlight.transform.position;
+        //deleteButton.gameObject.transform.position = selectionlight.transform.position;
+        //deleteButton.gameObject.transform.position = new Vector3(xPos, yPos, zPos);
+        Debug.Log(ship.transform.position.x);
+        Debug.Log(ship.transform.position.y);
+        Debug.Log(ship.transform.position.z);
     }
-
+        public static void Delete()
+    {
+        if(GameController.instance.currentStage != GameStage.Deploy)
+        {
+            return;
+        }
+        Ship selectedShip = PlayerController.instance.GetSelectedShip();
+        if (selectedShip != null)
+        {
+            PlayerController.instance.ClearSelectedShip();
+            selectedShip.DestroyShip();
+        }
+        
+    }
 
     private float CorrectZpos(float coordZ)
     {

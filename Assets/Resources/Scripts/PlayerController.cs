@@ -50,21 +50,7 @@ public class PlayerController : MonoBehaviour
             button.GetComponent<UnityEngine.UI.Image>().sprite = leftCtrlPressed ? horizontalRotationImage : verticalRotationImage;
         }
     }
-    //agregué yo
-     public static void Delete()
-    {
-        if(GameController.instance.currentStage != GameStage.Deploy)
-        {
-            return;
-        }
-        Ship selectedShip = PlayerController.instance.GetSelectedShip();
-        if (selectedShip != null)
-        {
-            PlayerController.instance.ClearSelectedShip();
-            selectedShip.DestroyShip();
-        }
-    }
-    //agregué yo
+
     private void AddConstantReferences()
     {
         panelForShip.Add(ShipType.Battleship, "Ship1Panel");
