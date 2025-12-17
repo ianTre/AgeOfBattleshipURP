@@ -124,6 +124,7 @@ public class AnimationController : MonoBehaviour
     public void PlayMissileIncomingSound(AudioSource audioSource)
     {
         audioSource.clip = BombFalling;
+        audioSource.volume = 0.147f;
         audioSource.Play();
     }
 

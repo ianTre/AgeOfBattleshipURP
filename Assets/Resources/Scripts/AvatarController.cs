@@ -23,6 +23,7 @@ public class AvatarController : MonoBehaviour
 
     public void DisplayWelcomeMessage()
     {
+        EnemyMapController.instance.firingButtonEnabled = false;
         avatarPanel.SetActive(true);
         PlayableDirector.Play();
         List<string> messages = new List<string>()
@@ -45,6 +46,8 @@ public class AvatarController : MonoBehaviour
             oldConsoleText.StartDisplayingText(message);
             while (oldConsoleText.isDisplayingText)
             {
+                /*if (playerWantToSkip)
+                    oldConsoleText.interruptConsole();*/
                 yield return null;
             }
             yield return new WaitForSeconds(3f);
@@ -52,6 +55,7 @@ public class AvatarController : MonoBehaviour
         yield return new WaitForSeconds(2f);
         coroutineActive = false;
         avatarPanel.SetActive(false);
+        EnemyMapController.instance.firingButtonEnabled = true;
     }
 
 

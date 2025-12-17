@@ -65,7 +65,6 @@ public class InputController : MonoBehaviour
         float previousDistance = 0f ;
         while(true)
         {
-            Debug.Log("I am alive");
             float distance = Vector2.Distance
                 (playerActions.Player.PrimaryFingerPosition.ReadValue<Vector2>()
                 , playerActions.Player.SecondaryFingerPosition.ReadValue<Vector2>());

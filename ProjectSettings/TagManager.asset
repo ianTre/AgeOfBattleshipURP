@@ -9,6 +9,7 @@ TagManager:
   - SweepHit
   - Ship
   - ShipComponenet
+  - EnemyTurnCanvas
   layers:
   - Default
   - TransparentFX

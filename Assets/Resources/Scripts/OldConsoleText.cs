@@ -8,6 +8,7 @@ public class OldConsoleText : MonoBehaviour
     private TMP_Text m_TextComponent;
     private bool hasTextChanged;
     public bool isDisplayingText = false;
+    public Coroutine coroutine;
 
     void Awake()
     {
@@ -24,7 +25,7 @@ public class OldConsoleText : MonoBehaviour
     {
         m_TextComponent.text = newText;
         isDisplayingText = true;
-        StartCoroutine(RevealCharacters(m_TextComponent));
+        coroutine = StartCoroutine(RevealCharacters(m_TextComponent));
         //StartCoroutine(RevealWords(m_TextComponent));
     }
 
@@ -75,6 +76,12 @@ public class OldConsoleText : MonoBehaviour
 
             yield return new WaitForSeconds(0.1f); ;
         }
+        isDisplayingText = false;
+    }
+
+    public void interruptConsole()
+    {
+        StopCoroutine(coroutine);
         isDisplayingText = false;
     }
 

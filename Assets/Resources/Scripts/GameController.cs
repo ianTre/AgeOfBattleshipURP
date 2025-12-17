@@ -31,6 +31,8 @@ public class GameController : MonoBehaviour
     CinemachineVirtualCamera VirtualCameraInitialRotation;
     [SerializeField]
     AvatarController avatarController;
+    private bool waiting = false;
+    GameObject enemyTurncanvas;
 
     List<string> coordinates = new List<string>();
     private Ship shipToAction;
@@ -41,6 +43,7 @@ public class GameController : MonoBehaviour
     }
     void Start()
     {
+        enemyTurncanvas = GameObject.Find("CanvasObjects").transform.GetChild(1).gameObject;
         currentStage = GameStage.Deploy;
         //CameraManager.instance.ChangeToDeployStage();
         StartCoroutine(TransitionFromAnimationToDeployScene());
@@ -150,6 +153,15 @@ public class GameController : MonoBehaviour
 
     public void TransitionToIAAttack()
     {
+        actionStage = GameStage.IATurnInfoDisplay;
+        StartCoroutine(ShowEnemyTurnCanvas());
+        StartCoroutine(IaAttack());
+    }
+
+    private IEnumerator IaAttack()
+    {
+        while (waiting)
+            yield return null;
         currentStage = GameStage.IAAttackPlayerMap;
         //when FixedIAShot is removed , delete from here
         if (FixedIAShot)
@@ -171,10 +183,28 @@ public class GameController : MonoBehaviour
             actionStage = GameStage.IAAttackCinematic;
     }
 
+    private IEnumerator ShowEnemyTurnCanvas()
+    {
+        waiting = true;
+        if(enemyTurncanvas!=null)
+        { 
+            enemyTurncanvas.SetActive(true);
+            yield return new WaitForSeconds(1.3f);
+        }
+        waiting = false;
+        
+    }
+
+    public void HideEnemyTurnCanvas()
+    {
+        enemyTurncanvas.SetActive(false);
+    }
+
     public void TransitionToIAAttackCinematic()
     {
         currentStage = GameStage.IAAttackCinematic;
         CameraManager.instance.ChangeToPlayerAtacckIACinematick();
+        HideEnemyTurnCanvas();
         AnimationController.instance.PlayExplosion();
         //Next step needs to be triggered by animation event
         //actionStage = GameStage.PlayerAttackEnemyMap; 
@@ -267,6 +297,7 @@ public enum GameStage
     PlayerAttackEnemyMap = 1,
     PlayerAttackCinematic = 2,
     IAAttackPlayerMap = 3,
+    IATurnInfoDisplay = 31,
     IAAttackCinematic = 4,
     EndOfGame = 99
 }

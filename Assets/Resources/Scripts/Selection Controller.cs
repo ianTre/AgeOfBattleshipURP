@@ -75,17 +75,11 @@ public class SelectionController : MonoBehaviour
         int xPos = (int)ship.transform.position.x;
         int yPos = (int)ship.transform.position.y;
         int zPos = (int)ship.transform.position.z;
-        Debug.Log(xPos);
-        Debug.Log(yPos);
-        Debug.Log(zPos);
-        deleteButton.gameObject.GetComponent<RectTransform>().position = selectionlight.transform.position;
-        //deleteButton.gameObject.transform.position = selectionlight.transform.position;
-        //deleteButton.gameObject.transform.position = new Vector3(xPos, yPos, zPos);
-        Debug.Log(ship.transform.position.x);
-        Debug.Log(ship.transform.position.y);
-        Debug.Log(ship.transform.position.z);
+        //deleteButton.gameObject.GetComponent<RectTransform>().position = selectionlight.transform.position;
+        deleteButton.gameObject.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(selectionlight.transform.position);
+
     }
-        public static void Delete()
+    public static void Delete()
     {
         if(GameController.instance.currentStage != GameStage.Deploy)
         {

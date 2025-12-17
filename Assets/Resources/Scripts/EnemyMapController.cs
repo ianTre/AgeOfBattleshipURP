@@ -42,6 +42,7 @@ public class EnemyMapController : MonoBehaviour
     private Ship sunkShip;
     private int rowNumber;
     private int columnNumber;
+    public bool firingButtonEnabled = true;
 
     public bool firingWaitEnded = false;
 
@@ -78,6 +79,8 @@ public class EnemyMapController : MonoBehaviour
     }
     public void PlayerFiringAction()
     {
+        if (!firingButtonEnabled)
+            return;
         if (selectedTile == null || enemyMapShootedTiles.Contains(selectedTile))
         {
             Debug.Log("no Selected tile");
