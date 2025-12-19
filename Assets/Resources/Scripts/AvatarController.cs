@@ -14,6 +14,7 @@ public class AvatarController : MonoBehaviour
     [SerializeField]
     GameObject avatarPanel;
     private bool coroutineActive = false;
+    private bool playerWantToSkip = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -38,6 +39,12 @@ public class AvatarController : MonoBehaviour
         coroutineActive=true;
     }
 
+    public void Skip()
+    {
+        playerWantToSkip = true;
+        oldConsoleText.interruptConsole();
+    }
+
     public IEnumerator ShowMessageCoroutine(List<string> messages)
     {
         yield return new WaitForSeconds(1.7f);
@@ -46,11 +53,14 @@ public class AvatarController : MonoBehaviour
             oldConsoleText.StartDisplayingText(message);
             while (oldConsoleText.isDisplayingText)
             {
-                /*if (playerWantToSkip)
-                    oldConsoleText.interruptConsole();*/
                 yield return null;
             }
-            yield return new WaitForSeconds(3f);
+            if(playerWantToSkip)
+            {
+                playerWantToSkip = false;
+                continue;
+            }
+            yield return new WaitForSeconds(2.5f);
         }
         yield return new WaitForSeconds(2f);
         coroutineActive = false;
