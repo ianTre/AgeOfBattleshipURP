@@ -39,6 +39,32 @@ public class AvatarController : MonoBehaviour
         coroutineActive=true;
     }
 
+    public void DisplayPlayerSunkAShip()
+    {
+        EnemyMapController.instance.firingButtonEnabled = false;
+        avatarPanel.SetActive(true);
+        PlayableDirector.Play();
+        List<string> messages = new List<string>()
+        {
+            "Well done! we have just destroyed one of them ships"
+        };
+        StartCoroutine(ShowMessageCoroutine(messages));
+        coroutineActive = true;
+    }
+
+    public void DisplayPlayerHitAShip()
+    {
+        EnemyMapController.instance.firingButtonEnabled = false;
+        avatarPanel.SetActive(true);
+        PlayableDirector.Play();
+        List<string> messages = new List<string>()
+        {
+            "Enemy ship found.We should focus our fire power in that position"
+        };
+        StartCoroutine(ShowMessageCoroutine(messages));
+        coroutineActive = true;
+    }
+
     public void Skip()
     {
         playerWantToSkip = true;

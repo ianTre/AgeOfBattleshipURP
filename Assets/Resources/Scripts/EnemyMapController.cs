@@ -39,11 +39,13 @@ public class EnemyMapController : MonoBehaviour
     List<Coord> possiblecoordHits;
     [SerializeField]
     List<Coord> successfulCoordHits;
+    [SerializeField]
+    AvatarController avatarController;
     private Ship sunkShip;
     private int rowNumber;
     private int columnNumber;
     public bool firingButtonEnabled = true;
-
+    public Ship enemyShipHitted;
     public bool firingWaitEnded = false;
 
     [SerializeField]
@@ -91,10 +93,23 @@ public class EnemyMapController : MonoBehaviour
         GameObject prefab = CheckSpotInMap(selectedTile);
         selectedTile.DeHighlighMe();
         StartCoroutine(ShowPlayerShotResultInEnemyMap(prefab));
+        ShowAvatarMessage(prefab);
         GameController.instance.UpdateStage(GameStage.PlayerAttackCinematic);
     }
 
-
+    private void ShowAvatarMessage(GameObject prefab)
+    {
+        if (prefab == missSprite)
+            return;
+        if(prefab == hitSprite)
+        {
+            avatarController.DisplayPlayerHitAShip();
+        }
+        else if (prefab == sunkSprite)
+        {
+            avatarController.DisplayPlayerSunkAShip();
+        }
+    }
 
     IEnumerator ShowPlayerShotResultInEnemyMap(GameObject prefab)
     {
