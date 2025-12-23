@@ -74,7 +74,7 @@ public class OldConsoleText : MonoBehaviour
 
             visibleCount += 1;
 
-            yield return new WaitForSeconds(0.1f); ;
+            yield return new WaitForSeconds(0.05f);
         }
         isDisplayingText = false;
     }

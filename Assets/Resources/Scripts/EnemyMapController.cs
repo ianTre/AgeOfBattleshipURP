@@ -93,17 +93,26 @@ public class EnemyMapController : MonoBehaviour
         GameObject prefab = CheckSpotInMap(selectedTile);
         selectedTile.DeHighlighMe();
         StartCoroutine(ShowPlayerShotResultInEnemyMap(prefab));
-        ShowAvatarMessage(prefab);
         GameController.instance.UpdateStage(GameStage.PlayerAttackCinematic);
     }
 
     private void ShowAvatarMessage(GameObject prefab)
     {
         if (prefab == missSprite)
-            return;
-        if(prefab == hitSprite)
         {
-            avatarController.DisplayPlayerHitAShip();
+            GameController.instance.UpdateStage(GameStage.PlayerAttackCinematicFinished);
+            return;
+        }
+        if (prefab == hitSprite)
+        {
+            if (enemyShipHitted.shipTiles.Count(tile => tile.hitted) == 1)
+            {
+                avatarController.DisplayPlayerHitAShip();
+            }
+            else
+            {
+                GameController.instance.UpdateStage(GameStage.PlayerAttackCinematicFinished);
+            }
         }
         else if (prefab == sunkSprite)
         {
@@ -125,6 +134,7 @@ public class EnemyMapController : MonoBehaviour
         {
             UpdateAllOtherSprites(selectedTile, prefab);
         }
+        ShowAvatarMessage(prefab);
     }
 
     private void UpdateAllOtherSprites(Tile selectedTile, GameObject sunkPrefab)
@@ -134,8 +144,8 @@ public class EnemyMapController : MonoBehaviour
         {
             if (ship.isSunk && sunkPrefab != null)
             {
-                if(ship.ocuppiedTiles.Any(tile => tile.ZCoord == selectedTile.ZCoord && tile.XCoord == selectedTile.XCoord))
-                { 
+                if (ship.ocuppiedTiles.Any(tile => tile.ZCoord == selectedTile.ZCoord && tile.XCoord == selectedTile.XCoord))
+                {
                     sunkShip = ship;
                     break;
                 }
@@ -149,7 +159,7 @@ public class EnemyMapController : MonoBehaviour
         {
             Instantiate(sunkPrefab, tile.transform);
             var hitIcon = tile.transform.Find("HitIcon(Clone)");
-            if(hitIcon != null)
+            if (hitIcon != null)
                 Destroy(hitIcon.gameObject);
         }
     }
@@ -168,6 +178,7 @@ public class EnemyMapController : MonoBehaviour
             if (hittedTile != null)
             {
                 ship.TakeHit(hittedTile);
+                enemyShipHitted = ship;
                 return ship.isSunk ? sunkSprite : hitSprite;
             }
         }
@@ -200,7 +211,7 @@ public class EnemyMapController : MonoBehaviour
         }
         MapAllTiles();
         var enemyPos = enemyMap.transform.position;
-        radar.transform.position = new Vector3(enemyPos.x + radarPosOffset.x, 20f + radarPosOffset.y , enemyPos.z + radarPosOffset.z);
+        radar.transform.position = new Vector3(enemyPos.x + radarPosOffset.x, 20f + radarPosOffset.y, enemyPos.z + radarPosOffset.z);
     }
 
     public void MapAllTiles()

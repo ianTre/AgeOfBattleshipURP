@@ -15,6 +15,16 @@ public class AvatarController : MonoBehaviour
     GameObject avatarPanel;
     private bool coroutineActive = false;
     private bool playerWantToSkip = false;
+    [SerializeField]
+    AudioClip WelcomeMessage1;
+    [SerializeField]
+    AudioClip WelcomeMessage2;
+    [SerializeField]
+    AudioClip WelcomeMessage3;
+    [SerializeField]
+    AudioClip WelcomeMessage4;
+    [SerializeField]
+    AudioClip WelcomeMessage5;
     // Start is called before the first frame update
     void Awake()
     {
@@ -27,13 +37,13 @@ public class AvatarController : MonoBehaviour
         EnemyMapController.instance.firingButtonEnabled = false;
         avatarPanel.SetActive(true);
         PlayableDirector.Play();
-        List<string> messages = new List<string>()
+        var messages = new List<(string,AudioClip)>()
         {
-            "Hello there captain! My name is lieutenant Dan, and I will help you in this battle ",
-            "What you are seeing now is a simulation of the enemy battlefield on your radar ",
-            "Your mission is to destroy all enemy targets before they destroy you ",
-            "First, you need to select an Enemy Spot on the radar ",
-            "Then, press the Fire button on the bottom right corner "
+            ("Hello there captain! My name is lieutenant Dan, and I will help you in this battle ",WelcomeMessage1),
+            ("What you are seeing now is a simulation of the enemy battlefield on your radar ",WelcomeMessage2),
+            ("Your mission is to destroy all enemy targets before they destroy you ",WelcomeMessage3),
+            ("First, you need to select an Enemy Spot on the radar ",WelcomeMessage4),
+            ("Then, press the Fire button on the bottom right corner ", WelcomeMessage5)
         };
         StartCoroutine(ShowMessageCoroutine(messages));
         coroutineActive=true;
@@ -44,9 +54,9 @@ public class AvatarController : MonoBehaviour
         EnemyMapController.instance.firingButtonEnabled = false;
         avatarPanel.SetActive(true);
         PlayableDirector.Play();
-        List<string> messages = new List<string>()
+        var messages = new List<(string,AudioClip)>()
         {
-            "Well done! we have just destroyed one of them ships"
+            ("Well done! we have just destroyed one of them ships. ", null)
         };
         StartCoroutine(ShowMessageCoroutine(messages));
         coroutineActive = true;
@@ -57,9 +67,9 @@ public class AvatarController : MonoBehaviour
         EnemyMapController.instance.firingButtonEnabled = false;
         avatarPanel.SetActive(true);
         PlayableDirector.Play();
-        List<string> messages = new List<string>()
+        var messages = new List<(string, AudioClip)>()
         {
-            "Enemy ship found.We should focus our fire power in that position"
+            ("Enemy ship found.We should focus our fire power in that position. ", null)
         };
         StartCoroutine(ShowMessageCoroutine(messages));
         coroutineActive = true;
@@ -71,26 +81,33 @@ public class AvatarController : MonoBehaviour
         oldConsoleText.interruptConsole();
     }
 
-    public IEnumerator ShowMessageCoroutine(List<string> messages)
+    public IEnumerator ShowMessageCoroutine(List<(string Text,AudioClip Audio)> messages)
     {
-        yield return new WaitForSeconds(1.7f);
-        foreach (string message in messages)
+        yield return new WaitForSeconds(1.1f);
+        foreach (var message in messages)
         {
-            oldConsoleText.StartDisplayingText(message);
+            oldConsoleText.StartDisplayingText(message.Text);
+            if(message.Audio != null)
+            {
+                GetComponent<AudioSource>().clip = message.Audio;
+                GetComponent<AudioSource>().Play();
+            }
             while (oldConsoleText.isDisplayingText)
             {
                 yield return null;
             }
             if(playerWantToSkip)
             {
+                GetComponent<AudioSource>().Stop();
                 playerWantToSkip = false;
                 continue;
             }
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(2.0f);
         }
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         coroutineActive = false;
         avatarPanel.SetActive(false);
+        GameController.instance.UpdateStage(GameStage.PlayerAttackCinematicFinished);
         EnemyMapController.instance.firingButtonEnabled = true;
     }
 

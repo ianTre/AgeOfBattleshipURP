@@ -137,7 +137,12 @@ public class GameController : MonoBehaviour
         {
             yield return null;
         }
-        yield return new WaitForSeconds(waitAfterShot);
+
+        while(actionStage != GameStage.PlayerAttackCinematicFinished)
+        {
+            yield return null;
+        }
+        
 
         if (EnemyMapController.instance.CheckEndOfGame())
         {
@@ -186,7 +191,8 @@ public class GameController : MonoBehaviour
     private IEnumerator ShowEnemyTurnCanvas()
     {
         waiting = true;
-        if(enemyTurncanvas!=null)
+        yield return new WaitForSeconds(1.0f);
+        if (enemyTurncanvas!=null)
         { 
             enemyTurncanvas.SetActive(true);
             yield return new WaitForSeconds(1.3f);
@@ -296,8 +302,9 @@ public enum GameStage
     Deploy = 0,
     PlayerAttackEnemyMap = 1,
     PlayerAttackCinematic = 2,
+    PlayerAttackCinematicFinished = 29,
+    IATurnInfoDisplay = 30,
     IAAttackPlayerMap = 3,
-    IATurnInfoDisplay = 31,
     IAAttackCinematic = 4,
     EndOfGame = 99
 }

@@ -19,11 +19,28 @@ public class CameraController : MonoBehaviour
     public float zoomSpeed;
     public float rotateSpeed;
     private Camera cam;
+    public float totalForwardMovementAllowed = 10f;
+    public float totalRightMovementAllowed = 10f;
+
+    private Vector3 startPosition;
+    private Vector3 movementForward;
+    private Vector3 movementRight;
     void Start()
     {
         cam = Camera.main;
         curZoom = cam.transform.localPosition.y;
         curXRot = -50;
+
+        // Initialize movement references
+        startPosition = transform.position;
+
+        movementForward = cam.transform.forward;
+        movementForward.y = 0.0f;
+        movementForward.Normalize();
+
+        movementRight = cam.transform.right;
+        movementRight.y = 0.0f;
+        movementRight.Normalize();
     }
 
     // Update is called once per frame
@@ -64,14 +81,33 @@ public class CameraController : MonoBehaviour
 
         float moveX = InputController.instance.HorizontalAxisMovement;
         float moveZ = InputController.instance.VerticalAxisMovement;
-        
+
 
         Vector3 dir = forward * moveZ + right * moveX;
-        dir.Normalize();
+        if (dir.sqrMagnitude > 0.00001f)
+            dir.Normalize();
         dir *= moveSpeed * Time.deltaTime;
 
-        transform.position += dir;
-        
+        // Desired position after input
+        Vector3 desiredPos = transform.position + dir;
+
+        // Compute offset from start along planar basis and clamp it
+        Vector3 offset = desiredPos - startPosition;
+
+        float forwardAmount = Vector3.Dot(offset, movementForward);
+        float rightAmount = Vector3.Dot(offset, movementRight);
+
+        float clampedForward = Mathf.Clamp(forwardAmount, -totalForwardMovementAllowed, totalForwardMovementAllowed);
+        float clampedRight = Mathf.Clamp(rightAmount, -totalRightMovementAllowed, totalRightMovementAllowed);
+
+        Vector3 clampedOffset = movementForward * clampedForward + movementRight * clampedRight;
+
+        Vector3 finalPos = startPosition + clampedOffset;
+        // Preserve current Y (movement only in horizontal plane)
+        finalPos.y = transform.position.y;
+
+        transform.position = finalPos;
+
     }
 
     public void Zoom(float zoomLevel)
