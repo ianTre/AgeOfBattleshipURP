@@ -29,11 +29,11 @@ public class AvatarController : MonoBehaviour
         PlayableDirector.Play();
         List<string> messages = new List<string>()
         {
-            "Hello there captain , my name is lieutenant Dan, and i will help you in this battle ",
-            "What you are seeing now is a simulation of the enemy battlefield in your radar ",
+            "Hello there captain! My name is lieutenant Dan, and I will help you in this battle ",
+            "What you are seeing now is a simulation of the enemy battlefield on your radar ",
             "Your mission is to destroy all enemy targets before they destroy you ",
-            "First you need to select an Enemy Spot in the radar ",
-            "Then press Fire button on the bottom right corner "
+            "First, you need to select an Enemy Spot on the radar ",
+            "Then, press the Fire button on the bottom right corner "
         };
         StartCoroutine(ShowMessageCoroutine(messages));
         coroutineActive=true;
