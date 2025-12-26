@@ -25,6 +25,8 @@ public class AvatarController : MonoBehaviour
     AudioClip WelcomeMessage4;
     [SerializeField]
     AudioClip WelcomeMessage5;
+    [SerializeField]
+    AudioClip EnemyShipSunk;
     // Start is called before the first frame update
     void Awake()
     {
@@ -56,7 +58,7 @@ public class AvatarController : MonoBehaviour
         PlayableDirector.Play();
         var messages = new List<(string,AudioClip)>()
         {
-            ("Well done! we have just destroyed one of them ships. ", null)
+            ("Congratulations Captain! You have sunk an enemy ship. ", EnemyShipSunk)
         };
         StartCoroutine(ShowMessageCoroutine(messages));
         coroutineActive = true;

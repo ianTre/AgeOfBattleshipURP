@@ -114,7 +114,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""a8fd57f4-968a-483f-9966-602525116a4f"",
                     ""expectedControlType"": ""Analog"",
-                    ""processors"": """",
+                    ""processors"": ""Invert"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
@@ -122,8 +122,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""name"": ""HorizontalAxis"",
                     ""type"": ""Value"",
                     ""id"": ""cdbc2e19-9984-4e4e-8852-f9b8df62394b"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
+                    ""expectedControlType"": ""Analog"",
+                    ""processors"": ""Invert"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },

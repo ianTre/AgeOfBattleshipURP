@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,19 +23,24 @@ public class MainMenuController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI text4;
     private float videoTime = 8f;
+
     public void StartGame()
     {
         StartCoroutine(LoadNewScene(4));
-        
+
     }
 
     private IEnumerator LoadNewScene(float fadeOutTime)
     {
         videoTime -= fadeOutTime;
-        Color currentColor = text1.color;
+        Color color1 = text1.color;
+        Color color2 = text2.color;
+        Color color3 = text3.color;
+        Color color4 = text4.color;
+
         videoPlayer.Play();
-        float waiter = 0.1f;
-        while (waiter > 0 )
+        float waiter = 0.5f;
+        while (waiter > 0)
         {
             waiter -= Time.deltaTime;
             yield return null;
@@ -44,11 +50,11 @@ public class MainMenuController : MonoBehaviour
         {
             fadeOutTime -= Time.deltaTime;
             float alpha = fadeOutTime / 3f;
-            currentColor.a = alpha;
-            text1.color = currentColor;
-            text2.color = currentColor;
-            text3.color = currentColor;
-            text4.color = currentColor;
+            color1.a = color2.a = color3.a = color4.a = alpha;
+            text1.color = color1;
+            text2.color = color2;
+            text3.color = color3;
+            text4.color = color4;
             yield return null;
         }
         while (videoTime > 0)
@@ -57,5 +63,11 @@ public class MainMenuController : MonoBehaviour
             yield return null;
         }
         UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
+    }
+
+    public void LoadCredits()
+    {
+        Thread.Sleep(1000);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("FinalScene");
     }
 }
