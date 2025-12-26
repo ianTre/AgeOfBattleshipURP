@@ -25661,6 +25661,11 @@ MonoBehaviour:
   WelcomeMessage3: {fileID: 8300000, guid: 53275c1d0f6f79240af35a759992d299, type: 3}
   WelcomeMessage4: {fileID: 8300000, guid: 00ddc0af7f20e82459dd1c97b6e5a4e9, type: 3}
   WelcomeMessage5: {fileID: 8300000, guid: 7113f55a7491d084aa0be673f8c03c45, type: 3}
+  EnemyShipSunk: {fileID: 8300000, guid: 032c77f3be7cda04fbda41a429a9d954, type: 3}
+  EnemyShipFound: {fileID: 8300000, guid: 137ebe1d0c25ee048b453cd8b0603993, type: 3}
+  AllEnemyShipsDestroyed: {fileID: 8300000, guid: 49c05e1338c5f36478285fe75aac3603,
+    type: 3}
+  BattleLost: {fileID: 8300000, guid: 0187e6416183b46458111110dbb1d410, type: 3}
 --- !u!82 &1581302645
 AudioSource:
   m_ObjectHideFlags: 0

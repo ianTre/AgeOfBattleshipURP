@@ -27,6 +27,12 @@ public class AvatarController : MonoBehaviour
     AudioClip WelcomeMessage5;
     [SerializeField]
     AudioClip EnemyShipSunk;
+     [SerializeField]
+    AudioClip EnemyShipFound;
+       [SerializeField]
+    AudioClip AllEnemyShipsDestroyed;
+       [SerializeField]
+    AudioClip BattleLost;
     // Start is called before the first frame update
     void Awake()
     {
@@ -71,12 +77,35 @@ public class AvatarController : MonoBehaviour
         PlayableDirector.Play();
         var messages = new List<(string, AudioClip)>()
         {
-            ("Enemy ship found.We should focus our fire power in that position. ", null)
+            ("Sir, enemy ship found. Concentrate fire on the area.", EnemyShipFound)
         };
         StartCoroutine(ShowMessageCoroutine(messages));
         coroutineActive = true;
     }
-
+    /*public void DisplayPlayerSunkAllShips()
+    {
+        EnemyMapController.instance.firingButtonEnabled = false;
+        avatarPanel.SetActive(true);
+        PlayableDirector.Play();
+        var messages = new List<(string, AudioClip)>()
+        {
+            ("All ships have been destroyed. Congratulations, sir! You won the battle!", AllEnemyShipsDestroyed)
+        };
+        StartCoroutine(ShowMessageCoroutine(messages));
+        coroutineActive = true;
+    }
+    public void DisplayPlayerBattleLost()
+    {
+        EnemyMapController.instance.firingButtonEnabled = false;
+        avatarPanel.SetActive(true);
+        PlayableDirector.Play();
+        var messages = new List<(string, AudioClip)>()
+        {
+            ("We lost the battle, sir. It's been an honour to fight alongside you, captain", BattleLost)
+        };
+        StartCoroutine(ShowMessageCoroutine(messages));
+        coroutineActive = true;
+    }*/
     public void Skip()
     {
         playerWantToSkip = true;
