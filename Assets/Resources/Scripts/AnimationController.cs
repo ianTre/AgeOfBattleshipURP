@@ -249,7 +249,10 @@ public class AnimationController : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
-        //cameraRotatorFull.GetComponent<CameraRotator>().StopRotation();
+        if(PlayerController.instance.CheckEndOfGame())
+        {
+            GameController.instance.GameLost();
+        }
         GameController.instance.UpdateStage(GameStage.PlayerAttackEnemyMap);
     }
 }

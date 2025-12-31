@@ -82,16 +82,17 @@ public class AvatarController : MonoBehaviour
         StartCoroutine(ShowMessageCoroutine(messages));
         coroutineActive = true;
     }
-    /*public void DisplayPlayerSunkAllShips()
+    
+    public void DisplayPlayerBattleWon()
     {
         EnemyMapController.instance.firingButtonEnabled = false;
         avatarPanel.SetActive(true);
         PlayableDirector.Play();
         var messages = new List<(string, AudioClip)>()
         {
-            ("All ships have been destroyed. Congratulations, sir! You won the battle!", AllEnemyShipsDestroyed)
+            ("All ships have been destroyed. Congratulations, sir! You won the battle!.", AllEnemyShipsDestroyed)
         };
-        StartCoroutine(ShowMessageCoroutine(messages));
+        StartCoroutine(ShowMessageCoroutine(messages,GameStage.EndOfGameWon));
         coroutineActive = true;
     }
     public void DisplayPlayerBattleLost()
@@ -101,18 +102,18 @@ public class AvatarController : MonoBehaviour
         PlayableDirector.Play();
         var messages = new List<(string, AudioClip)>()
         {
-            ("We lost the battle, sir. It's been an honour to fight alongside you, captain", BattleLost)
+            ("We lost the battle, sir. It's been an honour to fight alongside you, captain.", BattleLost)
         };
-        StartCoroutine(ShowMessageCoroutine(messages));
+        StartCoroutine(ShowMessageCoroutine(messages,GameStage.EndOfGameLost));
         coroutineActive = true;
-    }*/
+    }
     public void Skip()
     {
         playerWantToSkip = true;
         oldConsoleText.interruptConsole();
     }
 
-    public IEnumerator ShowMessageCoroutine(List<(string Text,AudioClip Audio)> messages)
+    public IEnumerator ShowMessageCoroutine(List<(string Text,AudioClip Audio)> messages, GameStage newGameStage = GameStage.PlayerAttackCinematicFinished)
     {
         yield return new WaitForSeconds(1.1f);
         foreach (var message in messages)
@@ -138,7 +139,7 @@ public class AvatarController : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         coroutineActive = false;
         avatarPanel.SetActive(false);
-        GameController.instance.UpdateStage(GameStage.PlayerAttackCinematicFinished);
+        GameController.instance.UpdateStage(newGameStage);
         EnemyMapController.instance.firingButtonEnabled = true;
     }
 

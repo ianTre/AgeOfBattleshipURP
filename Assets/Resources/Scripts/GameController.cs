@@ -2,8 +2,6 @@ using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -33,6 +31,7 @@ public class GameController : MonoBehaviour
     AvatarController avatarController;
     private bool waiting = false;
     GameObject enemyTurncanvas;
+    private bool isGameOver = false;
 
     List<string> coordinates = new List<string>();
     private Ship shipToAction;
@@ -81,9 +80,19 @@ public class GameController : MonoBehaviour
             case GameStage.IAAttackCinematic:
                 TransitionToIAAttackCinematic();
                 break;
+
+            case GameStage.EndOfGameLost:
+            case GameStage.EndOfGameWon:
+                EndOfGame();
+                break;
             default:
                 break;
         }
+    }
+
+    public void GameLost()
+    {
+        isGameOver = true;
     }
 
     public IEnumerator TransitionFromAnimationToDeployScene()
@@ -108,12 +117,22 @@ public class GameController : MonoBehaviour
 
 
         CameraManager.instance.ChangeToPlayerAtacckIARadar();
-        shipToAction = PlayerController.instance.getShipToBeActioned();
-        GameObject.Find("AnchorOrbiter")?.GetComponent<CameraRotator>()?.StartRotation(shipToAction.transform.position);
-        VirtualCameraShipRotator.LookAt = shipToAction.GetComponent<FirePowerController>().cannons[0]?.transform;
+        
+        if (!isGameOver)
+        {
+            shipToAction = PlayerController.instance.getShipToBeActioned();
+            GameObject.Find("AnchorOrbiter")?.GetComponent<CameraRotator>()?.StartRotation(shipToAction.transform.position);
+            VirtualCameraShipRotator.LookAt = shipToAction.GetComponent<FirePowerController>().cannons[0]?.transform;
+        }
         turn++;
         if (turn == 1)
             avatarController.DisplayWelcomeMessage();
+
+        if (isGameOver)
+        {
+            avatarController.DisplayPlayerBattleLost();
+        }
+
 
     }
 
@@ -138,21 +157,19 @@ public class GameController : MonoBehaviour
             yield return null;
         }
 
-        while(actionStage != GameStage.PlayerAttackCinematicFinished)
+        while (actionStage != GameStage.PlayerAttackCinematicFinished)
         {
             yield return null;
         }
-        
 
-        if (EnemyMapController.instance.CheckEndOfGame())
-        {
-            actionStage = GameStage.EndOfGame;
-            EndOfGame("Player");
-        }
-        else
-        {
-            actionStage = GameStage.IAAttackPlayerMap;
-        }
+
+        //if (EnemyMapController.instance.CheckEndOfGame())
+        //{
+        //    actionStage = GameStage.EndOfGame;
+        //    EndOfGame("Player");
+        //}
+        //else
+        actionStage = GameStage.IAAttackPlayerMap;
         GameObject.Find("AnchorOrbiter")?.GetComponent<CameraRotator>()?.StopRotation();
     }
 
@@ -179,26 +196,26 @@ public class GameController : MonoBehaviour
         else //Until here included
             EnemyMapController.instance.IAEnemyShot();
 
-        if (PlayerController.instance.CheckEndOfGame())
-        {
-            actionStage = GameStage.EndOfGame;
-            EndOfGame("IA");
-        }
-        else
-            actionStage = GameStage.IAAttackCinematic;
+        //if (PlayerController.instance.CheckEndOfGame())
+        //{
+        //    actionStage = GameStage.EndOfGame;
+        //    EndOfGame("IA");
+        //}
+        //else
+        actionStage = GameStage.IAAttackCinematic;
     }
 
     private IEnumerator ShowEnemyTurnCanvas()
     {
         waiting = true;
         yield return new WaitForSeconds(1.0f);
-        if (enemyTurncanvas!=null)
-        { 
+        if (enemyTurncanvas != null)
+        {
             enemyTurncanvas.SetActive(true);
             yield return new WaitForSeconds(1.3f);
         }
         waiting = false;
-        
+
     }
 
     public void HideEnemyTurnCanvas()
@@ -227,37 +244,9 @@ public class GameController : MonoBehaviour
         EnemyMapController.instance.GenerateEnemyShips(ships);
     }
 
-    public void EndOfGame(string winner)
+    public void EndOfGame()
     {
-        GameObject endGamePanel;
-        AudioSource audio;
         UnityEngine.SceneManagement.SceneManager.LoadScene("FinalScene");
-        /*
-        if (winner == "IA") // In case we want different end game for IA
-        {
-            currentStage = GameStage.EndOfGame;
-            CameraManager.instance.TurnOffAllCameras();
-            // Show end game panel
-            endGameCanvas.SetActive(true);
-            StartCoroutine(DeactivateEndGameCanvas(5));
-            endGamePanel = endGameCanvas.transform.GetChild(0).gameObject;
-            audio = endGamePanel.GetComponent<AudioSource>();
-            audio.clip = gameOverSound;
-            audio.Play();
-        }
-
-        currentStage = GameStage.EndOfGame;
-        CameraManager.instance.TurnOffAllCameras();
-        GameObject.Find("InitialSetupCanvas").SetActive(false);
-        // Show end game panel
-        endGameCanvas.SetActive(true);
-        StartCoroutine(DeactivateEndGameCanvas(10));
-        endGamePanel = endGameCanvas.transform.GetChild(0).gameObject;
-        endGamePanel.GetComponentInChildren<TextMeshProUGUI>().text = winner + " wins!";
-        audio = endGamePanel.GetComponent<AudioSource>();
-        audio.clip = gameOverSound;
-        audio.Play();
-        */
     }
 
     public IEnumerator DeactivateEndGameCanvas(float time)
@@ -306,7 +295,8 @@ public enum GameStage
     IATurnInfoDisplay = 30,
     IAAttackPlayerMap = 3,
     IAAttackCinematic = 4,
-    EndOfGame = 99
+    EndOfGameLost = 98,
+    EndOfGameWon = 99
 }
 
 public enum HitResult

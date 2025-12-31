@@ -116,7 +116,14 @@ public class EnemyMapController : MonoBehaviour
         }
         else if (prefab == sunkSprite)
         {
-            avatarController.DisplayPlayerSunkAShip();
+            if(CheckEndOfGame())
+            {
+                avatarController.DisplayPlayerBattleWon();
+            }
+            else
+            { 
+                avatarController.DisplayPlayerSunkAShip();
+            }
         }
     }
 

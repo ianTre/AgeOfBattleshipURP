@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour
 
     public void EndDeployStage()
     {
-        if (shipCount > 0) // (totalShipAvailable == shipCount) << original condition, temporarily changed
+        if (shipCount > 5 && ships.Exists(s => s.shipType == ShipType.Battleship)) // (totalShipAvailable == shipCount) << original condition, temporarily changed
         {
             GameController.instance.UpdateStage(GameStage.PlayerAttackEnemyMap);
         }
@@ -191,7 +191,7 @@ public class PlayerController : MonoBehaviour
     {
         var avaibleShips = ships.Where(s => s.isSunk == false);
         int random = UnityEngine.Random.Range(0, avaibleShips.Count());
-        Ship selShip = avaibleShips.ElementAt(random);
+        Ship selShip = avaibleShips?.ElementAt(random);
         return selShip;
     }
     public Ship GetSelectedShip()
