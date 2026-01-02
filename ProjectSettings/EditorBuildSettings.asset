@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/TriCoding.unity
+    guid: bc2226c774ea1cb4ab24ad37d9f83b3d
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 021fc999b7137fa47a78a33e1b6dec32
   - enabled: 1

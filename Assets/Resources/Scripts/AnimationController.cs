@@ -40,7 +40,6 @@ public class AnimationController : MonoBehaviour
 
     }
 
-
     public void PlayExplosion()
     {
         currentPosition.y += 40;
@@ -168,54 +167,6 @@ public class AnimationController : MonoBehaviour
         }
         GameController.instance.UpdateStage(GameStage.PlayerAttackEnemyMap);
     }
-
-    //OLD SUNK ANIMATION : You hear 1 shot , and then chain reaction explosions and final multiple explosion. OBSOLETE
-    /* 
-    private IEnumerator ShowSunkExplosion(float initialDelay, float betweenExplosionsDelay, float finalDelay, Vector3 position)
-    {
-        float elapsed = 0f;
-        while (elapsed < initialDelay)
-        {
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-        Ship ship = PlayerController.instance.GetShipByPosition(position);
-        int totalHits = ship.shipTiles.Where(x => x.hitted == true).Count();
-        ship.gameObject.GetComponent<FirePowerController>().TakeDamage(totalHits, ship.shipTiles.Count);
-        elapsed = 0f;
-        while (betweenExplosionsDelay >= 0)
-        {
-            GameObject explosionsFolder = ship.gameObject.transform.Find("Explosions").gameObject;
-            if (explosionsFolder == null)
-            {
-                Debug.Log("Explosions folder not found in ship: " + ship.name);
-                yield break;
-            }
-            for (int i = 0; i < explosionsFolder.transform.childCount; i++)
-            {
-                GameObject explosion = explosionsFolder.transform.GetChild(i).gameObject;
-                explosion.GetComponent<ParticleSystem>().Play();
-                explosion.GetComponent<AudioSource>().Play();
-                elapsed = 0f;
-                while (elapsed < betweenExplosionsDelay)
-                {
-                    elapsed += Time.deltaTime;
-                    yield return null;
-                }
-            }
-            betweenExplosionsDelay--;
-            elapsed = 0f;
-        }
-
-        while (elapsed < finalDelay)
-        {
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-        cameraRotatorFull.GetComponent<CameraRotator>().StopRotation();
-        GameController.instance.UpdateStage(GameStage.PlayerAttackEnemyMap);
-    }*/
-
     private IEnumerator ShowSunkExplosion(float initialDelay ,float finalDelay, Vector3 position)
     {
         float elapsed = 0f;

@@ -455,66 +455,6 @@ public class EnemyMapController : MonoBehaviour
         selectedTile?.DeHighlighMe();
         selectedTile = null;
     }
-
-
-
-
-    /*    public bool CanShipBeDeployed(Tile originalTile,Ship newShip,bool verticallyOriented)
-        {
-
-            List<Tile> tilesToBeOccuppied = new List<Tile>();
-            int sizeToBeOcuppied = newShip.Size();
-
-            int offset = 1; //1%2 == 1 . So we will increment  by [+1,-1,+2,-2,+3,-3]
-            tilesToBeOccuppied.Add(FindTileByCoord(originalTile.ZCoord, originalTile.XCoord));
-            sizeToBeOcuppied--;
-            bool plus = true;
-            offset++;
-
-            while (sizeToBeOcuppied > 0)
-            {
-                int auxXCoord = originalTile.XCoord;
-                int auxZCoord = originalTile.ZCoord;
-                if (!verticallyOriented)
-                {
-                    if (plus)
-                    {
-                        auxXCoord = originalTile.XCoord + (offset / 2);
-                    }
-                    else
-                    {
-                        auxXCoord = originalTile.XCoord - (offset / 2);
-                    }
-                }
-                else
-                {
-                    if (plus)
-                    {
-                        auxZCoord = originalTile.ZCoord + (offset / 2);
-                    }
-                    else
-                    {
-                        auxZCoord = originalTile.ZCoord - (offset / 2);
-                    }
-                }
-                offset++;
-                plus = !plus;
-                sizeToBeOcuppied--;
-                AddIfExists(tilesToBeOccuppied, auxZCoord, auxXCoord);
-            }
-            //Add if exists will not add any tile outside the map. If the numbers dont match , you are trying to add a ship outside longer that the limits of the map
-            if (tilesToBeOccuppied.Count != newShip.Size())
-                return false;
-
-
-            foreach (Ship ship in enemyShips)
-            {
-                if (ship.ocuppiedTiles.Exists(tile => tilesToBeOccuppied.Contains(tile)))
-                    return false;
-            }
-            return true;
-        }*/
-
     public void IAEnemyShot()
     {
         Coord coord = null;

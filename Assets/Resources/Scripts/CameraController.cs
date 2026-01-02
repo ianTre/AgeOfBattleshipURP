@@ -55,22 +55,6 @@ public class CameraController : MonoBehaviour
         else
             cam.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "UI", "Developer");
 
-
-
-        /*
-        //Rotate
-        if (Input.GetMouseButton(1))
-        {
-            float x = Input.GetAxis("Mouse X");
-            float y = Input.GetAxis("Mouse Y");
-
-            curXRot += -y * rotateSpeed;
-            curXRot = Mathf.Clamp(curXRot, minXrot, maxXRot);
-
-            transform.eulerAngles = new Vector3(curXRot, transform.eulerAngles.y + (x * rotateSpeed), 0.0f);
-        }
-        */
-
         //Movement
         Vector3 forward = cam.transform.forward;
         forward.y = 0.0f;

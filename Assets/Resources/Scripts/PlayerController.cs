@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour
 
     public void EndDeployStage()
     {
-        if (shipCount > 5 && ships.Exists(s => s.shipType == ShipType.Battleship)) // (totalShipAvailable == shipCount) << original condition, temporarily changed
+        if (shipCount > 5 ) // (totalShipAvailable == shipCount) << original condition, temporarily changed
         {
             GameController.instance.UpdateStage(GameStage.PlayerAttackEnemyMap);
         }

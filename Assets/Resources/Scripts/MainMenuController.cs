@@ -23,6 +23,12 @@ public class MainMenuController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI text4;
     private float videoTime = 8f;
+    
+
+    public void Update()
+    {
+        
+    }
 
     public void StartGame()
     {
